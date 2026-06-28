@@ -1,0 +1,65 @@
+# Loomground
+
+> Machine-readable standard for AI agents to read, emit, and validate Loomground —
+> a declarative language that governs whether an action MAY take effect: a policy
+> graph evaluated before release and recorded on a tamper-evident log. Self-contained.
+> Normative source: `spec/SPEC.md` (it governs on any conflict).
+
+## Model
+
+- **Nodes (4):** `actor` (proposes an action; bears authority only by an explicit grant) · `human` (a role a `reserved` token is referred to) · `gate` (checkpoint; yields exactly one verdict) · `master` (single egress; the release point).
+- **Cords (3):** `authority` (actor→gate) · `pipe` (gate→gate, acyclic) · `egress` (gate→master). Every other pairing is ill-formed.
+- **Token** (the only data): `{ id, kind, risk, party, provenance, tags? }`. `risk` = `low < medium < high < critical`. `tags` = optional set of declared categories.
+- **Verdicts** (join strictest-wins along pipes): `auto` releases · `human` withholds (oversight) · `refused` (no authorizing grant) · `reserved` (referred to a role) · `prohibited` (severed, overrides any grant). Master releases iff effective verdict is `auto` and every egress obligation is attached.
+- **Autonomy grade** — config attribute, not a token field, not guardable: `grade` on an actor = *granted*; on a source gate = *required*. Ordered ladder (`vocabulary/grades.json`, default `L0 < L1 < L2 < L3 < L4`, policy/remappable). At a source gate requiring `R`: `auto` iff granted `G >= R`, else `human`; ungraded actor → `human`; no `R` → policy.
+- **Well-formed iff:** every cord permitted · pipes acyclic · exactly one master · every gate reaches the master · a grade-required gate is a source gate · delegation never amplifies (`risk` subset; `grade(delegate) <= grade(delegator)`; an ungraded delegator caps the delegate at ungraded). Forward-only.
+
+## Declarations (9)
+
+```
+reserve <kind> by <target> [when <guard>] [duration <d>:<halt|proceed>]   # -> reserved
+prohibit <kind> [when <guard>]                                           # -> prohibited (overrides grants)
+obligation <id> on <gate>                                                # master acts only if attached
+redress <kind> by <role> [overturn] [within <duration>]                  # released decision is contestable
+party <id>             # accountability attribute, on an actor or gate
+grade <Lk>             # autonomy, on an actor (granted) / source gate (required)
+actor <id> on-behalf-of <delegator>   # delegation: attribute on the delegate's actor decl (rides its authority cord); no amplification
+```
+- `target` = `<role>` | `<role> and <role>` | `<m> of { roles }`  — **quorum**: distinct parties (separation of duty).
+- **temporal**: the `duration` + on-elapse (`halt`|`proceed`) on a reserved action.
+
+`guard` = `kind = <k>` | `risk >= <level>` | `party = <id>` | `tags contains <tag>`.
+Declared properties only — never `id`, `provenance`, `grade`, or any computed value (the no-id wall).
+
+**Rejection stage:** grammar errors reject at **parse**. Everything else — an ill-formed graph (bad cord, cycle, no path to master, a non-source gate with a required grade) *and* an out-of-domain value (a guard over `id`/`provenance`, a `risk` or `grade` outside its scale) — parses, then rejects at **apply**: these are semantic checks, not grammar.
+
+## Litmus — what belongs in a patch
+
+- A regulation/standard **names** it as a declaration → **language** (express it).
+- A deployment **chooses values** (which kinds reserve/prohibit, the thresholds, the ladder) → **policy** (not the patch).
+- A runtime **does** it (compute, aggregate, schedule, watermark, persist, communicate) → **host** (hand off; not expressible by design).
+
+## Emit a patch (`.loom`)
+
+One statement per line; `#` begins a comment. Declare nodes, then wire cords.
+
+```
+actor  bot7
+human  alice  role legal
+gate   intake  risk low    grant bot7
+gate   decide  risk high   grant bot7
+reserve automated_decision by legal when risk >= high
+cord bot7   -> intake
+cord bot7   -> decide
+cord intake -> decide      # pipe
+cord decide -> master      # egress
+```
+
+## Validate
+
+- Structure: `schema/{token,patch,observation,transport}.schema.json`.
+- Conformance: reproduce every vector in `conformance/` (indexed by `conformance/manifest.json`). Semantics are deterministic — a given (patch, token) yields a fixed verdict.
+
+## Machine-readable files
+
+`language-card.json` (this card as data) · `grammar/loomground.ebnf` + `grammar/tree-sitter/` · `vocabulary/` (nodes, cords, verdicts, declarations, guard domain, risk, grades, grounding) · `schema/` · `conformance/` · `spec/SPEC.md`, `spec/SYNTAX.md`.
