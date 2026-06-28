@@ -1,0 +1,29 @@
+{
+  "language": "Loomground",
+  "version": "0.6",
+  "summary": "A declarative language for governance constraints on the actions of AI systems and AI agents. A program is a policy graph evaluated before any action is released, on a tamper-evident log.",
+  "nodes": ["actor", "human", "gate", "master"],
+  "cords": ["authority (actor -> gate)", "pipe (gate -> gate)", "egress (gate -> master)"],
+  "token": ["id", "kind", "risk", "party", "provenance", "tags"],
+  "verdicts": ["auto", "human", "refused", "reserved", "prohibited"],
+  "declarations": ["reservation", "quorum", "prohibition", "temporal", "egress-obligation", "redress", "party", "delegation", "autonomy-grade"],
+  "well_formedness": [
+    "every cord is a permitted endpoint pairing",
+    "the pipe relation is acyclic",
+    "exactly one master",
+    "every gate lies on a path to the master",
+    "every delegation satisfies the no-amplification invariant (risk subset and, pairwise, grade(delegate) not above grade(delegator) in the active-ladder order; additionally an ungraded delegator caps the delegate at ungraded)",
+    "a gate declaring a required grade is a source gate; grade_required on a non-source (piped) gate is ill-formed at apply"
+  ],
+  "evaluation": "One transport evaluates the whole graph; every activated gate gets a verdict; effective verdicts propagate strictest-wins along pipes; the master releases a terminal gate's action iff its effective verdict is auto and every egress obligation is attached.",
+  "litmus": "A regulation names it as a declaration -> language. A deployment chooses its values -> policy. A runtime does it -> host. A guard ranges only over declared token properties, never a computed value, and never over grade (a config attribute: granted on actor, required on a source gate). The autonomy ladder and its order are policy (vocabulary/grades.json, default L0..L4, remappable); the language requires an active total order and owns only the §7.1 comparison/gating rule evaluated at the source gate.",
+  "out_of_scope": ["execution", "scheduling", "storage", "presentation", "communication", "time measurement", "obligation discharge", "party authentication"],
+  "artifacts": {
+    "grammar": "grammar/loomground.ebnf",
+    "schema": {"token": "schema/token.schema.json", "patch": "schema/patch.schema.json", "observation": "schema/observation.schema.json", "transport": "schema/transport.schema.json"},
+    "vocabulary": "vocabulary/",
+    "conformance": "conformance/manifest.json",
+    "specification": "spec/SPEC.md",
+    "syntax": "spec/SYNTAX.md"
+  }
+}

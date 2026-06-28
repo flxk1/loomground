@@ -1,0 +1,12 @@
+# Python (check_llms_txt.py)
+__pycache__/
+*.py[cod]
+
+# author-facing working docs never ship
+_docs/
+**/PLAN_*.md
+**/PANEL_*.md
+**/QUESTIONS_*.md
+
+# editor / OS
+.DS_Store

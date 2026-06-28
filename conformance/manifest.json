@@ -1,0 +1,201 @@
+{
+  "version": "0.6",
+  "describes": "Conformance vectors that define a conforming implementation (specification, Conformance).",
+  "kinds": {
+    "patch": "input.loom + expected.json [+ transport.json]",
+    "token": "tokens.json: a list of {valid, token}",
+    "negative": "input.loom + reject.json: {stage: parse|apply}"
+  },
+  "vectors": [
+    {
+      "name": "draft-decide",
+      "kind": "patch",
+      "files": [
+        "expected.json",
+        "input.loom"
+      ]
+    },
+    {
+      "name": "draft-decide-run",
+      "kind": "patch",
+      "files": [
+        "expected.json",
+        "input.loom",
+        "transport.json"
+      ]
+    },
+    {
+      "name": "multi-hop-pipeline",
+      "kind": "patch",
+      "files": [
+        "expected.json",
+        "input.loom",
+        "transport.json"
+      ]
+    },
+    {
+      "name": "multi-issue-reservations",
+      "kind": "patch",
+      "files": [
+        "expected.json",
+        "input.loom"
+      ]
+    },
+    {
+      "name": "rack-approval",
+      "kind": "patch",
+      "files": [
+        "expected.json",
+        "input.loom"
+      ]
+    },
+    {
+      "name": "redress-decl",
+      "kind": "patch",
+      "files": [
+        "expected.json",
+        "input.loom"
+      ]
+    },
+    {
+      "name": "reject-agent-to-master",
+      "kind": "negative",
+      "files": [
+        "input.loom",
+        "reject.json"
+      ],
+      "stage": "apply"
+    },
+    {
+      "name": "reject-bad-risk",
+      "kind": "negative",
+      "files": [
+        "input.loom",
+        "reject.json"
+      ],
+      "stage": "apply"
+    },
+    {
+      "name": "reject-human-authority",
+      "kind": "negative",
+      "files": [
+        "input.loom",
+        "reject.json"
+      ],
+      "stage": "apply"
+    },
+    {
+      "name": "reject-missing-arrow",
+      "kind": "negative",
+      "files": [
+        "input.loom",
+        "reject.json"
+      ],
+      "stage": "parse"
+    },
+    {
+      "name": "reject-pipe-cycle",
+      "kind": "negative",
+      "files": [
+        "input.loom",
+        "reject.json"
+      ],
+      "stage": "apply"
+    },
+    {
+      "name": "reject-unknown-keyword",
+      "kind": "negative",
+      "files": [
+        "input.loom",
+        "reject.json"
+      ],
+      "stage": "parse"
+    },
+    {
+      "name": "reject-unknown-target",
+      "kind": "negative",
+      "files": [
+        "input.loom",
+        "reject.json"
+      ],
+      "stage": "apply"
+    },
+    {
+      "name": "guard-tags",
+      "kind": "patch",
+      "files": [
+        "expected.json",
+        "input.loom",
+        "transport.json"
+      ]
+    },
+    {
+      "name": "reject-guard-provenance",
+      "kind": "negative",
+      "files": [
+        "input.loom",
+        "reject.json"
+      ],
+      "stage": "apply"
+    },
+    {
+      "name": "reject-guard-id",
+      "kind": "negative",
+      "files": [
+        "input.loom",
+        "reject.json"
+      ],
+      "stage": "apply"
+    },
+    {
+      "name": "token-validation",
+      "kind": "token",
+      "files": [
+        "tokens.json"
+      ]
+    },
+    {
+      "name": "prohibit-tags",
+      "kind": "patch",
+      "files": [
+        "expected.json",
+        "input.loom",
+        "transport.json"
+      ]
+    },
+    {
+      "name": "reject-prohibit-guard-id",
+      "kind": "negative",
+      "files": [
+        "input.loom",
+        "reject.json"
+      ],
+      "stage": "apply"
+    },
+    {
+      "name": "reject-prohibit-guard-provenance",
+      "kind": "negative",
+      "files": [
+        "input.loom",
+        "reject.json"
+      ],
+      "stage": "apply"
+    },
+    {"name": "grade-auto", "kind": "patch", "files": ["expected.json", "input.loom", "transport.json"]},
+    {"name": "grade-human", "kind": "patch", "files": ["expected.json", "input.loom", "transport.json"]},
+    {"name": "grade-ungraded-at-graded", "kind": "patch", "files": ["expected.json", "input.loom", "transport.json"]},
+    {"name": "grade-graded-at-ungraded", "kind": "patch", "files": ["expected.json", "input.loom"]},
+    {"name": "grade-join", "kind": "patch", "files": ["expected.json", "input.loom", "transport.json"]},
+    {"name": "grade-reserved-precedence", "kind": "patch", "files": ["expected.json", "input.loom", "transport.json"]},
+    {"name": "party-projection", "kind": "patch", "files": ["expected.json", "input.loom"]},
+    {"name": "egress-obligation", "kind": "patch", "files": ["expected.json", "input.loom", "transport.json"]},
+    {"name": "refused-precedence", "kind": "patch", "files": ["expected.json", "input.loom", "transport.json"]},
+    {"name": "grant-narrowing", "kind": "patch", "files": ["expected.json", "input.loom", "transport.json"]},
+    {"name": "reserve-quorum", "kind": "patch", "files": ["expected.json", "input.loom", "transport.json"]},
+    {"name": "reserve-temporal", "kind": "patch", "files": ["expected.json", "input.loom", "transport.json"]},
+    {"name": "reject-bad-grade", "kind": "negative", "files": ["input.loom", "reject.json"], "stage": "apply"},
+    {"name": "reject-delegation-grade-amplify", "kind": "negative", "files": ["input.loom", "reject.json"], "stage": "apply"},
+    {"name": "reject-delegation-grade-from-nothing", "kind": "negative", "files": ["input.loom", "reject.json"], "stage": "apply"},
+    {"name": "reject-delegation-risk-amplify", "kind": "negative", "files": ["input.loom", "reject.json"], "stage": "apply"}
+  ]
+}
