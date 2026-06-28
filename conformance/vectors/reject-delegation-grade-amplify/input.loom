@@ -1,0 +1,6 @@
+# a delegate's granted grade exceeds the delegator's -> ill-formed (apply), pairwise.
+actor boss grade L2
+actor sub  grade L4  on-behalf-of boss
+gate  decide  grade L1  grant sub
+cord  sub    -> decide
+cord  decide -> master

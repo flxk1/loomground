@@ -1,0 +1,15 @@
+Loomground is split-licensed.
+
+SPDX-License-Identifier: Apache-2.0 AND CC-BY-4.0
+
+- Examples, conformance suite, and repository tooling
+  (examples/, conformance/, CI/config) — Apache-2.0; full text in
+  LICENSE-CODE.
+
+- Specification (spec/) — CC-BY-4.0; full text in LICENSE-SPEC.
+
+Each file carries an SPDX-License-Identifier header (or is declared in
+REUSE.toml) stating which of the two applies. See the README "Licensing"
+section for details.
+
+Copyright 2026 flxk1
