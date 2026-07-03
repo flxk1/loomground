@@ -3,7 +3,7 @@
 // A tree-sitter grammar for the Loomground textual surface (the .loom netlist),
 // specification v0.6. Generatable: `tree-sitter generate` produces a parser and
 // an AST. The normative grammar is the specification companion (SYNTAX) and
-// grammar/loomground.ebnf; this is that grammar in generatable form.
+// grammar/loomground.ebnf; this is that grammar in tree-sitter form.
 //
 // Scope: syntax only. It accepts the base netlist and the `rack` macro layer
 // (which the specification expands by a pre-pass). Value-domain checks (e.g. a

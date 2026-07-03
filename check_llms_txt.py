@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # SPDX-License-Identifier: Apache-2.0
 # SPDX-FileCopyrightText: 2026 The Loomground Authors
-"""Drift check for llms.txt — the machine-readable standard / agent front door.
+"""Drift check for llms.txt — the compact agent guide.
 
 Expectations are derived from the CANONICAL machine sources — `vocabulary/*.json`
 and `schema/token.schema.json`, which track the spec — NOT from the hand-maintained

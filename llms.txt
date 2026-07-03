@@ -1,8 +1,9 @@
 # Loomground
 
-> Machine-readable standard for AI agents to read, emit, and validate Loomground —
-> a declarative language that governs whether an action MAY take effect: a policy
-> graph evaluated before release and recorded on a tamper-evident log. Self-contained.
+> Compact guide for AI agents to read, emit, and validate Loomground — a
+> declarative language that governs whether an action MAY take effect: a policy
+> graph evaluated before release, with each evaluation recorded so later alteration
+> is detectable.
 > Normative source: `spec/SPEC.md` (it governs on any conflict).
 
 ## Model
@@ -37,7 +38,7 @@ Declared properties only — never `id`, `provenance`, `grade`, or any computed 
 
 - A regulation/standard **names** it as a declaration → **language** (express it).
 - A deployment **chooses values** (which kinds reserve/prohibit, the thresholds, the ladder) → **policy** (not the patch).
-- A runtime **does** it (compute, aggregate, schedule, watermark, persist, communicate) → **host** (hand off; not expressible by design).
+- A runtime **does** it (compute, aggregate, schedule, watermark, persist, communicate) → **host** (hand off; not expressible).
 
 ## Emit a patch (`.loom`)
 
