@@ -8,9 +8,9 @@
 
 ## Abstract
 
-This document defines the concrete textual *netlist* surface of Loomground — for
-the abstract language defined in the specification. A netlist program denotes an
-abstract policy graph (the specification, Nodes; Connections and activation); it
+This document defines Loomground's concrete textual *netlist* surface. A netlist
+program denotes an abstract policy graph (the specification, Nodes; Connections
+and activation); it
 adds no expressiveness, and a program is well-formed if and only if the abstract
 policy graph it denotes is well-formed (the specification, Terminology and
 conformance). Where this document and the specification appear to differ, the
@@ -20,13 +20,12 @@ communication; those are outside the specification and outside this document.
 
 ## 1. Scope
 
-This document specifies the lexical grammar and the context-free grammar of the
-textual surface, the legality of cords as a function of endpoint classes, a worked
-example, and a macro-expansion notation (*rack*) that is pure sugar over the base
-grammar. It introduces no node
-class, cord type, token field, verdict, or declaration beyond those defined in the
-specification, and it allocates responsibility for nothing the specification does not
-define. The four node classes are exactly `actor`, `human`, `gate`, and `master`
+This document specifies the lexical grammar, context-free grammar, cord
+legality, one worked example, and a macro notation (*rack*) that expands to base
+grammar. It introduces no node class, cord type, token field, verdict, or
+declaration beyond those defined in the specification, and it allocates no
+responsibility beyond the specification. The four node classes are exactly
+`actor`, `human`, `gate`, and `master`
 (the specification, Nodes); the three cord types are exactly authority, pipe, and
 egress (the specification, Connections and activation); there is exactly one token
 type and one master.
@@ -105,8 +104,8 @@ digit        = "0" .. "9" ;
 Notes on the grammar, each tied to the abstract language:
 
 - A `gate` is the governed checkpoint at which an actor acts and a verdict is
-  produced (the specification, Nodes). A gate that is the source of a `pipe` cord is
-  an interior gate; a gate that egresses to the master is a terminal gate.
+  produced (the specification, Nodes). A gate that sources a `pipe` cord is an
+  interior gate; a gate that egresses to the master is a terminal gate.
 - **Grade** is a configuration attribute — not a token field, not guardable (a guard
   MUST NOT range over `grade`). `grade` on an `actor` is the *granted* grade; `grade` on
   a `gate` is the *required* grade, which makes it a **source gate** (a `grade` on a
@@ -125,7 +124,7 @@ Notes on the grammar, each tied to the abstract language:
 - A guard ranges over exactly the declared token properties `kind`, `risk`, `party`,
   and `tags`, and MUST NOT range over `id` or denote a computed value (the specification,
   Governance declarations). `tags` is a set of declared, non-`id` categories tested by
-  membership (`tags contains <tag>`). This guard-domain restriction and
+  membership (`tags contains <tag>`). This restriction and
   the valid `(field, op)` pairings (`kind`/`party` with `=`, `risk` with `>=`|`=`,
   `tags` with `contains`) are enforced at **apply**, not at parse: the surface accepts
   a generic `<field> <op> <value>` guard, and a guard over `id` or `provenance` (or an
@@ -155,8 +154,8 @@ Notes on the grammar, each tied to the abstract language:
   `kind` *contestable*: a fresh re-examination by `<role>` is owed and recorded.
   `overturn` qualifies that role as empowered to reverse the outcome, not merely
   review it; `within <duration>` declares the appeal or recall window. The language
-  declares and records the right; the re-examination is a separate (forward)
-  activation and any reversal or recall is outside the specification. Cf. GDPR
+  declares and records the right; the re-examination is a fresh activation and
+  any reversal or recall is outside the specification. Cf. GDPR
   Art. 22(3) (contest and human intervention), Arts. 77–79 / Charter Art. 47
   (effective remedy), and AI Act Art. 14(4) (intervene, override, halt). Redress
   adds no cord and no node; the policy graph stays forward-only.
@@ -184,9 +183,9 @@ Notes on the grammar, each tied to the abstract language:
 ## 4. Cord legality (typed cords)
 
 A cord `A -> B` is legal if and only if its endpoint classes form one of the three
-permitted pairings below and, for an authority cord, the gate grants that actor. Every
-other pairing is ill-formed. A program containing any non-conforming cord denotes an
-ill-formed policy graph as a whole and has no effect (fail-closed; fail-safe
+permitted pairings below and, for an authority cord, the gate grants that actor.
+Every other pairing is ill-formed. A program containing any non-conforming cord
+denotes an ill-formed policy graph and has no effect (fail-closed; fail-safe
 defaults).
 
 | Cord | From → To | Type | Condition |
@@ -203,13 +202,11 @@ propagate to the terminal gate as the join (the most restrictive outcome) along 
 chain `auto ⊑ human ⊑ refused ⊑ reserved ⊑ prohibited` (the specification,
 Propagation).
 
-Explicitly ill-formed, each giving the program no effect: a `human` as the source or
-target of any cord (a human is named by a reservation, not connected by an edge); an
-`actor -> master` cord directly (an act MUST pass through a gate); any cord into an
-undeclared node; a cycle in the pipe relation; more than one master; a gate on no
-`pipe ∪ egress` path to the master — including a gate bearing only a reservation,
-prohibition, or egress obligation; and a delegation binding that violates the
-no-amplification invariant.
+These cases are ill-formed and give the program no effect: a `human` as source or
+target of any cord; `actor -> master`; any cord into an undeclared node; a cycle
+in the pipe relation; more than one master; a gate on no `pipe ∪ egress` path to
+the master, including a gate bearing only a reservation, prohibition, or egress
+obligation; and a delegation binding that violates the no-amplification invariant.
 
 ## 5. Activation (the single activating inlet)
 
@@ -308,13 +305,14 @@ express nothing the base grammar cannot.
 
 ## 8. Relationship to the specification
 
-This companion is normatively subordinate to the specification. The textual surface
-of §3 is a presentation of one abstract policy graph; a program in that surface
-denotes that graph, and its well-formedness, evaluation,
-verdicts, release rule, log requirement, and conformance are those the specification
-fixes (Terminology and conformance; Evaluation; Conformance). This document defines no
-execution, scheduling, storage, presentation, communication, or disclosure mechanism,
-measures no duration, and discharges no obligation; each is outside the specification.
+This companion is normatively subordinate to the specification. The textual
+surface of §3 presents one abstract policy graph; a program in that surface
+denotes that graph. Its well-formedness, evaluation, verdicts, release rule, log
+requirement, and conformance are those fixed by the specification (Terminology
+and conformance; Evaluation; Conformance). This document defines no execution,
+scheduling, storage, presentation, communication, or disclosure mechanism,
+measures no duration, and discharges no obligation; each is outside the
+specification.
 Where a concept here needs grounding, it is grounded in the specification or in the
 public standards and regulations the specification cites — Regulation (EU) 2024/1689
 (AI Act), Regulation (EU) 2016/679 (GDPR), and the access-control, information-flow,
