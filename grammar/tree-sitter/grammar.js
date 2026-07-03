@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: Apache-2.0
 // SPDX-FileCopyrightText: 2026 The Loomground Authors
-// A tree-sitter grammar for the Loomground textual surface (the .loom netlist),
+// A tree-sitter grammar for the Loomground textual surface (the .lg netlist),
 // specification v0.6. Generatable: `tree-sitter generate` produces a parser and
 // an AST. The normative grammar is the specification companion (SYNTAX) and
 // grammar/loomground.ebnf; this is that grammar in tree-sitter form.
