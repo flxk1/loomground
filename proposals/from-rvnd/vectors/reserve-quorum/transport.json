@@ -1,0 +1,28 @@
+{
+  "comment": "a quorum reservation yields reserved -> withhold; the m-of-n count is the implementer's approval-layer duty.",
+  "activations": [
+    {
+      "actor": "a",
+      "source": "decide",
+      "token": {
+        "id": "t1",
+        "kind": "loans",
+        "risk": "high",
+        "party": "bank",
+        "provenance": []
+      }
+    }
+  ],
+  "expected": {
+    "decide": {
+      "verdict": "reserved",
+      "master": "withhold"
+    }
+  },
+  "log": [
+    {
+      "gate": "decide",
+      "verdict": "reserved"
+    }
+  ]
+}

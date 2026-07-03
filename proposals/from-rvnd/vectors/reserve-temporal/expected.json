@@ -1,0 +1,37 @@
+{
+  "nodes": [
+    {
+      "id": "a",
+      "class": "actor"
+    },
+    {
+      "id": "decide",
+      "class": "gate",
+      "risk_floor": "high"
+    },
+    {
+      "id": "master",
+      "class": "master"
+    }
+  ],
+  "cords": [
+    {
+      "from": "a",
+      "to": "decide",
+      "type": "authority"
+    },
+    {
+      "from": "decide",
+      "to": "master",
+      "type": "egress"
+    }
+  ],
+  "reservations": [
+    {
+      "kind": "loans",
+      "by": "legal",
+      "duration": "30d",
+      "on_elapse": "halt"
+    }
+  ]
+}
