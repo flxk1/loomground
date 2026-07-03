@@ -4,15 +4,22 @@
     {
       "name": "loomground",
       "camelcase": "Loomground",
-      "scope": "source.loom",
-      "file-types": ["loom"],
-      "injection-regex": "^loom$"
+      "scope": "source.lg",
+      "file-types": [
+        "lg",
+        "loom"
+      ],
+      "injection-regex": "^(lg|loom)$"
     }
   ],
   "metadata": {
     "version": "0.6.0",
     "license": "Apache-2.0",
-    "description": "Tree-sitter grammar for the Loomground textual surface (.loom)",
-    "authors": [{"name": "The Loomground Authors"}]
+    "description": "Tree-sitter grammar for the Loomground textual surface (.lg; .loom accepted as a deprecated alias)",
+    "authors": [
+      {
+        "name": "The Loomground Authors"
+      }
+    ]
   }
 }

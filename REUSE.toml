@@ -3,7 +3,7 @@ SPDX-PackageName = "loomground"
 SPDX-PackageSupplier = "flxk1"
 
 # License + copyright for files that cannot carry an inline SPDX header
-# (JSON has no comment syntax; the .loom vectors are parsed inputs left
+# (JSON has no comment syntax; the .lg vectors are parsed inputs left
 # untouched). The rest of the tree declares SPDX headers inline.
 
 [[annotations]]

@@ -12,11 +12,11 @@ tested. This gate makes that drift a CI failure instead of a silent hole.
 Three checks (stdlib only), each reporting exactly what is uncovered:
 
   A. declaration → vector   — every declaration in vocabulary/declarations.json is
-                              exercised by at least one conformance vector input.loom.
+                              exercised by at least one conformance vector input.lg.
   B. schema field → vector  — every property the observation schema projects appears in
                               at least one vector expected.json.
   C. grammar literal → vector — every feature keyword in the EBNF appears in at least one
-                              vector input.loom (mechanical; value-literals are ignored).
+                              vector input.lg (mechanical; value-literals are ignored).
 
 Run standalone:  python3 lockstep_meta_test.py [LOOMGROUND_ROOT]
 Or as pytest in the Loomground tree (drop into tests/); resolves the repo root itself.
@@ -55,11 +55,11 @@ def _vectors() -> list[Path]:
 
 
 def _inputs() -> str:
-    """All vector input.loom STATEMENTS concatenated (comments stripped — prose in a
+    """All vector input.lg STATEMENTS concatenated (comments stripped — prose in a
     `# …` comment must never create false coverage for a keyword)."""
     out = []
     for d in _vectors():
-        f = d / "input.loom"
+        f = d / "input.lg"
         if f.is_file():
             out.append("\n".join(ln.split("#", 1)[0] for ln in f.read_text().splitlines()))
     return "\n".join(out)
@@ -86,7 +86,7 @@ def _expected_keys() -> set[str]:
 
 
 # ── A. declaration → vector ──────────────────────────────────────────────────
-# Each declared declaration must have ≥1 probe that matches some vector input.loom.
+# Each declared declaration must have ≥1 probe that matches some vector input.lg.
 # Adding a declaration with no probe here is itself a failure (forces the author to
 # wire coverage), and a probe that matches nothing means no vector exercises it.
 DECLARATION_PROBES: dict[str, list[str]] = {
@@ -142,7 +142,7 @@ def check_schema_field_coverage() -> list[str]:
 
 
 # ── C. grammar literal → vector ──────────────────────────────────────────────
-# Mechanical: every lowercase feature keyword in the EBNF must appear in some input.loom.
+# Mechanical: every lowercase feature keyword in the EBNF must appear in some input.lg.
 # Value-literals (risk levels, grade levels, the obligation enum, structural names) are
 # choices, not features, and are ignored. Extend IGNORE when the grammar adds a value set.
 _IGNORE = {
@@ -165,7 +165,7 @@ def check_grammar_literal_coverage() -> list[str]:
     fails = []
     for kw in sorted(_grammar_keywords()):
         if not re.search(rf"(?<![A-Za-z-]){re.escape(kw)}(?![A-Za-z-])", corpus):
-            fails.append(f"grammar keyword {kw!r} appears in no vector input.loom")
+            fails.append(f"grammar keyword {kw!r} appears in no vector input.lg")
     return fails
 
 

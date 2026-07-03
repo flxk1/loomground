@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "urn:loomground:0.6:patch",
   "title": "Loomground patch (abstract policy graph as data)",
-  "description": "A canonical JSON serialization of a policy graph: an interchange form of the .loom netlist and an emission target for tools and agents.",
+  "description": "A canonical JSON serialization of a policy graph: an interchange form of the .lg netlist and an emission target for tools and agents.",
   "type": "object",
   "required": ["nodes", "cords"],
   "additionalProperties": false,

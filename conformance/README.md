@@ -34,7 +34,7 @@ the final verdicts) is tested.
 
 ## The three vector kinds
 
-**Patch vectors** — input `.loom` + `expected.json` (+ optional `transport.json`):
+**Patch vectors** — input `.lg` + `expected.json` (+ optional `transport.json`):
 - `draft-decide` — static projection: a routine gate and a decide gate that
   reserves a high-risk automated decision; two terminal gates.
 - `draft-decide-run` — one transport: routine → `auto` → act; the reserved path →
@@ -79,7 +79,7 @@ MUST classify identically (see the specification, The token):
   field, out-of-domain `risk`, malformed `provenance` or `tags`, non-object) is
   rejected.
 
-**Negative vectors** — input `.loom` + `reject.json`
+**Negative vectors** — input `.lg` + `reject.json`
 (`{"stage": "parse" | "apply"}`) pinning what MUST be rejected, fail-closed:
 - `reject-human-authority`, `reject-agent-to-master`, `reject-pipe-cycle`,
   `reject-unknown-target`, `reject-bad-risk` (apply-time);

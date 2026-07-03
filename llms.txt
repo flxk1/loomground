@@ -40,7 +40,7 @@ Declared properties only — never `id`, `provenance`, `grade`, or any computed 
 - A deployment **chooses values** (which kinds reserve/prohibit, the thresholds, the ladder) → **policy** (not the patch).
 - A runtime **does** it (compute, aggregate, schedule, watermark, persist, communicate) → **host** (hand off; not expressible).
 
-## Emit a patch (`.loom`)
+## Emit a patch (`.lg`)
 
 One statement per line; `#` begins a comment. Declare nodes, then wire cords.
 
