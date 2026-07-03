@@ -2,11 +2,10 @@
 <!-- Copyright 2026 The Loomground Authors -->
 # Loomground conformance vectors
 
-These vectors **define** what it means to be a conforming Loomground
-implementation. They are language-side data: an implementation conforms if and
-only if it reproduces every vector (see the specification, Conformance). The
-vectors name no implementation and assume none — any implementer supplies their
-own runner.
+These vectors define conformance for a Loomground implementation. An
+implementation conforms if and only if it reproduces every vector (see the
+specification, Conformance). The vectors name no implementation and assume none;
+implementers supply their own runner.
 
 ## The observation schema (v0.6)
 
@@ -98,8 +97,8 @@ MUST classify identically (see the specification, The token):
 ## Status
 
 Aligned to specification v0.6. Every vector has been reproduced by two
-independent reference implementations, neither derived from the other (maintained
-as separate projects — this repository carries no implementation). Each
+independent implementations, neither derived from the other. They are maintained
+as separate projects; this repository carries no implementation. Each
 `expected.json` is the observation a conforming implementation emits; each negative
 vector rejects at the stage shown; `token-validation` classifies identically. Two
 independent implementations reproducing every vector is the interoperability

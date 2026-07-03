@@ -2,29 +2,31 @@
 <!-- Copyright 2026 flxk1 -->
 # Loomground
 
-A **declarative language for the governance of AI systems and AI agents**. A patch
-is a typed policy graph evaluated before an action takes effect and recorded so
-later alteration is detectable.
+A declarative language for governing when an AI system or agent action may take
+effect. A patch is a typed policy graph evaluated before release; each evaluation
+is recorded so later alteration is detectable.
 
-This repository is the **language specification**: a grammar, schemas, and the
-conformance vectors that define a valid implementation. It describes *what*
-governance applies; it defines no execution, scheduling, storage, or communication;
-those are outside this specification. The specification depends on nothing outside
-itself, and references no other system.
+This repository contains the language specification: grammar, schemas,
+vocabulary, and conformance vectors. It describes *what* governance applies; it
+does not define execution, scheduling, storage, or communication. The
+specification references no host program.
 
-## Two surfaces
+## Patch and Observation
 
-A Loomground patch has two textual surfaces (the observation is a *projection*, lossy by design — not an equivalent view):
+A Loomground patch has an authored surface and a canonical projection:
 
-- **Netlist** — the authored, human-writable, diffable text form (`spec/SYNTAX.md`, `examples/`).
-- **Observation** — its canonical projection: the graph and reservations as a machine-checkable form (`schema/observation.schema.json`); prohibitions and obligations act at evaluation and are not projected. (Evaluation additionally produces a tamper-evident log — the runtime record, not a view of the patch.)
+- **Netlist** — the authored, diffable text form (`spec/SYNTAX.md`, `examples/`).
+- **Observation** — the machine-checkable projection: graph and reservation data
+  (`schema/observation.schema.json`). Prohibitions and obligations act during
+  evaluation and are not projected. Evaluation also produces an ordered log trace;
+  that runtime record is not a patch view.
 
 ## Read the specification
 
 - `spec/SPEC.md` — the normative specification (nodes, cords, the token, evaluation,
   the governance declarations, conformance).
 - `spec/SYNTAX.md` — the concrete textual grammar.
-- `conformance/` — the vectors that **define** a conforming implementation.
+- `conformance/` — the vectors that define a conforming implementation.
 - `examples/` — sample patches (`.loom` netlists).
 
 ## Machine-readable
@@ -33,8 +35,8 @@ The normative content is also available as data, so tools and agents consume the
 language without parsing prose:
 
 - `grammar/loomground.ebnf` — the textual grammar, standalone (ISO/IEC 14977).
-- `grammar/tree-sitter/` — a **generatable** grammar: `tree-sitter generate` yields
-  a parser, an AST, and editor tooling. Verified against every `.loom` in the repo.
+- `grammar/tree-sitter/` — a tree-sitter grammar. `tree-sitter generate` builds
+  the parser, AST, and editor tooling. Verified against every `.loom` in the repo.
 - `schema/` — JSON Schemas for the `token`, the `patch` (a policy graph as data),
   the `observation` (a vector's `expected.json`), and transport runs. Validated
   against the vectors.
@@ -42,19 +44,18 @@ language without parsing prose:
   domain, risk levels, and the grounding map, each as JSON.
 - `conformance/manifest.json` — a machine index of every vector.
 - `language-card.json` — a compact, agent-facing summary of the whole language.
-- `llms.txt` / `AGENTS.md` — the entry point for an agent or tool: a self-contained
-  guide to reading, emitting, and validating Loomground (kept in sync with the
-  language by a test).
+- `llms.txt` / `AGENTS.md` — the agent/tool entry point: a compact guide to
+  reading, emitting, and validating Loomground, kept in sync by a drift check.
 
 ## Layout
 
 ```
 llms.txt      agent/tool entry point (AGENTS.md points here)
 spec/         SPEC.md (the language), SYNTAX.md (grammar)
-grammar/      loomground.ebnf + tree-sitter/ (generatable grammar)
+grammar/      loomground.ebnf + tree-sitter/
 schema/       JSON Schemas (token, patch, observation, transport)
 vocabulary/   node classes, cords, verdicts, declarations, guards, grounding (JSON)
-conformance/  vectors that DEFINE a conforming implementation + manifest.json
+conformance/  vectors that define a conforming implementation + manifest.json
 examples/     sample patches (.loom netlists)
 language-card.json   agent-facing summary
 ```
@@ -71,12 +72,11 @@ The tree is REUSE-compliant (checked in CI).
 
 ## Status
 
-Pre-1.0, specification v0.6. This repository carries the language specification
-only — spec, grammar, schemas, vocabulary, and conformance vectors. Reference
-implementations are out of scope here: an implementation conforms by reproducing
-the vectors in `conformance/`. Conformance (§9) requires two implementations,
-neither derived from the other, to reproduce every vector. The specification is
-machine-readable (grammar, schemas, and vocabulary as data).
+Pre-1.0, specification v0.6. This repository carries only the language:
+specification, grammar, schemas, vocabulary, and conformance vectors. Reference
+implementations are out of scope. An implementation conforms by reproducing the
+vectors in `conformance/`; §9 requires two independent implementations to
+reproduce every vector.
 
 ## Provenance
 
