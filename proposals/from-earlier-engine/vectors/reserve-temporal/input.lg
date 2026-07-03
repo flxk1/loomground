@@ -1,0 +1,11 @@
+# reserve-temporal — a reservation with a DURATION and an on-elapse policy. `halt`
+# (the safe default) denies on elapse; `proceed` (fail-open, opt-in) auto-acts. The
+# language fixes the deadline and the elapse mode; the implementation runs the clock.
+# NOTE: the engine PARSES duration/on_elapse but project() currently DROPS them — this
+# vector requires extending the observation's reservation form to carry them (see the
+# proposals README). The input below validates today; the expected.json is the target.
+actor a
+gate decide risk high grant a
+reserve loans by legal duration 30d : halt
+cord a -> decide
+cord decide -> master

@@ -1,0 +1,28 @@
+{
+  "comment": "the reservation yields reserved -> withhold; the deadline + on-elapse policy are runtime behaviour the implementer enforces (halt = deny on elapse, the timeout-is-deny default). The language fixes the mode, not the clock.",
+  "activations": [
+    {
+      "actor": "a",
+      "source": "decide",
+      "token": {
+        "id": "t1",
+        "kind": "loans",
+        "risk": "high",
+        "party": "bank",
+        "provenance": []
+      }
+    }
+  ],
+  "expected": {
+    "decide": {
+      "verdict": "reserved",
+      "master": "withhold"
+    }
+  },
+  "log": [
+    {
+      "gate": "decide",
+      "verdict": "reserved"
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+# reserve-quorum — a reservation to a QUORUM target (m distinct of a set). The
+# observation records the quorum target verbatim on `by`; the verdict is `reserved`
+# (the m-of-n distinctness is enforced by the implementation's approval layer, not the
+# language — the language fixes the target, the deployer enforces the count).
+actor a
+gate decide risk high grant a
+reserve loans by 2 of { legal, finance }
+cord a -> decide
+cord decide -> master
