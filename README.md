@@ -16,8 +16,9 @@ specification references no host program.
 A Loomground patch has an authored surface and a canonical projection:
 
 - **Netlist** — the authored, diffable text form (`spec/SYNTAX.md`, `examples/`).
-  Files end in `.lg`; `.loom` (the pre-v0.6 name) is a deprecated alias that
-  readers still accept through v0.7 and MAY drop at v0.8.
+  Files end in `.lg`. (`.loom`, the pre-v0.6 name, was replaced at v0.6.0; its
+  one-minor-version deprecation window has closed, and a v0.7 reader need not
+  accept it.)
 - **Observation** — the machine-checkable projection: graph and reservation data
   (`schema/observation.schema.json`). Prohibitions and obligations act during
   evaluation and are not projected. Evaluation also produces an ordered log trace;
