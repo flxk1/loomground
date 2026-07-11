@@ -6,16 +6,15 @@
       "camelcase": "Loomground",
       "scope": "source.lg",
       "file-types": [
-        "lg",
-        "loom"
+        "lg"
       ],
-      "injection-regex": "^(lg|loom)$"
+      "injection-regex": "^lg$"
     }
   ],
   "metadata": {
     "version": "0.7.0",
     "license": "Apache-2.0",
-    "description": "Tree-sitter grammar for the Loomground textual surface (.lg; .loom accepted as a deprecated alias)",
+    "description": "Tree-sitter grammar for the Loomground textual surface (.lg)",
     "authors": [
       {
         "name": "The Loomground Authors"
