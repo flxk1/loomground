@@ -16,8 +16,8 @@ specification references no host program.
 A Loomground patch has an authored surface and a canonical projection:
 
 - **Netlist** — the authored, diffable text form (`spec/SYNTAX.md`, `examples/`).
-  Files end in `.lg`; `.loom` (through v0.6.0) is a deprecated alias, accepted by
-  readers for one minor version.
+  Files end in `.lg`; `.loom` (the pre-v0.6 name) is a deprecated alias that
+  readers still accept through v0.7 and MAY drop at v0.8.
 - **Observation** — the machine-checkable projection: graph and reservation data
   (`schema/observation.schema.json`). Prohibitions and obligations act during
   evaluation and are not projected. Evaluation also produces an ordered log trace;
@@ -77,7 +77,8 @@ Pre-1.0, specification v0.7. This repository carries only the language:
 specification, grammar, schemas, vocabulary, and conformance vectors. Reference
 implementations are out of scope. An implementation conforms by reproducing the
 vectors in `conformance/`; §9 requires two independent implementations to
-reproduce every vector.
+reproduce every vector, a criterion v0.7 meets (see `conformance/README.md`,
+Status).
 
 ## Provenance
 

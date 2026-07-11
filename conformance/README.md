@@ -117,8 +117,10 @@ MUST classify identically (see the specification, The token):
 Aligned to specification v0.7. Every vector — including the eight new in v0.7
 (three `obo-*`, `party-inheritance`, three `reject-obo-*`, and
 `reject-delegation-ungranted-delegator`) — has been reproduced by two
-independent implementations, neither derived from the other; they are maintained
-as separate projects, and this repository carries no implementation. Each
+independent implementations, neither derived from the other: `loomground-ref`
+(a stdlib-only reference implementation) and RVND (a production host). Both are
+maintained as separate, currently private projects, and this repository carries
+no implementation. Each
 `expected.json` is the observation a conforming implementation emits; each negative
 vector rejects at the stage shown; `token-validation` classifies identically. Two
 independent implementations reproducing every vector is the interoperability
