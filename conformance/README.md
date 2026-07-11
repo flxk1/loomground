@@ -118,15 +118,16 @@ MUST classify identically (see the specification, The token):
 
 ## Status
 
-Aligned to specification v0.8 (draft). Every v0.7.0 vector has been reproduced
-by two independent implementations, neither derived from the other:
-`loomground-ref` (a stdlib-only reference implementation) and RVND (a
-production host). Both are maintained as separate, currently private projects,
-and this repository carries no implementation. The three vectors new in the
-v0.8 cycle (`reject-rack-unknown`, `reject-rack-arity`,
-`reject-obligation-undeclared-gate`) are reproduced by both (47/47);
-`reject-obligation-undeclared-gate` caught a real accept-and-defer gap in
-each implementation independently before landing. Each
+Aligned to specification v0.8 (draft). Every vector — the v0.7.0 suite and the
+three new in the v0.8 cycle (`reject-rack-unknown`, `reject-rack-arity`,
+`reject-obligation-undeclared-gate`) — has been reproduced by two independent
+implementations, neither derived from the other. They are maintained as
+separate projects, which this repository does not name: the standard states
+criteria, not products, and any implementation demonstrates conformance the
+same way — by reproducing every vector. This repository carries no
+implementation. (`reject-obligation-undeclared-gate` caught a real
+accept-and-defer gap in each implementation independently before landing —
+the vectors are doing their job.) Each
 `expected.json` is the observation a conforming implementation emits; each negative
 vector rejects at the stage shown; `token-validation` classifies identically. Two
 independent implementations reproducing every vector is the interoperability
