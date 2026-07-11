@@ -7,24 +7,27 @@ implementation conforms if and only if it reproduces every vector (see the
 specification, Conformance). The vectors name no implementation and assume none;
 implementers supply their own runner.
 
-## The observation schema (v0.6)
+## The observation schema (v0.7)
 
 A patch vector's `expected.json` records the **observation** of a policy graph:
 
 - `nodes` — `{id, class}` for each node (`class` ∈ `actor` | `human` | `gate` |
   `master`); a `human` carries its `role`, a `gate` its `risk_floor` and, if declared,
   its `grade_required` (a graded gate is a source gate); an `actor` carries its `grade`
-  (the granted autonomy grade) if declared. Listed in declaration order, the master last.
+  (the granted autonomy grade) and its `on_behalf_of` (its delegator — one link of the
+  principal chain) if declared; an `actor` or `gate` carries its `party` — on a
+  partyless delegate, resolved along the chain. Listed in declaration order, the
+  master last.
 - `cords` — `{from, to, type}` (`type` ∈ `authority` | `pipe` | `egress`), in
   declaration order.
 - `reservations` — the graph-level reservation declarations
-  `{kind, by[, when][, duration, on_elapse]}`. In v0.6 a reservation keys on the
+  `{kind, by[, when][, duration, on_elapse]}`. A reservation keys on the
   token's `kind`; it is not attached to one gate. A quorum `by` target is canonical
   (`<m> of {roles}` / `role and role`); `duration`/`on_elapse` appear only when a
   temporal window is declared.
 
-A `transport.json` adds a run: `activations` (each `{source, token}`, where
-`source` is a source gate) and the `expected` per-gate `verdict` and, for a
+A `transport.json` adds a run: `activations` (each `{actor, source, token}`,
+where `actor` is the proposing actor and `source` a source gate) and the `expected` per-gate `verdict` and, for a
 terminal gate, the `master` decision (`act` | `withhold`). It also carries `log` —
 the **ordered log trace**, one `{gate, verdict}` entry per activated gate in
 evaluation order, concatenated across activations in activation order (the
@@ -61,6 +64,15 @@ the final verdicts) is tested.
 - `grade-reserved-precedence` — at a source gate that is both grade-gated and reserved on
   the token's kind, step (3) `reserved` pre-empts the step-(4) grade comparison.
 - `party-projection` — a gate's `party` projects as a node attribute in the observation.
+- `obo-projection` — the delegation binding projects: the delegate's actor node
+  carries `on_behalf_of` naming its delegator.
+- `obo-chain-attenuation` — a three-link principal chain (bot → mgr → ceo); pairwise
+  no-amplification composes along the acyclic chain; well-formed.
+- `obo-human-root` — the chain terminates at a `human`: answerability anchored,
+  no authority conferred; the delegate releases on its own grant (`auto` → act).
+- `party-inheritance` — party resolution along a three-link chain: a partyless
+  middle resolves through to the root's party, a declared party wins over the
+  chain, and a partyless delegate takes the *nearest* declared party.
 - `reserve-quorum` — a quorum reservation target projects verbatim in canonical form
   (`<m> of {roles}` and `role and role`); a matching token yields `reserved`.
 - `reserve-temporal` — a reserved kind's `duration` window and `on_elapse` (`halt`/`proceed`)
@@ -92,13 +104,19 @@ MUST classify identically (see the specification, The token):
   delegator (apply-time);
 - `reject-delegation-risk-amplify` — a delegate's granted risk set over a kind exceeds
   the delegator's; no-amplification (§6) makes the graph ill-formed (apply-time);
+- `reject-obo-cycle` — a cycle in the on-behalf-of relation; the principal chain
+  must be acyclic; `reject-obo-undeclared` — on-behalf-of naming an undeclared
+  node; `reject-obo-duplicate` — a second delegator on the same actor (all
+  apply-time);
 - `reject-missing-arrow`, `reject-unknown-keyword` (parse-time).
 
 ## Status
 
-Aligned to specification v0.6. Every vector has been reproduced by two
-independent implementations, neither derived from the other. They are maintained
-as separate projects; this repository carries no implementation. Each
+Aligned to specification v0.7. Every v0.6 vector has been reproduced by two
+independent implementations, neither derived from the other; they are maintained
+as separate projects, and this repository carries no implementation. The six
+principal-chain vectors (three `obo-*`, `party-inheritance`, three `reject-obo-*`) are new
+in v0.7 and await reproduction by both implementations. Each
 `expected.json` is the observation a conforming implementation emits; each negative
 vector rejects at the stage shown; `token-validation` classifies identically. Two
 independent implementations reproducing every vector is the interoperability

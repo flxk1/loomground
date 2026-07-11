@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:loomground:0.6:transport",
+  "$id": "urn:loomground:0.7:transport",
   "title": "Loomground transport run",
   "description": "A conformance-vector run: activations, expected verdicts/master decisions, and the ordered verdict-labelled log trace.",
   "type": "object",
