@@ -114,11 +114,11 @@ MUST classify identically (see the specification, The token):
 
 ## Status
 
-Aligned to specification v0.7. Every v0.6 vector has been reproduced by two
+Aligned to specification v0.7. Every vector — including the eight new in v0.7
+(three `obo-*`, `party-inheritance`, three `reject-obo-*`, and
+`reject-delegation-ungranted-delegator`) — has been reproduced by two
 independent implementations, neither derived from the other; they are maintained
-as separate projects, and this repository carries no implementation. The six
-principal-chain vectors (three `obo-*`, `party-inheritance`, three `reject-obo-*`) are new
-in v0.7 and await reproduction by both implementations. Each
+as separate projects, and this repository carries no implementation. Each
 `expected.json` is the observation a conforming implementation emits; each negative
 vector rejects at the stage shown; `token-validation` classifies identically. Two
 independent implementations reproducing every vector is the interoperability
