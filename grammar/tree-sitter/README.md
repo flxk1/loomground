@@ -2,7 +2,7 @@
 # tree-sitter-loomground
 
 A tree-sitter grammar for the Loomground textual surface (`.lg`),
-specification v0.6. `grammar.js` is the source; the parser, AST, and editor
+specification v0.7. `grammar.js` is the source; the parser, AST, and editor
 tooling are generated from it.
 
 ## Build & test

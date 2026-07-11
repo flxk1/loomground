@@ -79,8 +79,10 @@ bears its delegator's party, resolved at apply by walking the (acyclic, P2)
 chain to the nearest declared party; if the chain ends with no party declared
 anywhere, the actor is partyless exactly as today. A declared inheritance,
 resolved from declared facts — a selection, not a computed value (the §4
-declared-maximum precedent). The party-guard and quorum distinctness then see
-through delegation instead of past it.
+declared-maximum precedent). The observation and the record then attribute a
+partyless delegate to its principal's party instead of to no one; the guard and
+quorum semantics, which read the token's party and the provenance parties, are
+unchanged (§4, §6).
 
 **P5 (profile, not core) — rooted-chain conformance profile.** A deployment MAY
 require: every actor's principal chain terminates at a `human` or at a
@@ -99,6 +101,7 @@ processor ([GDPR] Art. 4(7), 4(8)); provider/deployer ([AIA] Art. 3).
 | `party-inheritance` | a partyless delegate projects its delegator's party |
 | `reject-obo-cycle` | mutual delegation is ill-formed at apply |
 | `reject-obo-undeclared` | on-behalf-of naming an undeclared node is ill-formed at apply |
+| `reject-obo-duplicate` | a second delegator on the same actor is ill-formed at apply (at most one) |
 
 ## Compatibility
 

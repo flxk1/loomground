@@ -4,7 +4,7 @@
 
 ## A companion to the Loomground specification: the textual surface
 
-**Companion — Version 0.6.**
+**Companion — Version 0.7.**
 
 ## Abstract
 
@@ -166,16 +166,26 @@ Notes on the grammar, each tied to the abstract language:
   the conferral to particular `kind` classes, and to a particular set of `risk` levels
   over a `kind`, expressing the granted authority of that actor at that gate over that
   `kind`. These are declared grant facts and denote no computed value.
-- An `actor` declaration MAY carry `on-behalf-of <actor>`, the delegation binding: the
-  declaring actor is the *delegate*, the named actor the *delegator*. This rides the
-  authority cord as an attribute and adds no node class and no cord. A delegation
-  binding MUST satisfy the no-amplification invariant (the specification, Terminology
+- An `actor` declaration MAY carry `on-behalf-of <id>`, the delegation binding: the
+  declaring actor is the *delegate*, the named node the *delegator* — a declared
+  `actor` or a declared `human`. This rides the authority cord as an attribute and
+  adds no node class and no cord. The bindings form the *principal chain*; the
+  on-behalf-of relation MUST be acyclic, an actor declares at most one delegator
+  (a second `on-behalf-of` on the same actor is ill-formed), and a binding naming
+  an undeclared node, or a node that is neither an actor nor a human, is
+  ill-formed — all rejected at apply. A delegation binding between two actors MUST
+  satisfy the no-amplification invariant (the specification, Terminology
   and conformance; Governance declarations): at every gate at which the delegate is
   granted authority, for each `kind` granted there, the delegate's granted `risk` set
   over that `kind` at that gate MUST be a subset of the delegator's granted `risk` set
   over that same `kind` at that same gate. A binding that violates this is ill-formed
   and has no effect. The invariant bounds delegated grants only; it does not propagate
-  the delegator's reservation or quorum restrictiveness to the delegate.
+  the delegator's reservation or quorum restrictiveness to the delegate. Where the
+  delegator is a `human`, the binding anchors answerability and constrains no grant:
+  a role does not by itself confer authority, none is conferred here, and the human
+  stays graph-disconnected. A delegate that declares no `party` bears its delegator's
+  party, resolved along the (acyclic) chain to the nearest declared party; this
+  resolved party is what the observation projects on the delegate's node.
 - `master` is a reserved endpoint name denoting the single egress node — the unique
   sink at which the policy enforcement point attaches (the specification, Nodes). It
   is never declared; a policy graph contains exactly one master.
@@ -206,7 +216,9 @@ These cases are ill-formed and give the program no effect: a `human` as source o
 target of any cord; `actor -> master`; any cord into an undeclared node; a cycle
 in the pipe relation; more than one master; a gate on no `pipe ∪ egress` path to
 the master, including a gate bearing only a reservation, prohibition, or egress
-obligation; and a delegation binding that violates the no-amplification invariant.
+obligation; a cycle in the on-behalf-of relation, or an on-behalf-of naming an
+undeclared node; and a delegation binding that violates the no-amplification
+invariant.
 
 ## 5. Activation (the single activating inlet)
 

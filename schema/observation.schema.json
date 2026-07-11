@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:loomground:0.6:observation",
+  "$id": "urn:loomground:0.7:observation",
   "title": "Loomground observation (patch projection)",
   "description": "The externally visible result of projecting a policy graph (specification, Conformance). Matches a conformance vector's expected.json. Canonical form: nodes, cords, and reservations are always present (reservations is [] when empty); redress appears only when at least one redress declaration exists; prohibitions and obligations are not projected (additionalProperties: false). See specification, Conformance.",
   "type": "object",
@@ -20,7 +20,8 @@
           "risk_floor": {"enum": ["low", "medium", "high", "critical"]},
           "grade": {"type": "string", "description": "granted autonomy grade on an actor; membership is checked against the active ladder at apply"},
           "grade_required": {"type": "string", "description": "required autonomy grade threshold on a source gate; membership is checked against the active ladder at apply"},
-          "party": {"type": "string", "description": "the party currently responsible, projected as a node attribute on an actor or gate"}
+          "on_behalf_of": {"type": "string", "description": "the actor's delegator (an actor or a human) — one link of the principal chain, projected on the delegate's node"},
+          "party": {"type": "string", "description": "the party currently responsible, projected as a node attribute on an actor or gate; for a partyless delegate, the party resolved along the principal chain"}
         }
       }
     },
