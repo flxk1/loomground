@@ -2,6 +2,10 @@
 <!-- Copyright 2026 flxk1 -->
 # CLAUDE.md — project instructions for AI-assisted development
 
+This file instantiates `CONTRIBUTING.md` for one tool (Claude); the neutral
+source of truth is that file. The language is tool- and vendor-neutral: never
+add a model, vendor, or framework reference to a normative document.
+
 ## Commit attribution (non-negotiable)
 
 Do **NOT** add a `Co-Authored-By: Claude ...` — or any AI — trailer to commits.
