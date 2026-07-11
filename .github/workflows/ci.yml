@@ -39,11 +39,11 @@ jobs:
       - uses: actions/checkout@v4
       - name: normative documents are tool- and vendor-neutral (CONTRIBUTING.md)
         run: |
-          if grep -rniE 'claude|anthropic|openai|chatgpt|gpt-[0-9]|gemini|copilot|codex|llama|mistral|langchain|autogen|crewai|pure.?data' \
+          if grep -rniE 'claude|anthropic|openai|chatgpt|gpt-[0-9]|gemini|copilot|codex|llama|mistral|langchain|autogen|crewai|pure.?data|rvnd|loomground-ref' \
                spec/ grammar/ schema/ vocabulary/ conformance/ examples/ llms.txt language-card.json AGENTS.md \
                README.md NOTICE CITATION.cff CONTRIBUTING.md \
                --exclude-dir=node_modules 2>/dev/null | grep -v 'tree-sitter/src'; then
-            echo "vendor/model/framework reference found — normative documents and prose are neutral (CONTRIBUTING.md)"; exit 1
+            echo "vendor/model/framework/implementation reference found — the standard states criteria, not products (CONTRIBUTING.md)"; exit 1
           fi
           echo "normative and prose surfaces are neutral"
 

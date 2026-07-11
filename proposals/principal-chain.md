@@ -27,7 +27,7 @@ the graph. Four precise gaps follow, each verifiable against the current tree:
    `schema/patch.schema.json` (input) but not in `schema/observation.schema.json`
    (output; `additionalProperties: false`). It is apply-checked, then dropped —
    the same parsed-then-unprojected defect the temporal fields had before the
-   RVND hand-off. All three delegation vectors are negative; nothing pins that
+   temporal hand-off. All three delegation vectors are negative; nothing pins that
    the binding round-trips.
 4. **The chain does not carry responsibility.** `party` and `on-behalf-of` are
    unlinked: the specification says each actor and gate bears a party, the
