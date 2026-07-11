@@ -3,13 +3,9 @@ Copyright 2026 flxk1
 
 This product includes materials developed for the Loomground project.
 
-The specification, the EBNF grammar, and vocabulary (spec/, grammar/loomground.ebnf,
-vocabulary/, language-card.json) are licensed under the Creative Commons Attribution 4.0
-International License (see LICENSE-SPEC).
-
-The schemas, conformance vectors, examples, the tree-sitter grammar, and repository
-tooling (schema/, conformance/, examples/, grammar/tree-sitter/, CI) are licensed under
-the Apache License, Version 2.0 (see LICENSE-CODE).
+The specification, the grammars, the vocabulary, the schemas, the conformance
+vectors, the examples, and the repository tooling are licensed under the
+Apache License, Version 2.0 (see LICENSE).
 
 Authorship and AI assistance: all code, the specification, and documentation are
 authored by the project's human author(s), who hold the copyright. Generative AI

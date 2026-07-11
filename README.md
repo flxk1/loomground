@@ -1,4 +1,4 @@
-<!-- SPDX-License-Identifier: CC-BY-4.0 -->
+<!-- SPDX-License-Identifier: Apache-2.0 -->
 <!-- Copyright 2026 flxk1 -->
 # Loomground
 
@@ -62,12 +62,11 @@ examples/     sample patches (.lg netlists)
 language-card.json   agent-facing summary
 ```
 
-## Licensing (split)
+## Licensing
 
-- **Spec, the EBNF grammar, and vocabulary** (`spec/`, `grammar/loomground.ebnf`,
-  `vocabulary/`, `language-card.json`): CC-BY-4.0 — see `LICENSE-SPEC`.
-- **Schemas, vectors, examples, the tree-sitter grammar, tooling** (`schema/`,
-  `conformance/`, `examples/`, `grammar/tree-sitter/`, CI): Apache-2.0 — see `LICENSE-CODE`.
+Everything in this repository — the specification, grammars, vocabulary,
+schemas, conformance vectors, examples, and tooling — is licensed under the
+Apache License, Version 2.0. See `LICENSE`.
 
 Per-file SPDX headers throughout; `REUSE.toml` covers files that cannot carry one.
 The tree is REUSE-compliant (checked in CI).

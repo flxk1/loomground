@@ -1,4 +1,4 @@
-<!-- SPDX-License-Identifier: CC-BY-4.0 -->
+<!-- SPDX-License-Identifier: Apache-2.0 -->
 <!-- Copyright 2026 flxk1 -->
 # Proposal: carry `duration` + `on_elapse` in the projected reservation
 
