@@ -203,6 +203,7 @@
     {"name": "party-inheritance", "kind": "patch", "files": ["expected.json", "input.lg"]},
     {"name": "reject-obo-cycle", "kind": "negative", "files": ["input.lg", "reject.json"], "stage": "apply"},
     {"name": "reject-obo-undeclared", "kind": "negative", "files": ["input.lg", "reject.json"], "stage": "apply"},
-    {"name": "reject-obo-duplicate", "kind": "negative", "files": ["input.lg", "reject.json"], "stage": "apply"}
+    {"name": "reject-obo-duplicate", "kind": "negative", "files": ["input.lg", "reject.json"], "stage": "apply"},
+    {"name": "reject-delegation-ungranted-delegator", "kind": "negative", "files": ["input.lg", "reject.json"], "stage": "apply"}
   ]
 }

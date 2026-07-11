@@ -178,8 +178,9 @@ Notes on the grammar, each tied to the abstract language:
   and conformance; Governance declarations): at every gate at which the delegate is
   granted authority, for each `kind` granted there, the delegate's granted `risk` set
   over that `kind` at that gate MUST be a subset of the delegator's granted `risk` set
-  over that same `kind` at that same gate. A binding that violates this is ill-formed
-  and has no effect. The invariant bounds delegated grants only; it does not propagate
+  over that same `kind` at that same gate — an ungranted delegator has the empty set,
+  so a delegate is never granted where its actor-delegator is not. A binding that
+  violates this is ill-formed and has no effect. The invariant bounds delegated grants only; it does not propagate
   the delegator's reservation or quorum restrictiveness to the delegate. Where the
   delegator is a `human`, the binding anchors answerability and constrains no grant:
   a role does not by itself confer authority, none is conferred here, and the human

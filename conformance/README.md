@@ -103,7 +103,9 @@ MUST classify identically (see the specification, The token):
   grade above the delegator's (pairwise) and a graded delegate under an ungraded
   delegator (apply-time);
 - `reject-delegation-risk-amplify` — a delegate's granted risk set over a kind exceeds
-  the delegator's; no-amplification (§6) makes the graph ill-formed (apply-time);
+  the delegator's; no-amplification (§6) makes the graph ill-formed;
+  `reject-delegation-ungranted-delegator` — the empty-set corner: a delegate
+  granted at a gate where its actor-delegator holds no grant (both apply-time);
 - `reject-obo-cycle` — a cycle in the on-behalf-of relation; the principal chain
   must be acyclic; `reject-obo-undeclared` — on-behalf-of naming an undeclared
   node; `reject-obo-duplicate` — a second delegator on the same actor (all
