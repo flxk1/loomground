@@ -25,8 +25,9 @@ python3 lockstep_meta_test.py # every feature reaches grammar, schema, a vector
 reuse lint                    # SPDX / REUSE compliance
 ```
 
-All new files carry `SPDX-License-Identifier: Apache-2.0` (the whole tree is
-single-licensed Apache-2.0; `REUSE.toml` covers files that cannot carry a
-header). A feature change is complete only when the spec, the grammar, the
+All new files carry an Apache-2.0 SPDX header like the one atop this file (the
+whole tree is single-licensed Apache-2.0; `REUSE.toml` covers files that cannot
+carry one). Do not quote the raw SPDX tag string in prose — the REUSE extractor
+scans whole files and chokes on it (this exact bug broke CI once). A feature change is complete only when the spec, the grammar, the
 schemas, the vocabulary, `llms.txt`, and a conformance vector agree — the
 lockstep gate fails otherwise.
