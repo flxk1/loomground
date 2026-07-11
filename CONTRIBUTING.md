@@ -12,7 +12,10 @@ example. Per-tool instruction files are contributor
 tooling, not part of the standard; each states the rules of this file for its
 tool and adds nothing normative. Prose documents (README, NOTICE, this file)
 name no AI model or vendor; the commit history's assisted lines record which
-tool assisted a given change.
+tool assisted a given change. The standard also names no implementation —
+conformance is a criterion (reproduce every vector), not a product list;
+hand-off records under `proposals/` are the one place an implementation may be
+named, as dated working notes.
 
 ## Commit convention (enforced by the commit-discipline CI job)
 
