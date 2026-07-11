@@ -1,4 +1,4 @@
-# draft-decide.loom — worked example (v0.6 grammar)
+# draft-decide.lg — worked example (v0.7 grammar)
 # A routine draft gate and a decide gate that reserves a high-risk automated
 # decision to a human role: reserved is never auto. Two terminal gates; the
 # master decides each egress path. Which kinds are reserved is policy.
