@@ -41,10 +41,11 @@ jobs:
         run: |
           if grep -rniE 'claude|anthropic|openai|chatgpt|gpt-[0-9]|gemini|copilot|codex|llama|mistral|langchain|autogen|crewai|pure.?data' \
                spec/ grammar/ schema/ vocabulary/ conformance/ examples/ llms.txt language-card.json AGENTS.md \
+               README.md NOTICE CITATION.cff CONTRIBUTING.md \
                --exclude-dir=node_modules 2>/dev/null | grep -v 'tree-sitter/src'; then
-            echo "vendor/model/framework reference found in a normative document — the language is neutral (CONTRIBUTING.md)"; exit 1
+            echo "vendor/model/framework reference found — normative documents and prose are neutral (CONTRIBUTING.md)"; exit 1
           fi
-          echo "normative surfaces are neutral"
+          echo "normative and prose surfaces are neutral"
 
   commit-discipline:
     runs-on: ubuntu-latest

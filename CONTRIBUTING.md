@@ -8,9 +8,11 @@ The language is tool- and vendor-neutral. No normative document (`spec/`,
 `grammar/`, `schema/`, `vocabulary/`, `conformance/`, `llms.txt`,
 `language-card.json`) may depend on or reference a specific AI model, vendor,
 product, or agent framework. A proposal may name one only as a clearly marked
-example. Per-tool instruction files (such as `CLAUDE.md`) are contributor
+example. Per-tool instruction files are contributor
 tooling, not part of the standard; each states the rules of this file for its
-tool and adds nothing normative.
+tool and adds nothing normative. Prose documents (README, NOTICE, this file)
+name no AI model or vendor; the commit history's assisted lines record which
+tool assisted a given change.
 
 ## Commit convention (enforced by the commit-discipline CI job)
 
