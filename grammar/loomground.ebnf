@@ -1,4 +1,4 @@
-(* SPDX-License-Identifier: CC-BY-4.0 *)
+(* SPDX-License-Identifier: Apache-2.0 *)
 (* SPDX-FileCopyrightText: 2026 The Loomground Authors *)
 (* Loomground concrete textual grammar (the .loom netlist), specification v0.6. *)
 (* ISO/IEC 14977 EBNF. The normative source is the specification companion       *)
