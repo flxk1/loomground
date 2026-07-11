@@ -19,9 +19,7 @@ keywords:
   - human oversight
   - provenance
   - capability security
-license: CC-BY-4.0
-license-url: "https://creativecommons.org/licenses/by/4.0/"
-# The specification (spec/) is CC-BY-4.0 (LICENSE-SPEC);
-# the conformance vectors and examples are Apache-2.0 (LICENSE-CODE).
+license: Apache-2.0
+license-url: "https://www.apache.org/licenses/LICENSE-2.0"
 version: 0.6.0
 date-released: 2026-06-27

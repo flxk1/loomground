@@ -40,13 +40,13 @@ SPDX-License-Identifier = "Apache-2.0"
 path = "vocabulary/**"
 precedence = "aggregate"
 SPDX-FileCopyrightText = "2026 flxk1"
-SPDX-License-Identifier = "CC-BY-4.0"
+SPDX-License-Identifier = "Apache-2.0"
 
 [[annotations]]
 path = "language-card.json"
 precedence = "aggregate"
 SPDX-FileCopyrightText = "2026 flxk1"
-SPDX-License-Identifier = "CC-BY-4.0"
+SPDX-License-Identifier = "Apache-2.0"
 
 [[annotations]]
 path = "grammar/tree-sitter/**"
@@ -58,4 +58,10 @@ SPDX-License-Identifier = "Apache-2.0"
 path = ["llms.txt", "AGENTS.md"]
 precedence = "aggregate"
 SPDX-FileCopyrightText = "2026 flxk1"
-SPDX-License-Identifier = "CC-BY-4.0"
+SPDX-License-Identifier = "Apache-2.0"
+
+[[annotations]]
+path = "proposals/**"
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2026 flxk1"
+SPDX-License-Identifier = "Apache-2.0"

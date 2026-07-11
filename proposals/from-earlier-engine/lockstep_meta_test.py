@@ -1,4 +1,4 @@
-# SPDX-License-Identifier: CC-BY-4.0
+# SPDX-License-Identifier: Apache-2.0
 # Copyright 2026 flxk1
 """Proposed Loomground CI gate: the four representations must stay in lockstep.
 
