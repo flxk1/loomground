@@ -4,7 +4,7 @@
 
 ## A declarative language for the governance of AI systems and AI agents
 
-**Specification — Version 0.7.**
+**Specification — Version 0.8 (draft).**
 
 ## Abstract
 
@@ -93,6 +93,8 @@ The `party` field denotes the party currently responsible — the in-language go
 
 A conforming implementation MUST reject a token lacking a required field or bearing a risk outside its domain, and MUST preserve fields it does not recognise. Rejection is the mapping into ⊥ (below): a rejected token activates no node and produces no log entry. Exactly one token arrives at a node's activating inlet per activation (§5.2).
 
+Evaluation reads the token and MUST NOT modify it: `provenance` is supplied by the transport per activation and is never appended to during evaluation. No verdict or observation can depend on such a mutation — a guard MUST NOT range over `provenance` (§6) — so this invariant is pinned by this text and has no distinguishing vector.
+
 **Totality.** A well-formed graph (§5.1) denotes a total function from a valid (token, policy) pair to a verdict-labelled trace over the log; an invalid token (this section) or ill-formed graph denotes ⊥ — no node activated, no log entry. ⊥ never enters a join (§7.2). The operational reading is a well-founded recursion over the directed acyclic graph [PLOTKIN].
 
 ## 5. Connections and activation
@@ -161,7 +163,7 @@ The grade comparison is evaluated only at a source gate. Let `R` be the gate's r
 
 - if the gate declares `R` and the proposing actor declares `G`: the disposition is `auto` if `G` is **at least** `R` in the active ladder's order, else `human`;
 - if the gate declares `R` but the proposing actor declares no grade: the disposition is `human` (fail-closed — an ungraded actor has not been granted the autonomy a graded checkpoint requires);
-- if the gate declares no `R`: the disposition is `auto` or `human` **per policy (§10)** — the proposing actor's granted grade is inert at a gate that declares no `R` (the threshold is gate-owned, §6).
+- if the gate declares no `R`: the disposition is `auto` — the proposing actor's granted grade is inert at a gate that declares no `R` (the threshold is gate-owned, §6). A deployment that wants unattended action withheld at a checkpoint declares a required grade; that declaration is the language's mechanism for it.
 
 The comparison is a selection between declared ordered values, not a computed value. It participates only in step (4), produces the source gate's own verdict, and adds no verdict to the alphabet. Steps (1)–(3) retain precedence.
 
@@ -210,14 +212,14 @@ Each invariant has its home section; this is a checklist, not a restatement.
 7. **No amplification** — a delegation binding satisfies the no-amplification invariant (§6).
 8. **Complete mediation within an activation** — every act passes a mediating gate at every gate on its path; the relation to any post-intervention activation is not fixed by this language (§5.1, §7.3).
 
-The basis on which a non-reserved, non-prohibited action is automated is policy where no required grade is declared; where a source gate declares a required grade, the `auto`/`human` disposition is fixed by the §7.1 grade comparison (§6, §7.1).
+A non-reserved, non-prohibited action at a gate declaring no required grade is `auto`; where a source gate declares a required grade, the `auto`/`human` disposition is fixed by the §7.1 grade comparison (§6, §7.1).
 
 ## 9. Conformance
 
 **Observation canonical form.** The observation of a policy graph is an object with:
 
 - **Members** — exactly `nodes`, `cords`, `reservations`, and (optionally) `redress`. `nodes`, `cords`, and `reservations` MUST always be present; `reservations` is the empty array `[]` when none is declared (not omitted, not `null`). `redress` is present if and only if at least one redress declaration exists.
-- **Reservation form** — each reservation projects as `{kind, by[, when][, duration, on_elapse]}`. A quorum `by` target is in canonical form — `<m> of {role, role}` (m-of-n) or `role and role` (conjunction), insignificant whitespace removed — so two spellings of the same target compare equal. `duration` and `on_elapse` appear only when a temporal window is declared.
+- **Reservation form** — each reservation projects as `{kind, by[, when][, duration, on_elapse]}`. A quorum `by` target is in canonical form — `<m> of {role, role}` (m-of-n) or `role and role` (conjunction), whitespace normalised: exactly one space after `of`, after each comma, and around `and`; none adjacent to the braces — so two spellings of the same target compare equal. `duration` and `on_elapse` appear only when a temporal window is declared.
 - **Not projected** — a `prohibition` (it severs at apply, §5.1) and an egress `obligation` (it conditions the master, §7.3) act on evaluation; neither appears in the observation.
 - **Order** — `nodes` and `reservations` are in source-declaration order (after `rack` expansion). `cords` list the authority conferrals from `grant` clauses first (in gate-declaration order), then the explicitly written cords (in cord-declaration order), with duplicates removed: a `grant` and an equivalent `authority` cord denote the same conferral and appear once.
 - **Node attributes** — a node's configuration is projected on the node, never as a separate member: a `gate`'s `risk_floor` and `party`, a `human`'s `role`, an `actor`'s granted `grade` and `on_behalf_of` (its delegator, §6), and a source gate's required `grade_required`. An `actor`'s projected `party` is its declared party or, for a partyless delegate, the party resolved along the principal chain (§6).
@@ -229,8 +231,8 @@ Conformance is agreement of observations across implementations on every conform
 
 ## 10. The language and policy
 
-- **Language** (this specification): node and cord vocabulary, the token, the activation rule, the verdict alphabet, the master rule, the log requirement, the declarations, the delegation binding with its no-amplification invariant, and **the autonomy-grade axis — the requirement of an active total order over the grade levels, together with the §7.1 step-(4) comparison rule** (the granted-grade/required-grade comparison evaluated at a source gate, its `auto`-when-`G`-at-least-`R` disposition, its fail-closed treatment of an ungraded actor, and the gate-owned threshold).
-- **Policy** (not normative here): which kinds are reserved or prohibited; **the autonomy ladder itself — the grade levels, their labels and meanings, and their order (`vocabulary/grades.json`), which granted grade an actor is conferred, and which required grade a checkpoint sets**; the basis for automating an otherwise-open action *where no required grade is declared*; which authority a delegator may pass; whether a delegate inherits the delegator's reservation/quorum restrictiveness; whether every principal chain must be rooted — terminate at a `human` or at a party-bearing actor (§6); and the relation (if any) between a withheld evaluation and a post-intervention activation.
+- **Language** (this specification): node and cord vocabulary, the token, the activation rule, the verdict alphabet, the master rule, the log requirement, the declarations, the delegation binding with its no-amplification invariant, and **the autonomy-grade axis — the requirement of an active total order over the grade levels, together with the §7.1 step-(4) comparison rule** (the granted-grade/required-grade comparison evaluated at a source gate, its `auto`-when-`G`-at-least-`R` disposition, its fail-closed treatment of an ungraded actor, the `auto` disposition of a gate declaring no required grade, and the gate-owned threshold).
+- **Policy** (not normative here): which kinds are reserved or prohibited; **the autonomy ladder itself — the grade levels, their labels and meanings, and their order (`vocabulary/grades.json`), which granted grade an actor is conferred, and which required grade a checkpoint sets**; which authority a delegator may pass; whether a delegate inherits the delegator's reservation/quorum restrictiveness; whether every principal chain must be rooted — terminate at a `human` or at a party-bearing actor (§6); and the relation (if any) between a withheld evaluation and a post-intervention activation.
 - **Outside this specification**: the means of execution, scheduling, storage, presentation, communication, and disclosure; the measurement of durations; the means of tamper-evidence and external witnessing; the runtime conferral of authority on a sub-actor; the authentication of party assignments (on which the separation-of-duty distinctness check depends, §4, §6); the integrity of `tags` assignments (on which a tag-guard's information-flow property depends, exactly as the party-guard depends on an external party binding, §4, §6); and the discharge of any obligation attached at egress.
 
 This specification does not execute, schedule, branch, iterate, compute, or communicate.
