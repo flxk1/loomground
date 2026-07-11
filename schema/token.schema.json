@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:loomground:0.6:token",
+  "$id": "urn:loomground:0.7:token",
   "title": "Loomground token",
   "description": "The unit of data that flows along a cord (specification, The token).",
   "type": "object",

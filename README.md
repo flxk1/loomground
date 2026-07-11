@@ -73,7 +73,7 @@ The tree is REUSE-compliant (checked in CI).
 
 ## Status
 
-Pre-1.0, specification v0.6. This repository carries only the language:
+Pre-1.0, specification v0.7. This repository carries only the language:
 specification, grammar, schemas, vocabulary, and conformance vectors. Reference
 implementations are out of scope. An implementation conforms by reproducing the
 vectors in `conformance/`; §9 requires two independent implementations to
