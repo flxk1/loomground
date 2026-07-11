@@ -2,7 +2,9 @@
 <!-- Copyright 2026 flxk1 -->
 # Proposal: the principal chain — making the agent–principal relation first-class
 
-**Status: draft for v0.7. Additive; no node class, no cord type, no verdict added.**
+**Status: LANDED in v0.7 (tag v0.7.0) — P1–P4 in core, P5 carried to the v0.8
+punch-list as a profile. Additive; no node class, no cord type, no verdict
+added.**
 
 ## Claim
 
