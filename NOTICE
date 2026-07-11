@@ -14,7 +14,8 @@ system is a tool, not an author or a contributor: it holds no copyright and make
 no copyright claim, and AI systems cannot hold copyright. This assistance is
 acknowledged here, not recorded as authorship. An assisted commit ends with a
 plain line naming the tool used — "Assisted by <tool> (<vendor>); not an author
-or copyright holder.", to date the attribution line — never an authorship or co-authorship trailer (enforced
-in CI; see CONTRIBUTING.md). Commits made
+or copyright holder." — never an authorship or co-authorship trailer (enforced
+in CI; see CONTRIBUTING.md), so the commit history records which tool assisted
+each change without this project endorsing or depending on any. Commits made
 before this convention carried a Co-Authored-By trailer from tooling defaults;
 that trailer recorded no authorship claim and is superseded by this convention.
