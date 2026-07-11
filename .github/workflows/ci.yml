@@ -33,6 +33,19 @@ jobs:
       - name: every feature reaches grammar, schema, and a vector
         run: python3 lockstep_meta_test.py
 
+  neutrality:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: normative documents are tool- and vendor-neutral (CONTRIBUTING.md)
+        run: |
+          if grep -rniE 'claude|anthropic|openai|chatgpt|gpt-[0-9]|gemini|copilot|codex|llama|mistral|langchain|autogen|crewai|pure.?data' \
+               spec/ grammar/ schema/ vocabulary/ conformance/ examples/ llms.txt language-card.json AGENTS.md \
+               --exclude-dir=node_modules 2>/dev/null | grep -v 'tree-sitter/src'; then
+            echo "vendor/model/framework reference found in a normative document — the language is neutral (CONTRIBUTING.md)"; exit 1
+          fi
+          echo "normative surfaces are neutral"
+
   commit-discipline:
     runs-on: ubuntu-latest
     steps:
@@ -53,6 +66,6 @@ jobs:
           bad=0
           git log --no-merges --format='%s' $range | awk 'length($0)>72 {print "subject >72 chars: " $0; bad=1} END {exit bad}' || bad=1
           if git log --no-merges --format='%(trailers)' $range | grep -iE '^Co-Authored-By:.*(claude|codex|openai|anthropic|copilot|gemini)'; then
-            echo "AI co-author trailer found — use the assisted line instead (CLAUDE.md, NOTICE)"; bad=1
+            echo "AI co-author trailer found — use the assisted line instead (CONTRIBUTING.md)"; bad=1
           fi
           exit $bad

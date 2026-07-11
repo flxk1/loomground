@@ -12,8 +12,10 @@ authored by the project's human author(s), who hold the copyright. Generative AI
 tools (including Anthropic's Claude) were used to assist with development. An AI
 system is a tool, not an author or a contributor: it holds no copyright and makes
 no copyright claim, and AI systems cannot hold copyright. This assistance is
-acknowledged here, not recorded as authorship. An assisted commit ends with the
-plain line "Assisted by Claude (Anthropic); not an author or copyright holder."
-— never an authorship or co-authorship trailer (enforced in CI). Commits made
+acknowledged here, not recorded as authorship. An assisted commit ends with a
+plain line naming the tool used — "Assisted by <tool> (<vendor>); not an author
+or copyright holder.", to date "Assisted by Claude (Anthropic); not an author
+or copyright holder." — never an authorship or co-authorship trailer (enforced
+in CI; see CONTRIBUTING.md). Commits made
 before this convention carried a Co-Authored-By trailer from tooling defaults;
 that trailer recorded no authorship claim and is superseded by this convention.
