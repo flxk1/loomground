@@ -12,7 +12,7 @@
     "the pipe relation is acyclic",
     "exactly one master",
     "every gate lies on a path to the master",
-    "every actor-to-actor delegation link satisfies the no-amplification invariant (risk subset and, pairwise, grade(delegate) not above grade(delegator) in the active-ladder order; additionally an ungraded delegator caps the delegate at ungraded); a human delegator anchors answerability and constrains no grant",
+    "every actor-to-actor delegation link satisfies the no-amplification invariant (risk subset — an ungranted delegator has the empty set, so a delegate is never granted where its delegator is not — and, pairwise, grade(delegate) not above grade(delegator) in the active-ladder order; additionally an ungraded delegator caps the delegate at ungraded); a human delegator anchors answerability and constrains no grant",
     "a gate declaring a required grade is a source gate; grade_required on a non-source (piped) gate is ill-formed at apply",
     "the on-behalf-of relation names only declared nodes (actor or human) and is acyclic — the principal chain; it projects in the observation, and a partyless delegate bears its delegator's party"
   ],
