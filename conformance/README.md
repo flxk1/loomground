@@ -124,8 +124,9 @@ by two independent implementations, neither derived from the other:
 production host). Both are maintained as separate, currently private projects,
 and this repository carries no implementation. The three vectors new in the
 v0.8 cycle (`reject-rack-unknown`, `reject-rack-arity`,
-`reject-obligation-undeclared-gate`) are reproduced by `loomground-ref`
-(47/47) and await reproduction by RVND. Each
+`reject-obligation-undeclared-gate`) are reproduced by both (47/47);
+`reject-obligation-undeclared-gate` caught a real accept-and-defer gap in
+each implementation independently before landing. Each
 `expected.json` is the observation a conforming implementation emits; each negative
 vector rejects at the stage shown; `token-validation` classifies identically. Two
 independent implementations reproducing every vector is the interoperability
