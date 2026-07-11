@@ -87,5 +87,5 @@ This specification and its supporting materials were drafted with AI assistance
 (Claude, Anthropic) under human direction. The human author makes the design
 decisions and is responsible for the content; the AI was used as a drafting and
 review tool. This assistance is acknowledged here and in `NOTICE`; it is not
-recorded as authorship — the commits do not credit AI tools as authors or
-co-authors.
+recorded as authorship. An assisted commit ends with a plain assisted line,
+never an authorship or co-authorship trailer (see `NOTICE`; enforced in CI).
