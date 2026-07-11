@@ -110,17 +110,22 @@ MUST classify identically (see the specification, The token):
   must be acyclic; `reject-obo-undeclared` — on-behalf-of naming an undeclared
   node; `reject-obo-duplicate` — a second delegator on the same actor (all
   apply-time);
-- `reject-missing-arrow`, `reject-unknown-keyword` (parse-time).
+- `reject-obligation-undeclared-gate` — an obligation `on` an undeclared gate
+  (apply-time);
+- `reject-missing-arrow`, `reject-unknown-keyword` (parse-time);
+- `reject-rack-unknown`, `reject-rack-arity` — a failed rack expansion (unknown
+  rack name; missing binding) rejects at parse: the pre-pass precedes the grammar.
 
 ## Status
 
-Aligned to specification v0.7. Every vector — including the eight new in v0.7
-(three `obo-*`, `party-inheritance`, three `reject-obo-*`, and
-`reject-delegation-ungranted-delegator`) — has been reproduced by two
-independent implementations, neither derived from the other: `loomground-ref`
-(a stdlib-only reference implementation) and RVND (a production host). Both are
-maintained as separate, currently private projects, and this repository carries
-no implementation. Each
+Aligned to specification v0.8 (draft). Every v0.7.0 vector has been reproduced
+by two independent implementations, neither derived from the other:
+`loomground-ref` (a stdlib-only reference implementation) and RVND (a
+production host). Both are maintained as separate, currently private projects,
+and this repository carries no implementation. The three vectors new in the
+v0.8 cycle (`reject-rack-unknown`, `reject-rack-arity`,
+`reject-obligation-undeclared-gate`) are reproduced by `loomground-ref`
+(47/47) and await reproduction by RVND. Each
 `expected.json` is the observation a conforming implementation emits; each negative
 vector rejects at the stage shown; `token-validation` classifies identically. Two
 independent implementations reproducing every vector is the interoperability

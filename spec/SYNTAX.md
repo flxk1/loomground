@@ -4,7 +4,7 @@
 
 ## A companion to the Loomground specification: the textual surface
 
-**Companion — Version 0.7.**
+**Companion — Version 0.8 (draft).**
 
 ## Abstract
 
@@ -147,7 +147,9 @@ Notes on the grammar, each tied to the abstract language:
   format (Art. 50(2)), emotion-recognition or biometric-categorisation disclosure
   (Art. 50(3)), deepfake disclosure (Art. 50(4)). A `data-minimisation` obligation
   derives illustratively from Regulation (EU) 2016/679 (GDPR) Art. 5(1)(c), not from
-  Art. 50. The surface provides only the point of attachment; the discharge of an
+  Art. 50. The named gate MUST be declared: an obligation `on` an undeclared gate is
+  ill-formed at apply, like every other undeclared-node reference. The surface
+  provides only the point of attachment; the discharge of an
   obligation is outside the specification, and the surface allocates the duty to no
   one.
 - A `redress <kind> by <role>` declaration makes a released decision of a matched
@@ -298,7 +300,9 @@ still expands to distinct node identifiers (for example `actor a$0` becomes `a0`
 `a1` on the next use), giving instance-unique identifiers without the author managing
 them by hand. Expansion is fail-closed: an unknown rack name, missing or extra
 arguments, an undefined `$name`, or a missing `end` causes the program to denote an
-ill-formed policy graph, which has no effect.
+ill-formed policy graph, which has no effect. An expansion failure is a
+**parse**-stage rejection — the pre-pass precedes the grammar of §3, so a program
+whose expansion fails never reaches it.
 
 ```
 rack approval(actor, g, level):

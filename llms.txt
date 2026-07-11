@@ -12,7 +12,7 @@
 - **Cords (3):** `authority` (actor→gate) · `pipe` (gate→gate, acyclic) · `egress` (gate→master). Every other pairing is ill-formed.
 - **Token** (the only data): `{ id, kind, risk, party, provenance, tags? }`. `risk` = `low < medium < high < critical`. `tags` = optional set of declared categories.
 - **Verdicts** (join strictest-wins along pipes): `auto` releases · `human` withholds (oversight) · `refused` (no authorizing grant) · `reserved` (referred to a role) · `prohibited` (severed, overrides any grant). Master releases iff effective verdict is `auto` and every egress obligation is attached.
-- **Autonomy grade** — config attribute, not a token field, not guardable: `grade` on an actor = *granted*; on a source gate = *required*. Ordered ladder (`vocabulary/grades.json`, default `L0 < L1 < L2 < L3 < L4`, policy/remappable). At a source gate requiring `R`: `auto` iff granted `G >= R`, else `human`; ungraded actor → `human`; no `R` → policy.
+- **Autonomy grade** — config attribute, not a token field, not guardable: `grade` on an actor = *granted*; on a source gate = *required*. Ordered ladder (`vocabulary/grades.json`, default `L0 < L1 < L2 < L3 < L4`, policy/remappable). At a source gate requiring `R`: `auto` iff granted `G >= R`, else `human`; ungraded actor → `human`; no `R` → `auto` (declare a required grade to withhold).
 - **Well-formed iff:** every cord permitted · pipes acyclic · exactly one master · every gate reaches the master · a grade-required gate is a source gate · on-behalf-of names a declared actor or human, at most one per actor, acyclic (the principal chain) · delegation never amplifies on actor→actor links (`risk` subset — an ungranted delegator has the empty set, so a delegate is never granted where its delegator is not; `grade(delegate) <= grade(delegator)`; an ungraded delegator caps the delegate at ungraded); a human delegator constrains no grant. Forward-only.
 
 ## Declarations (9)
@@ -32,7 +32,7 @@ actor <id> on-behalf-of <delegator>   # delegation: delegator is a declared acto
 `guard` = `kind = <k>` | `risk >= <level>` | `party = <id>` | `tags contains <tag>`.
 Declared properties only — never `id`, `provenance`, `grade`, or any computed value (the no-id wall).
 
-**Rejection stage:** grammar errors reject at **parse**. Everything else — an ill-formed graph (bad cord, a pipe or on-behalf-of cycle, no path to master, a non-source gate with a required grade) *and* an out-of-domain value (a guard over `id`/`provenance`, a `risk` or `grade` outside its scale) — parses, then rejects at **apply**: these are semantic checks, not grammar.
+**Rejection stage:** grammar errors and rack-expansion failures (the pre-pass precedes the grammar) reject at **parse**. Everything else — an ill-formed graph (bad cord, a pipe or on-behalf-of cycle, no path to master, a non-source gate with a required grade) *and* an out-of-domain value (a guard over `id`/`provenance`, a `risk` or `grade` outside its scale) — parses, then rejects at **apply**: these are semantic checks, not grammar.
 
 ## Litmus — what belongs in a patch
 
