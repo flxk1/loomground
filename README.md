@@ -11,7 +11,20 @@ vocabulary, and conformance vectors. It describes *what* governance applies; it
 does not define execution, scheduling, storage, or communication. The
 specification references no host program.
 
-## Patch and Observation
+## Install
+
+Loomground is a **specification, not a package** — there is nothing to install
+and nothing to import. Read it, or consume its machine-readable forms directly:
+
+- Read `spec/SPEC.md` (the normative specification) and `spec/SYNTAX.md` (the grammar).
+- Tools and agents start from `llms.txt` / `AGENTS.md` and `language-card.json` —
+  a compact, agent-facing summary of the whole language.
+
+Conformance, not installation, is how software relates to this repo: an
+implementation *conforms* by reproducing the vectors in `conformance/` (see
+[Status](#status)).
+
+## Usage
 
 A Loomground patch has an authored surface and a canonical projection:
 
@@ -24,7 +37,7 @@ A Loomground patch has an authored surface and a canonical projection:
   evaluation and are not projected. Evaluation also produces an ordered log trace;
   that runtime record is not a patch view.
 
-## Read the specification
+To read the language in full:
 
 - `spec/SPEC.md` — the normative specification (nodes, cords, the token, evaluation,
   the governance declarations, conformance).
@@ -32,7 +45,7 @@ A Loomground patch has an authored surface and a canonical projection:
 - `conformance/` — the vectors that define a conforming implementation.
 - `examples/` — sample patches (`.lg` netlists).
 
-## Machine-readable
+## API / Contracts
 
 The normative content is also available as data, so tools and agents consume the
 language without parsing prose:
@@ -54,8 +67,6 @@ language without parsing prose:
   and vectors (`skill/make_skill.py`, CI-checked), so the skill grows with the
   language and its examples are conformance-tested by construction.
 
-## Layout
-
 ```
 llms.txt      agent/tool entry point (AGENTS.md points here)
 spec/         SPEC.md (the language), SYNTAX.md (grammar)
@@ -68,7 +79,37 @@ skill/        agent procedure (SKILL.md, generated from the language)
 language-card.json   agent-facing summary
 ```
 
-## Licensing
+## Family
+
+Loomground is the **language at the base of the knowledge plane** — the *what*
+that everything downstream grounds in. Dependencies point one way, toward this
+base: implementations and planes depend on the language; the language depends on
+nothing and names no implementation.
+
+- **Conforms to it** — software relates to this repo by *conforming*, never by
+  being named in it: an implementation reproduces the vectors in `conformance/`,
+  and §9 requires two independent implementations to reproduce every vector. The
+  specification privileges none of them — naming a reference implementation here
+  would break the neutrality the standard is built on.
+- **Builds on it** — the knowledge-plane substrate realizes the language's
+  declarations and grounding map:
+  [loomground-governance](https://github.com/flxk1/loomground-governance) (when an
+  action may take effect), [loomground-epistemic](https://github.com/flxk1/loomground-epistemic)
+  and [loomground-factual](https://github.com/flxk1/loomground-factual) (the modal
+  and assertoric planes).
+- **Pipeline it feeds** — Language →
+  [ingest](https://github.com/flxk1/loomground-ingest) →
+  [versum](https://github.com/flxk1/loomground-versum) →
+  [solver](https://github.com/flxk1/loomground-solver) →
+  [patchbay](https://github.com/flxk1/loomground-patchbay).
+- **Consumed from outside, never depended on backward** — downstream governance
+  and orchestration layers consume the grounding this language provides; nothing
+  here points back at them, and this prose names none of them by product. (See
+  `repo-standards/topology.md` for the full three-plane map and the arrow rules.)
+
+This list is a map, not a manifest — representative members, not exhaustive.
+
+## License
 
 Everything in this repository — the specification, grammars, vocabulary,
 schemas, conformance vectors, examples, and tooling — is licensed under the

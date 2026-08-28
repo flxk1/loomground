@@ -8,5 +8,9 @@ _docs/
 **/PANEL_*.md
 **/QUESTIONS_*.md
 
+# operational / session scratch stays local, never ships (repo-standards invariant)
+work/
+_ctrl/
+
 # editor / OS
 .DS_Store
