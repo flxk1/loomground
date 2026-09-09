@@ -67,7 +67,7 @@ SPDX-FileCopyrightText = "2026 flxk1"
 SPDX-License-Identifier = "Apache-2.0"
 
 [[annotations]]
-path = "skill/SKILL.md"
+path = "skills/loomground/SKILL.md"
 precedence = "aggregate"
 SPDX-FileCopyrightText = "2026 flxk1"
 SPDX-License-Identifier = "Apache-2.0"

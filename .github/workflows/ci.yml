@@ -21,7 +21,7 @@ jobs:
         with:
           python-version: "3.x"
       - name: llms.txt stays in sync with the language
-        run: python3 check_llms_txt.py
+        run: python3 tools/check_llms_txt.py
 
   lockstep:
     runs-on: ubuntu-latest
@@ -31,7 +31,7 @@ jobs:
         with:
           python-version: "3.x"
       - name: every feature reaches grammar, schema, and a vector
-        run: python3 lockstep_meta_test.py
+        run: python3 tests/lockstep_meta_test.py
 
   skill-drift:
     runs-on: ubuntu-latest
@@ -41,7 +41,7 @@ jobs:
         with:
           python-version: "3.x"
       - name: the skill is generated from the language and cannot drift
-        run: python3 skill/make_skill.py --check
+        run: python3 skills/loomground/make_skill.py --check
 
   neutrality:
     runs-on: ubuntu-latest
@@ -50,7 +50,7 @@ jobs:
       - name: normative documents are tool- and vendor-neutral (CONTRIBUTING.md)
         run: |
           if grep -rniE 'claude|anthropic|openai|chatgpt|gpt-[0-9]|gemini|copilot|codex|llama|mistral|langchain|autogen|crewai|pure.?data|rvnd|loomground-ref' \
-               spec/ grammar/ schema/ vocabulary/ conformance/ examples/ skill/ llms.txt language-card.json AGENTS.md \
+               spec/ grammar/ schema/ vocabulary/ conformance/ examples/ skills/ llms.txt language-card.json AGENTS.md \
                README.md NOTICE CITATION.cff CONTRIBUTING.md \
                --exclude-dir=node_modules 2>/dev/null | grep -v 'tree-sitter/src'; then
             echo "vendor/model/framework/implementation reference found — the standard states criteria, not products (CONTRIBUTING.md)"; exit 1

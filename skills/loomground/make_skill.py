@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # SPDX-License-Identifier: Apache-2.0
 # SPDX-FileCopyrightText: 2026 flxk1
-"""Generate the machine-derived blocks of skill/SKILL.md from the canonical
+"""Generate the machine-derived blocks of skills/loomground/SKILL.md from the canonical
 language sources, so the skill grows with the language instead of drifting
 from it.
 
@@ -16,8 +16,8 @@ The skill has two layers:
 
         <!-- generated:NAME:begin --> ... <!-- generated:NAME:end -->
 
-Run:  python3 skill/make_skill.py           # rewrite SKILL.md in place
-      python3 skill/make_skill.py --check   # CI mode: fail on drift or gaps
+Run:  python3 skills/loomground/make_skill.py           # rewrite SKILL.md in place
+      python3 skills/loomground/make_skill.py --check   # CI mode: fail on drift or gaps
 """
 from __future__ import annotations
 
@@ -26,8 +26,8 @@ import re
 import sys
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parent.parent
-SKILL = ROOT / "skill" / "SKILL.md"
+ROOT = Path(__file__).resolve().parents[2]
+SKILL = Path(__file__).resolve().with_name("SKILL.md")
 
 
 def _load(rel):
@@ -161,7 +161,7 @@ def main() -> int:
     if check:
         if rendered != current:
             print("skill drift — generated blocks are stale; "
-                  "run: python3 skill/make_skill.py")
+                  "run: python3 skills/loomground/make_skill.py")
             return 1
         print("skill is in lockstep with the language")
         return 0
