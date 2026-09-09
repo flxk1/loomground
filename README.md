@@ -62,9 +62,9 @@ language without parsing prose:
 - `language-card.json` — a compact, agent-facing summary of the whole language.
 - `llms.txt` / `AGENTS.md` — the agent/tool entry point: a compact guide to
   reading, emitting, and validating Loomground, kept in sync by a drift check.
-- `skill/` — an agent procedure for drafting, classifying, and validating
+- `skills/loomground/` — an agent procedure for drafting, classifying, and validating
   patches. Its factual sections are *generated* from the vocabulary, schemas,
-  and vectors (`skill/make_skill.py`, CI-checked), so the skill grows with the
+  and vectors (`skills/loomground/make_skill.py`, CI-checked), so the skill grows with the
   language and its examples are conformance-tested by construction.
 
 ```
@@ -75,7 +75,7 @@ schema/       JSON Schemas (token, patch, observation, transport)
 vocabulary/   node classes, cords, verdicts, declarations, guards, grounding (JSON)
 conformance/  vectors that define a conforming implementation + manifest.json
 examples/     sample patches (.lg netlists)
-skill/        agent procedure (SKILL.md, generated from the language)
+skills/loomground/   agent procedure (SKILL.md, generated from the language)
 language-card.json   agent-facing summary
 ```
 
@@ -113,7 +113,7 @@ This list is a map, not a manifest — representative members, not exhaustive.
 
 Everything in this repository — the specification, grammars, vocabulary,
 schemas, conformance vectors, examples, and tooling — is licensed under the
-Apache License, Version 2.0. See `LICENSE`.
+Apache License, Version 2.0. See `LICENSES/Apache-2.0.txt`.
 
 Per-file SPDX headers throughout; `REUSE.toml` covers files that cannot carry one.
 The tree is REUSE-compliant (checked in CI).

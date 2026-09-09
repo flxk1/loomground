@@ -5,7 +5,7 @@ This product includes materials developed for the Loomground project.
 
 The specification, the grammars, the vocabulary, the schemas, the conformance
 vectors, the examples, and the repository tooling are licensed under the
-Apache License, Version 2.0 (see LICENSE).
+Apache License, Version 2.0 (see LICENSES/Apache-2.0.txt).
 
 Authorship and AI assistance: all code, the specification, and documentation are
 authored by the project's human author(s), who hold the copyright. Generative AI

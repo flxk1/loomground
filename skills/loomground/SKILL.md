@@ -12,7 +12,7 @@ aggregates, schedules, persists, or communicates. Express what is declarable,
 
 Everything factual below is generated from the language's canonical sources
 (`vocabulary/`, `schema/`, `language-card.json`, `conformance/manifest.json`,
-`examples/`) by `skill/make_skill.py` and CI-checked — this skill cannot drift
+`examples/`) by `skills/loomground/make_skill.py` and CI-checked — this skill cannot drift
 from the language. The normative source is `spec/SPEC.md`; it governs on any
 conflict.
 
