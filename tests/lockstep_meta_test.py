@@ -18,8 +18,8 @@ Three checks (stdlib only), each reporting exactly what is uncovered:
   C. grammar literal → vector — every feature keyword in the EBNF appears in at least one
                               vector input.lg (mechanical; value-literals are ignored).
 
-Run standalone:  python3 lockstep_meta_test.py [LOOMGROUND_ROOT]
-Or as pytest in the Loomground tree (drop into tests/); resolves the repo root itself.
+Run standalone:  python3 tests/lockstep_meta_test.py [LOOMGROUND_ROOT]
+Or as pytest in the Loomground tree; resolves the repo root itself.
 """
 from __future__ import annotations
 
