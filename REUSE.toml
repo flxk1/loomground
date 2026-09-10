@@ -31,6 +31,12 @@ SPDX-FileCopyrightText = "2026 flxk1"
 SPDX-License-Identifier = "Apache-2.0"
 
 [[annotations]]
+path = "conformance/grounder/*.jsonl"
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2026 flxk1"
+SPDX-License-Identifier = "Apache-2.0"
+
+[[annotations]]
 path = "conformance/manifest.json"
 precedence = "aggregate"
 SPDX-FileCopyrightText = "2026 flxk1"

@@ -1,9 +1,9 @@
 // SPDX-License-Identifier: Apache-2.0
-// SPDX-FileCopyrightText: 2026 The Loomground Authors
+// SPDX-FileCopyrightText: 2026 flxk1
 // A tree-sitter grammar for the Loomground textual surface (the .lg netlist),
 // specification v0.7. Generatable: `tree-sitter generate` produces a parser and
 // an AST. The normative grammar is the specification companion (SYNTAX) and
-// grammar/loomground.ebnf; this is that grammar in tree-sitter form.
+// standard/grammar/loomground.ebnf; this is that grammar in tree-sitter form.
 //
 // Scope: syntax only. It accepts the base netlist and the `rack` macro layer
 // (which the specification expands by a pre-pass). Value-domain checks (e.g. a
@@ -35,6 +35,7 @@ module.exports = grammar({
       $.prohibit_decl,
       $.obligation_decl,
       $.redress_decl,
+      $.transfer_decl,
       $.rack_def,
       $.rack_use,
     ),
@@ -43,8 +44,15 @@ module.exports = grammar({
       seq("party", field("party", $.id)),
       seq("on-behalf-of", field("delegator", $.id)),
       seq("grade", field("grade", $._grade_value)),
+      seq("mandate", field("mandate", $._purpose_set)),
       seq("name", $.text_to_eol),
     ))),
+
+    // the purposes an actor is authorised to pursue; a single purpose may be
+    // written without braces. Attenuates along the principal chain (SPEC).
+    _purpose_set: $ => choice($.purpose, $.purpose_list),
+    purpose_list: $ => seq("{", $.purpose, repeat(seq(",", $.purpose)), "}"),
+    purpose: $ => $.id,
 
     human_decl: $ => seq("human", field("id", $.id), repeat(choice(
       seq("role", field("role", $.id)),
@@ -54,6 +62,7 @@ module.exports = grammar({
     gate_decl: $ => seq("gate", field("id", $.id), repeat($._gate_opt), optional($.grant_clause)),
     _gate_opt: $ => choice(
       seq("risk", field("risk_floor", $._risk_value)),
+      seq("consign", field("consignee", $.id)),
       seq("grade", field("grade_required", $._grade_value)),
       seq("party", field("party", $.id)),
       seq("name", $.id),
@@ -77,6 +86,11 @@ module.exports = grammar({
 
     redress_decl: $ => seq("redress", field("kind", $.id), "by", field("by", $.id),
       optional("overturn"), optional(seq("within", $.duration))),
+
+    // transfer: where a released action's material goes and the purposes it
+    // travels under. The consignee is a declared id, not a node.
+    transfer_decl: $ => seq("transfer", field("kind", $.id), "to",
+      field("to", $.id), "within", field("within", $._purpose_set)),
 
     target: $ => choice(
       seq($.id, "and", $.id),

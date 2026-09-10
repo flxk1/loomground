@@ -99,6 +99,8 @@ DECLARATION_PROBES: dict[str, list[str]] = {
     "party":             [r"\bparty\b"],
     "delegation":        [r"\bon-behalf-of\b"],
     "autonomy-grade":    [r"\bgrade\b"],
+    "mandate":           [r"\bmandate\b"],
+    "transfer":          [r"(?m)^\s*transfer\b", r"\bconsign\b"],
 }
 
 
