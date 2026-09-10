@@ -42,7 +42,7 @@ Loomground
 │   └── obligation-discharge       — may a permit proceed; were attached duties discharged (pillar: attached duties)
 ├── Interfaces and authoring
 │   ├── loomground-patchbay        — reusable presentation contract and console shell
-│   └── loomground-builder         — authoring tooling; experimental
+│   └── loomground-mcp             — one MCP server exposing the planes as tools and the skills as prompts
 ├── Domain agents                  — private; place reserved
 └── RVND
     ├── RVND                       — local-first governance runtime for AI agents, built on Loomground
