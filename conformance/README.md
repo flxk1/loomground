@@ -1,5 +1,5 @@
 <!-- SPDX-License-Identifier: Apache-2.0 -->
-<!-- Copyright 2026 The Loomground Authors -->
+<!-- Copyright 2026 flxk1 -->
 # Loomground conformance vectors
 
 These vectors define conformance for a Loomground implementation. An
@@ -118,17 +118,30 @@ MUST classify identically (see the specification, The token):
 
 ## Status
 
-Aligned to specification v0.8 (draft). Every vector — the v0.7.0 suite and the
+Aligned to specification v0.8.2 (stable). Every vector — the v0.7.0 suite and the
 three new in the v0.8 cycle (`reject-rack-unknown`, `reject-rack-arity`,
-`reject-obligation-undeclared-gate`) — has been reproduced by two independent
-implementations, neither derived from the other. They are maintained as
-separate projects, which this repository does not name: the standard states
-criteria, not products, and any implementation demonstrates conformance the
-same way — by reproducing every vector. This repository carries no
-implementation. (`reject-obligation-undeclared-gate` caught a real
-accept-and-defer gap in each implementation independently before landing —
-the vectors are doing their job.) Each
-`expected.json` is the observation a conforming implementation emits; each negative
-vector rejects at the stage shown; `token-validation` classifies identically. Two
-independent implementations reproducing every vector is the interoperability
-criterion (the specification, Conformance §9).
+`reject-obligation-undeclared-gate`) — has been reproduced by two
+implementations, which this repository does not name as products: the
+specification states criteria, not products, and any implementation
+demonstrates conformance the same way — by reproducing every vector. The
+*standard* — this directory's parent, `standard/` — carries no implementation:
+grammar, schemas, vocabulary, and vectors only, no code. One of the two
+implementations is bundled elsewhere in this repository, outside `standard/`,
+as the non-normative companion skill's checker (`skills/loomground/`); it is
+excluded from the §9 count below because it was authored inside this project,
+not independently of it. The other remains a separate, unnamed project.
+(`reject-obligation-undeclared-gate` caught a real accept-and-defer gap in
+each implementation independently before landing — the vectors are doing
+their job.) Each `expected.json` is the observation a conforming
+implementation emits; each negative vector rejects at the stage shown;
+`token-validation` classifies identically.
+
+The §9 interoperability criterion — two implementations produced
+independently of each other reproducing every vector — remains **open**.
+Both existing implementations were authored within the same AI-assisted
+project by the same author-fleet, with no controlled isolation between them,
+so their agreement is differential verification (valuable for catching
+divergence) rather than an independence proof (which requires convergence
+from the specification text alone). The criterion is met when an
+implementation produced without access to this project's implementations
+reproduces every vector.

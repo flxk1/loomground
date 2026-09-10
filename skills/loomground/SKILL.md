@@ -21,10 +21,10 @@ conflict.
 <!-- generated:language:begin -->
 - **Nodes (4):** `actor` (principal that may be granted authority and propose an action) · `human` (person named by a role; a reserved token is referred to it, or it roots a principal chain as delegator) · `gate` (governed checkpoint where an actor acts and a verdict is produced) · `master` (single sink; the release point at which the policy enforcement point attaches)
 - **Cords (3):** `authority` (actor → gate) · `pipe` (gate → gate) · `egress` (gate → master)
-- **Token:** `{id, kind, risk, party, provenance, tags}`; `risk` ∈ low < medium < high < critical; `tags` is an optional set of declared categories.
+- **Token:** `{id, kind, risk, party, provenance, reversibility, uncertainty, tags}`; `risk` ∈ low < medium < high < critical; `tags` is an optional set of declared categories.
 - **Verdicts (join strictest-wins along pipes):** `auto` ⊑ `human` ⊑ `refused` ⊑ `reserved` ⊑ `prohibited`. The master releases iff the effective verdict is `auto` and every egress obligation is attached.
-- **Autonomy grades:** active ladder `L0 < L1 < L2 < L3 < L4` (policy, remappable); granted on an actor, required on a source gate; an ungated gate dispositions `auto` — declare a required grade to withhold.
-- **Guards** range over exactly `{kind, risk, party, tags}` — never `id`, `provenance`, `grade`, or any computed value.
+- **Autonomy grades:** active ladder `L0 < L1 < L2 < L3 < L4 < L5 < L6` (policy, remappable); granted on an actor, required on a source gate; an ungated gate dispositions `auto` — declare a required grade to withhold.
+- **Guards** range over exactly `{kind, risk, reversibility, uncertainty, party, tags}` — never `id`, `provenance`, `grade`, or any computed value.
 <!-- generated:language:end -->
 
 ## The declarations
@@ -40,6 +40,8 @@ conflict.
 | redress | `redress <kind> by <role> [overturn] [within <duration>]` | a released decision of <kind> is contestable: a fresh re-examination by <role> is owed and recorded; 'overturn' qualifies that role as empowered to reverse the outcome; 'within' declares the appeal/recall window. The re-examination is a separate (forward) activation and the reversal/recall is outside this specification; the language declares and records the right. |
 | party | `party <id> on an actor or gate` | sets the party currently responsible |
 | delegation | `on-behalf-of <actor|human> on an authority cord` | delegate acts for delegator; the bindings form the acyclic principal chain, projected in the observation; actor-to-actor links are bound by the no-amplification invariant; a human delegator anchors answerability and confers no authority; a partyless delegate bears its delegator's party |
+| mandate | `mandate <purpose> | mandate { <purpose>, ... } on an actor` | the set of declared purposes an actor is authorised to pursue; configuration on an actor like grade, never a token field and never guardable. A delegate's mandate MUST be a subset of its delegator's and a delegator declaring none caps its delegate at none, so delegation narrows purpose and never widens it; attenuation composes pairwise along the acyclic principal chain. A mandate neither confers nor withholds authority — a grant says what, a mandate says what for — and the language judges no conduct against it |
+| transfer | `consign <id> on a terminal gate; transfer <kind> to <consignee> within { <purpose>, ... }` | names the party a released action's material goes to, and the purposes it is limited to there. The consignee is a declared id, not a node - the four node classes are unchanged and a consignee is never a cord endpoint. A gate declaring a consignee MUST be terminal. The transfer's purposes MUST be a subset of the mandate of every actor granted over that kind at a consigning gate; an unmandated actor holds the empty set and can license nothing onward, so an actor cannot hand on a purpose it was not itself given. Lateral, not a delegation: the consignee acts on nobody's behalf and no principal chain is formed. The language records the purposes and bounds them; whether the consignee honours them is conduct and outside the specification |
 | autonomy-grade | `grade <level> on an actor (granted) or source gate (required)` | gates the step-(4) auto/human disposition at a source gate; grade is configuration, not a token field or guard domain |
 <!-- generated:declarations:end -->
 
@@ -51,6 +53,8 @@ conflict.
 - exactly one master
 - every gate lies on a path to the master
 - every actor-to-actor delegation link satisfies the no-amplification invariant (risk subset — an ungranted delegator has the empty set, so a delegate is never granted where its delegator is not — and, pairwise, grade(delegate) not above grade(delegator) in the active-ladder order; additionally an ungraded delegator caps the delegate at ungraded); a human delegator anchors answerability and constrains no grant
+- every actor-to-actor delegation binding satisfies the mandate-attenuation invariant (the delegate's mandate is a subset of its delegator's; a delegator declaring no mandate caps its delegate at none, so delegation narrows purpose and never widens it); an actor declares at most one mandate
+- a gate declaring a consignee is terminal; every transfer names a declared consignee with a non-empty purpose set; and a transfer's purposes are a subset of the mandate of every actor granted over that kind at a consigning gate (an unmandated actor licenses nothing onward)
 - a gate declaring a required grade is a source gate; grade_required on a non-source (piped) gate is ill-formed at apply
 - the on-behalf-of relation names only declared nodes (actor or human) and is acyclic — the principal chain; it projects in the observation, and a partyless delegate bears its delegator's party
 <!-- generated:wellformed:end -->
@@ -65,7 +69,7 @@ overseen doing what"). Never draft from an unsplit paragraph.
 ### Step 2 — the litmus, per atom
 
 <!-- generated:litmus:begin -->
-A regulation names it as a declaration -> language. A deployment chooses its values -> policy. A runtime does it -> host. A guard ranges only over declared token properties, never a computed value, and never over grade (a config attribute: granted on actor, required on a source gate). The autonomy ladder and its order are policy (vocabulary/grades.json, default L0..L4, remappable); the language requires an active total order and owns the §7.1 comparison/gating rule evaluated at the source gate, including the auto disposition of a gate that declares no required grade.
+A regulation names it as a declaration -> language. A deployment chooses its values -> policy. A runtime does it -> host. A guard ranges only over declared token properties, never a computed value, and never over grade (a config attribute: granted on actor, required on a source gate). The autonomy ladder and its order are policy (vocabulary/grades.json, default L0..L6, remappable); the language requires an active total order and owns the §7.1 comparison/gating rule evaluated at the source gate, including the auto disposition of a gate that declares no required grade.
 <!-- generated:litmus:end -->
 
 <!-- generated:outofscope:begin -->
@@ -138,6 +142,25 @@ a delegate is never granted where its delegator is not); a human root anchors
 answerability and confers no authority. Prefer rooting chains in a person
 when the requirement is about accountability.
 
+### mandate
+
+`actor <id> mandate <purpose>` or `mandate { <purpose>, … }` — the set of
+purposes the actor is authorised to pursue. Configuration on the actor, like
+`grade`; never a token field, never guardable. One mandate per actor. Across a
+delegation binding the delegate's mandate MUST be a subset of its delegator's;
+a delegator with no mandate caps its delegate at none. Delegation narrows
+purpose and never widens it. Whether conduct served the mandate is not a
+graph property (loomground-mandate answers that after the fact).
+
+### transfer
+
+`gate <id> … consign <consignee>` marks a terminal gate whose release goes to
+a declared consignee; `transfer <kind> to <consignee> within { <purpose>, … }`
+limits material of that kind, at that consignee, to those purposes. Every
+transfer names a declared consignee and a non-empty purpose set; the purposes
+MUST be a subset of the mandate of every actor granted over that kind at a
+consigning gate. What the consignee then does is outside the language.
+
 ### autonomy-grade
 
 `grade <level>` — granted on an actor, required on a source gate. At a gate
@@ -196,7 +219,7 @@ This repository carries no implementation, so validate against its data:
 3. **Compare against the vectors** — the ground truth for edge cases:
 
 <!-- generated:conformance:begin -->
-The suite has **47 vectors** (22 negative, 24 patch, 1 token), indexed in `conformance/manifest.json`. When unsure how a construct projects or which stage rejects it, read the matching vector: `expected.json` is the canonical observation; `reject.json` pins the stage.
+The suite has **65 vectors** (31 negative, 32 patch, 2 token), indexed in `conformance/manifest.json`. When unsure how a construct projects or which stage rejects it, read the matching vector: `expected.json` is the canonical observation; `reject.json` pins the stage.
 <!-- generated:conformance:end -->
 
 ### Step 6 — report

@@ -3,7 +3,7 @@
 # decision to a human role: reserved is never auto. Two terminal gates; the
 # master decides each egress path. Which kinds are reserved is policy.
 # SPDX-License-Identifier: Apache-2.0
-# Copyright 2026 The Loomground Authors
+# Copyright 2026 flxk1
 
 actor  bot7
 human  alice  role legal

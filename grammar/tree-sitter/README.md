@@ -15,7 +15,8 @@ Requires the tree-sitter CLI (and a C compiler). The generated parser (`src/`,
 bindings) is a build output and is not committed; run `tree-sitter generate`.
 
 ## Relationship to the standard
-This is the grammar of `grammar/loomground.ebnf` and the specification companion
-(`spec/SYNTAX.md`) in tree-sitter form. The specification governs. This grammar
+This is the grammar of [`loomground.ebnf`](../loomground.ebnf) and the
+[`SYNTAX.md`](../../spec/SYNTAX.md) companion in tree-sitter form. The
+specification governs. This grammar
 defines syntax only; the specification fixes well-formedness and semantics, and
 implementations check them.
