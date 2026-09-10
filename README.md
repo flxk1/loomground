@@ -42,7 +42,7 @@ Its observation (`schema/observation.schema.json`) projects nodes, cords, and re
 | `grammar/tree-sitter/` | tree-sitter grammar (`tree-sitter generate`) |
 | `schema/` | JSON Schemas: token, patch, observation, transport |
 | `vocabulary/` | node classes, cords, verdicts, declarations, guards, grades, grounding (JSON) |
-| `conformance/` | 47 vectors + `manifest.json`; reproducing every vector = conformance (§9) |
+| `conformance/` | 65 vectors + `manifest.json`; reproducing every vector = conformance (§9) |
 | `examples/` | sample `.lg` netlists |
 | `language-card.json` | the language as data |
 | `llms.txt`, `AGENTS.md` | agent entry point, drift-checked |
@@ -60,7 +60,7 @@ Rationale: `docs/design.md`.
 
 ## Status
 
-Specification v0.8 (draft); latest release v0.7.0. 47 conformance vectors, each reproduced by two independent implementations (`conformance/README.md`, Status). CI: 6 jobs (`.github/workflows/ci.yml`). Tooling: Python 3 standard library.
+Specification v0.11.0 (stable); tag `v0.11.0`. 65 conformance vectors, each reproduced by two independent implementations (`conformance/README.md`). Packaged by `loomground-governance`, pinned to this tag, byte-equality proven in its CI. CI: 6 jobs (`.github/workflows/ci.yml`). Tooling: Python 3 standard library.
 
 ## License
 
