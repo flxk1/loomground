@@ -55,7 +55,7 @@ Verdicts: `auto < human < refused < reserved < prohibited`. Full card: `docs/lan
 
 ## Family
 
-Family front door and normative base specification. The repository tree, one line per repository: `CATALOGUE.md`.
+Family front door and normative base specification. The repository tree, one line per repository: `CATALOGUE.md`; data: `CATALOGUE.json`.
 
 - Consumes: nothing; software relates to it by reproducing `conformance/`.
 - Consumed by: the language planes, the contracts (`CATALOGUE.md`), and the diagnostic operators via `spec/OPERATORS.md`.
@@ -65,7 +65,7 @@ Rationale: `docs/design.md`.
 
 ## Status
 
-Specification v0.11.0 (stable); tag `v0.11.0`. 65 conformance vectors, each reproduced by two independent implementations (`conformance/README.md`). Packaged by `loomground-governance`, pinned to this tag. CI: 6 jobs (`.github/workflows/ci.yml`). Tooling: Python 3 standard library.
+Specification v0.11.0 (stable); tag `v0.11.0`. 65 conformance vectors, each reproduced by two independent implementations (`conformance/README.md`). Packaged by `loomground-governance`, pinned to this tag. CI: 7 jobs (`.github/workflows/ci.yml`). Tooling: Python 3 standard library.
 
 ## License
 
