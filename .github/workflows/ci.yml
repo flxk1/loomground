@@ -43,6 +43,16 @@ jobs:
       - name: the skill is generated from the language and cannot drift
         run: python3 skills/loomground/make_skill.py --check
 
+  catalogue:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: CATALOGUE.json is the CATALOGUE.md tree as data and cannot drift
+        run: python3 tools/check_catalogue.py
+
   neutrality:
     runs-on: ubuntu-latest
     steps:

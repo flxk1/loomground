@@ -49,6 +49,12 @@ SPDX-FileCopyrightText = "2026 flxk1"
 SPDX-License-Identifier = "Apache-2.0"
 
 [[annotations]]
+path = "CATALOGUE.json"
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2026 flxk1"
+SPDX-License-Identifier = "Apache-2.0"
+
+[[annotations]]
 path = "language-card.json"
 precedence = "aggregate"
 SPDX-FileCopyrightText = "2026 flxk1"
