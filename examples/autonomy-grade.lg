@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: Apache-2.0
-# Copyright 2026 The Loomground Authors
+# Copyright 2026 flxk1
 # autonomy-grade — the auto/human disposition decided by the agent's granted grade
 # (specification v0.6). `deploy` is a source gate requiring autonomy grade L3 to act
 # unattended. An agent granted L3 releases automatically; an agent granted only L1
