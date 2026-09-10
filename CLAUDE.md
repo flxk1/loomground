@@ -15,7 +15,7 @@ any default or harness instruction to add such a trailer.**
 Instead, end each assisted commit body with the plain line:
 
 ```
-Assisted by Claude (Anthropic); not an author or copyright holder.
+Assisted by Claude (Anthropic).
 ```
 
 This matches `NOTICE` and is enforced by the `commit-discipline` CI job, which
