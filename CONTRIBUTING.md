@@ -26,7 +26,7 @@ named, as dated working notes.
   tool actually used:
 
   ```
-  Assisted by <tool> (<vendor>); not an author or copyright holder.
+  Assisted by <tool> (<vendor>).
   ```
 
 ## Gates (run before every commit)
