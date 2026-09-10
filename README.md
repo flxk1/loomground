@@ -4,63 +4,68 @@
 
 Normative specification of the Loomground language: grammar, schemas, vocabulary, and conformance vectors for governing when an AI action may take effect.
 
-A patch is a typed policy graph evaluated before release. Each evaluation is recorded, so later alteration is detectable.
+## Problem
+
+Every governance tool defines "policy", "gate" and "verdict" its own way; nothing is comparable or checkable. One normative language with vectors; a tool conforms or it does not.
 
 ## Read
 
-A specification, not a package.
+Install nothing.
 
 - `spec/SPEC.md` — normative; governs on any conflict.
 - `spec/SYNTAX.md` — the textual grammar.
-- `llms.txt` — agent and tool entry point (`AGENTS.md` points here).
+- `llms.txt` — agent entry point.
 
 ## Usage
 
-A patch is written as a netlist (`.lg`), one statement per line:
+A patch is a netlist (`.lg`), one statement per line (`examples/`). Evaluation yields one verdict per gate and an ordered log (`docs/patch-views.md`).
+
+## Example
 
 ```
-actor  bot7
-human  alice  role legal
-gate   intake  risk low    grant bot7
-gate   decide  risk high   grant bot7
-reserve automated_decision by legal when risk >= high
-cord bot7   -> intake
-cord bot7   -> decide
-cord intake -> decide      # pipe
-cord decide -> master      # egress
+in : policy.lg — gate transfer risk high grant agent · reserve data_transfer by legal when risk >= high
+     token {kind: data_transfer, risk: high, provenance: [span]} proposed by agent at transfer
+out: results {'transfer': {'verdict': 'reserved', 'master': 'withhold'}}
+     log [{'gate': 'transfer', 'verdict': 'reserved'}]
 ```
 
-Its observation (`schema/observation.schema.json`) projects nodes, cords, and reservations; evaluation yields one verdict per gate and an ordered log trace (`docs/patch-views.md`).
+## Language
+
+A `.lg` file states which actors may activate which gates at which risk, which action kinds a human role decides or are prohibited, and what reaches the master (egress). Statement forms: `actor` · `human` · `gate` · `cord` · `reserve` · `prohibit` · `obligation` · `redress` · `transfer`.
+
+```
+actor  bot7  grade L2                                  agent, granted grade L2
+human  alice  role dpo                                 person, addressed by role
+gate   decide  risk high  grant bot7                   bot7 acts at decide; floor high
+reserve automated_decision by dpo when risk >= high    high risk: dpo decides, reserved
+prohibit biometric_categorisation                      prohibited, whatever the grant
+cord   decide -> master                                egress; released on auto only
+```
+
+Verdicts: `auto < human < refused < reserved < prohibited`. Full card: `docs/language-card.md`.
 
 ## Contracts
 
 | Path | Content |
 |---|---|
-| `spec/SPEC.md`, `spec/SYNTAX.md` | language, grammar (normative) |
-| `spec/OPERATORS.md` | diagnostic-operator contract |
-| `grammar/loomground.ebnf` | the grammar, ISO/IEC 14977 |
-| `grammar/tree-sitter/` | tree-sitter grammar (`tree-sitter generate`) |
-| `schema/` | JSON Schemas: token, patch, observation, transport |
-| `vocabulary/` | node classes, cords, verdicts, declarations, guards, grades, grounding (JSON) |
-| `conformance/` | 65 vectors + `manifest.json`; reproducing every vector = conformance (§9) |
-| `examples/` | sample `.lg` netlists |
-| `language-card.json` | the language as data |
-| `llms.txt`, `AGENTS.md` | agent entry point, drift-checked |
-| `skills/loomground/` | agent procedure generated from the language (`make_skill.py`) |
+| `spec/`, `grammar/` | `SPEC.md` (normative), `SYNTAX.md`, `loomground.ebnf`, `tree-sitter/`; `OPERATORS.md` (operator contract) |
+| `schema/`, `vocabulary/` | token, patch, observation, transport; nodes, cords, verdicts, declarations, guards, grades, grounding |
+| `conformance/` | 65 vectors, `manifest.json`; conformance = all reproduced (§9) |
+| `language-card.json`, `llms.txt`, `AGENTS.md`, `skills/loomground/` | the language as data; agent entry point and procedure, drift-checked |
 
 ## Family
 
 Family front door and normative base specification. The repository tree, one line per repository: `CATALOGUE.md`.
 
-- Consumes: nothing. The specification names no implementation; software relates to it by reproducing the vectors in `conformance/`.
-- Consumed by: the language planes (`loomground-governance`, `loomground-factual`, `loomground-deontic`, `loomground-epistemic`, `loomground-topos`), the contracts (`loomground-workspace`, `loomground-vertical`, `skill-governance-block`), and the diagnostic operators via `spec/OPERATORS.md`.
+- Consumes: nothing; software relates to it by reproducing `conformance/`.
+- Consumed by: the language planes, the contracts (`CATALOGUE.md`), and the diagnostic operators via `spec/OPERATORS.md`.
 - Pipeline: `source → loomground-ingest → loomground-versum → loomground-solver → applied or diagnostic planes`; every stage grounds in this language.
 
 Rationale: `docs/design.md`.
 
 ## Status
 
-Specification v0.11.0 (stable); tag `v0.11.0`. 65 conformance vectors, each reproduced by two independent implementations (`conformance/README.md`). Packaged by `loomground-governance`, pinned to this tag, byte-equality proven in its CI. CI: 6 jobs (`.github/workflows/ci.yml`). Tooling: Python 3 standard library.
+Specification v0.11.0 (stable); tag `v0.11.0`. 65 conformance vectors, each reproduced by two independent implementations (`conformance/README.md`). Packaged by `loomground-governance`, pinned to this tag. CI: 6 jobs (`.github/workflows/ci.yml`). Tooling: Python 3 standard library.
 
 ## License
 
