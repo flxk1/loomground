@@ -26,7 +26,8 @@ Loomground
 │   └── loomground-solver          — shared reasoning kernel
 ├── Applied reasoning
 │   ├── loomground-norm            — general normative-reasoning plane
-│   └── loomground-legal           — legal domain plane; experimental
+│   ├── loomground-legal           — legal domain plane; experimental
+│   └── policy-compiler            — compiles written policy into deontic norms, surfacing conflicts, undetermined rules, and residual spans
 ├── Diagnostic operators           (contract: spec/OPERATORS.md)
 │   ├── loomground-brief           — selects the minimum unresolved material required for human review
 │   ├── loomground-collapse        — identifies the limiting term in a fail-closed conjunction
@@ -42,12 +43,16 @@ Loomground
 │   ├── effect-reconciliation      — the three reported mismatches (pillar: observed effects)
 │   ├── norm-freshness             — RulePin, observed source state, freshness verdict (pillar: source validity)
 │   ├── obligation-discharge       — may a permit proceed; were attached duties discharged (pillar: attached duties)
-│   └── loomground-audit-chain     — append-only, hash-chained, Ed25519-signed event log with chain verification (pillar: intact)
-├── Runtime controls               — decide-at-tempo primitives a governance runtime enforces with; consume loomground-governance vocabulary, record to the audit chain
+│   ├── loomground-audit-chain     — append-only, hash-chained, Ed25519-signed event log with chain verification (pillar: intact)
+│   ├── oversight-ladder           — human-oversight obligations keyed to the L0-L6 autonomy ladder (pillar: oversight obligation)
+│   └── evidence-emitter           — composes the installed assurance components into one signed, offline-verifiable evidence package
+├── Runtime controls               — decide-at-tempo primitives a governance runtime enforces with: locks, lanes, drift, erasure, privacy and fleet control. Each is optional to its consumer and stands alone
 │   ├── loomground-lock            — egress and ingress locks, capability tokens, at-rest seal of a folder's memory
 │   ├── loomground-lane            — durable approval envelopes (actions, data, connectors, folder, policy) per graded agent
 │   ├── loomground-drift           — leased autonomy, tripwires, quarantine; drift against a recorded baseline
-│   └── loomground-erasure         — controller-signed erasure sweeps, pending-erase markers, forgotten-subjects ledger
+│   ├── loomground-erasure         — controller-signed erasure sweeps, pending-erase markers, forgotten-subjects ledger
+│   ├── privacy-shield             — span-by-span PII-cleaned overlay and egress guard; only the overlay leaves the machine
+│   └── a2a-compliance             — agent-to-agent compliance-control protocol and compliance-fleet contract; loomground grounding optional
 ├── Interfaces and authoring
 │   ├── loomground-patchbay        — reusable presentation contract and console shell
 │   └── loomground-mcp             — one MCP server exposing the planes as tools and the skills as prompts
