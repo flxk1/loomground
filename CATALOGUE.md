@@ -2,6 +2,8 @@
 <!-- Copyright 2026 flxk1 -->
 # Catalogue
 
+Which line: `examples/end-to-end/` runs the whole path; `loomground-versum` grounds documents, `loomground-solver` reasons over them.
+
 ```
 Loomground
 ├── Standard

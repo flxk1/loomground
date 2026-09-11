@@ -18,7 +18,7 @@ Install nothing.
 
 ## Usage
 
-A patch is a netlist (`.lg`), one statement per line (`examples/`). Evaluation yields one verdict per gate and an ordered log (`docs/patch-views.md`).
+A patch is a netlist (`.lg`), one statement per line (`examples/`); evaluation yields one verdict per gate and an ordered log (`docs/patch-views.md`). The whole path, documents in, verified proof out: `examples/end-to-end/`.
 
 ## Example
 
@@ -31,12 +31,12 @@ out: results {'transfer': {'verdict': 'reserved', 'master': 'withhold'}}
 
 ## Language
 
-A `.lg` file states which actors may activate which gates at which risk, which action kinds a human role decides or are prohibited, and what reaches the master (egress). Statement forms: `actor` · `human` · `gate` · `cord` · `reserve` · `prohibit` · `obligation` · `redress` · `transfer`.
+A `.lg` file states which actors may activate which gates at which risk, which action kinds a human role decides or are prohibited, and what reaches the master (egress). Forms: `actor` `human` `gate` `cord` `reserve` `prohibit` `obligation` `redress` `transfer`.
 
 ```
 actor  bot7  grade L2                                  agent, granted grade L2
 human  alice  role dpo                                 person, addressed by role
-gate   decide  risk high  grant bot7                   bot7 acts at decide; floor high
+gate   decide  risk high  grant bot7                   bot7 at decide; floor high
 reserve automated_decision by dpo when risk >= high    high risk: dpo decides, reserved
 prohibit biometric_categorisation                      prohibited, whatever the grant
 cord   decide -> master                                egress; released on auto only
@@ -55,18 +55,20 @@ Verdicts: `auto < human < refused < reserved < prohibited`. Full card: `docs/lan
 
 ## Family
 
-Family front door and normative base specification. The repository tree, one line per repository: `CATALOGUE.md`; data: `CATALOGUE.json`.
+Front door and normative base; tree: `CATALOGUE.md`, data: `CATALOGUE.json`. Each repository stands alone; install only the line you need. Three doors:
 
-- Consumes: nothing; software relates to it by reproducing `conformance/`.
-- Consumed by: the language planes, the contracts (`CATALOGUE.md`), and the diagnostic operators via `spec/OPERATORS.md`.
-- Pipeline: `source → loomground-ingest → loomground-versum → loomground-solver → applied or diagnostic planes`; every stage grounds in this language.
+- Ground documents: `loomground-versum`.
+- Write a policy: `spec/SPEC.md`, validated by `loomground-governance`.
+- Reason over facts and rules: `loomground-solver`.
+
+Consumes nothing; software conforms by reproducing `conformance/`. Pipeline: `source → loomground-ingest → loomground-versum → loomground-solver → applied or diagnostic planes`; every stage grounds in this language.
 
 Rationale: `docs/design.md`.
 
 ## Status
 
-Specification v0.11.0 (stable); tag `v0.11.0`. 65 conformance vectors, each reproduced by two independent implementations (`conformance/README.md`). Packaged by `loomground-governance`, pinned to this tag. CI: 7 jobs (`.github/workflows/ci.yml`). Tooling: Python 3 standard library.
+Specification v0.11.0 (stable), tagged. 65 conformance vectors, each reproduced by two independent implementations (`conformance/README.md`). Packaged by `loomground-governance`, pinned to this tag. CI: 7 jobs. Tooling: Python 3 standard library.
 
 ## License
 
-Apache-2.0 — `LICENSES/Apache-2.0.txt`; per-file SPDX headers, `REUSE.toml` for files that carry none. Provenance: `docs/provenance.md`.
+Apache-2.0 (`LICENSES/Apache-2.0.txt`); SPDX headers per file, `REUSE.toml` for the rest. Provenance: `docs/provenance.md`.
