@@ -41,7 +41,13 @@ Loomground
 │   ├── enforcement-posture        — posture, evidence window, comparison, coverage (pillar: enforcement state)
 │   ├── effect-reconciliation      — the three reported mismatches (pillar: observed effects)
 │   ├── norm-freshness             — RulePin, observed source state, freshness verdict (pillar: source validity)
-│   └── obligation-discharge       — may a permit proceed; were attached duties discharged (pillar: attached duties)
+│   ├── obligation-discharge       — may a permit proceed; were attached duties discharged (pillar: attached duties)
+│   └── loomground-audit-chain     — append-only, hash-chained, Ed25519-signed event log with chain verification (pillar: intact)
+├── Runtime controls               — decide-at-tempo primitives a governance runtime enforces with; consume loomground-governance vocabulary, record to the audit chain
+│   ├── loomground-lock            — egress and ingress locks, capability tokens, at-rest seal of a folder's memory
+│   ├── loomground-lane            — durable approval envelopes (actions, data, connectors, folder, policy) per graded agent
+│   ├── loomground-drift           — leased autonomy, tripwires, quarantine; drift against a recorded baseline
+│   └── loomground-erasure         — controller-signed erasure sweeps, pending-erase markers, forgotten-subjects ledger
 ├── Interfaces and authoring
 │   ├── loomground-patchbay        — reusable presentation contract and console shell
 │   └── loomground-mcp             — one MCP server exposing the planes as tools and the skills as prompts
