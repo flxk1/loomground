@@ -31,6 +31,10 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 REGISTER = os.path.join(ROOT, "RELEASES.json")
 OWNER = "flxk1"
 STATUSES = ("release", "unreleased-commit", "out-of-range", "missing-range")
+# accepted reasons: "<kind>: <why>" — no-release (the dependency has no tag yet), transitive (pinned only because
+# a direct dependency needs it; not imported), incompatible-release (the dependency's newest release declares
+# ranges that exclude the consumer's other released pins; pinned at the main commit that admits them)
+ACCEPTED_KINDS = ("no-release", "transitive", "incompatible-release")
 REPO_FIELDS = ("version", "tag", "commit", "package", "pypi", "family", "tools", "skills")
 EDGE_FIELDS = ("consumer", "dependency", "range", "dev_pin", "dev_pin_release", "status")
 REQ = re.compile(r"^\s*([A-Za-z0-9][\w.-]*)\s*(\[[^\]]*\])?\s*([^;]*?)\s*(;.*)?$")
@@ -287,9 +291,15 @@ def offenders(doc: dict) -> list[str]:
     for (c, d), a in accepted.items():
         if not a.get("reason"):
             out.append(f"accepted {c}->{d}: no reason")
-        if repos.get(d, {}).get("tag") is not None and status.get((c, d)) != "missing-range":
-            out.append(f"accepted {c}->{d}: {d} has release {repos[d]['tag']}; accepted is only for a dependency "
-                       f"without one, or for a transitive pin (missing-range)")
+        kind = (a.get("reason") or "").split(":")[0]
+        if kind not in ACCEPTED_KINDS:
+            out.append(f"accepted {c}->{d}: reason must start with one of {ACCEPTED_KINDS}")
+        if kind == "no-release" and repos.get(d, {}).get("tag") is not None:
+            out.append(f"accepted {c}->{d}: {d} has release {repos[d]['tag']}; no-release does not apply")
+        if kind == "transitive" and status.get((c, d)) != "missing-range":
+            out.append(f"accepted {c}->{d}: transitive applies only to a missing-range edge")
+        if kind == "incompatible-release" and status.get((c, d)) != "unreleased-commit":
+            out.append(f"accepted {c}->{d}: incompatible-release applies only to an unreleased-commit edge")
     for e in doc.get("edges", []):
         if e.get("status") == "release" or (e["consumer"], e["dependency"]) in accepted:
             continue
