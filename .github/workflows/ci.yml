@@ -67,7 +67,7 @@ jobs:
           mkdir -p "$RUNNER_TEMP/siblings"
           for r in $(python3 -c 'import json; print(" ".join(r["repo"] for r in json.load(open("CATALOGUE.json"))["repos"]))'); do
             if git clone -q --depth 1 --branch main "https://github.com/flxk1/$r" "$RUNNER_TEMP/siblings/$r" 2>/dev/null; then
-              git -C "$RUNNER_TEMP/siblings/$r" fetch -q --depth 1 origin '+refs/tags/*:refs/tags/*'
+              git -C "$RUNNER_TEMP/siblings/$r" fetch -q --depth 1 origin '+refs/tags/*:refs/tags/*' || true  # a repository without tags is normal
             else
               echo "note: $r skipped (private or unreachable)"
             fi
