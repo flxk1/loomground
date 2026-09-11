@@ -12,7 +12,7 @@ inside the range. Private repositories are listed under `skipped` and need no ch
 
 With --siblings DIR (checkouts at pushed main, tags fetched) or LOOMGROUND_RELEASES_ROOT the
 register is re-derived and any difference fails; without, the register is checked on its own.
-Any edge whose status is not `release` fails unless `accepted` lists it — allowed only while
+Any edge whose status is not `release` fails unless `accepted` lists it (a dependency without a release, or a transitive pin) — allowed only while
 the dependency has no release. --write regenerates the register (PyPI is queried then only).
 """
 from __future__ import annotations
@@ -31,7 +31,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 REGISTER = os.path.join(ROOT, "RELEASES.json")
 OWNER = "flxk1"
 STATUSES = ("release", "unreleased-commit", "out-of-range", "missing-range")
-REPO_FIELDS = ("version", "tag", "commit", "package", "pypi")
+REPO_FIELDS = ("version", "tag", "commit", "package", "pypi", "family", "tools", "skills")
 EDGE_FIELDS = ("consumer", "dependency", "range", "dev_pin", "dev_pin_release", "status")
 REQ = re.compile(r"^\s*([A-Za-z0-9][\w.-]*)\s*(\[[^\]]*\])?\s*([^;]*?)\s*(;.*)?$")
 PIN = re.compile(rf"git\+https://github\.com/{OWNER}/([\w.-]+?)(?:\.git)?@([^#\s]+)")
@@ -133,14 +133,19 @@ def pyproject(path: str) -> dict | None:
 
 
 def catalogue() -> list[str]:
+    return [r["repo"] for r in catalogue_records()]
+
+
+def catalogue_records() -> list[dict]:
     with open(os.path.join(ROOT, "CATALOGUE.json"), encoding="utf-8") as fh:
-        return [r["repo"] for r in json.load(fh)["repos"]]
+        return json.load(fh)["repos"]
 
 
 def derive(siblings: str, skipped: list[str]) -> tuple[dict, list, list[str]]:
     errors: list[str] = []
     repos: dict[str, dict] = {}
     checkouts: dict[str, str] = {}
+    cat = {r["repo"]: r for r in catalogue_records()}
     for name in catalogue():
         path = os.path.join(siblings, name)
         if name in skipped:
@@ -152,6 +157,8 @@ def derive(siblings: str, skipped: list[str]) -> tuple[dict, list, list[str]]:
             continue
         pp = pyproject(path)
         if pp is None:
+            repos[name] = {"version": None, "tag": None, "commit": None, "package": None, "pypi": None,
+                           "family": cat[name]["family"], "tools": cat[name]["tools"], "skills": cat[name]["skills"]}
             continue
         checkouts[name] = path
         version = version_of(path, pp)
@@ -161,7 +168,8 @@ def derive(siblings: str, skipped: list[str]) -> tuple[dict, list, list[str]]:
         tags = tags_of(path)
         tag = pick(tags, version)
         repos[name] = {"version": version, "tag": tag, "commit": tags[tag][0] if tag else None,
-                       "package": pp.get("project", {}).get("name"), "pypi": None}
+                       "package": pp.get("project", {}).get("name"), "pypi": None,
+                       "family": cat[name]["family"], "tools": cat[name]["tools"], "skills": cat[name]["skills"]}
     by_package = {norm(r["package"]): n for n, r in repos.items() if r["package"]}
     edges = []
     for consumer, path in checkouts.items():
@@ -254,7 +262,7 @@ def diff(doc: dict, repos: dict, edges: list) -> list[str]:
     for name in sorted(have.keys() - repos.keys()):
         errors.append(f"{name}: record in RELEASES.json, no pyproject in the checkouts")
     for name in sorted(repos.keys() & have.keys()):
-        for f in REPO_FIELDS[:-1]:
+        for f in [f for f in REPO_FIELDS if f != "pypi"]:
             if repos[name][f] != have[name].get(f):
                 errors.append(f"{name}: {f} {have[name].get(f)!r} != {repos[name][f]!r} in the checkout")
     key = lambda e: (e.get("consumer"), e.get("dependency"))
@@ -275,9 +283,13 @@ def offenders(doc: dict) -> list[str]:
     out: list[str] = []
     accepted = {(a.get("consumer"), a.get("dependency")): a for a in doc.get("accepted", [])}
     repos = doc.get("repos", {})
+    status = {(e["consumer"], e["dependency"]): e.get("status") for e in doc.get("edges", [])}
     for (c, d), a in accepted.items():
-        if repos.get(d, {}).get("tag") is not None:
-            out.append(f"accepted {c}->{d}: {d} has release {repos[d]['tag']}; accepted is only for a dependency without one")
+        if not a.get("reason"):
+            out.append(f"accepted {c}->{d}: no reason")
+        if repos.get(d, {}).get("tag") is not None and status.get((c, d)) != "missing-range":
+            out.append(f"accepted {c}->{d}: {d} has release {repos[d]['tag']}; accepted is only for a dependency "
+                       f"without one, or for a transitive pin (missing-range)")
     for e in doc.get("edges", []):
         if e.get("status") == "release" or (e["consumer"], e["dependency"]) in accepted:
             continue
