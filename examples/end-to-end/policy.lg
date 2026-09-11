@@ -1,0 +1,8 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 flxk1
+actor  agent
+human  dpo  role legal
+gate   transfer  risk high  grant agent
+reserve data_transfer by legal when risk >= high
+cord agent    -> transfer
+cord transfer -> master

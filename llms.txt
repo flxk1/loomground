@@ -63,6 +63,7 @@ cord decide -> master      # egress
 
 - Structure: `standard/schema/{token,patch,observation,transport}.schema.json`.
 - Conformance: reproduce every vector in `standard/conformance/` (indexed by `standard/conformance/manifest.json`). Semantics are deterministic — a given (patch, token) yields a fixed verdict.
+- Executed path: `examples/end-to-end/` — documents in, span-grounded claims, a patch, a verdict, a signed human decision, a verified certificate; `run.py` and its recorded output.
 
 ## Machine-readable files
 
