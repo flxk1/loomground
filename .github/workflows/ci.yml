@@ -53,6 +53,29 @@ jobs:
       - name: CATALOGUE.json is the CATALOGUE.md tree as data and cannot drift
         run: python3 tools/check_catalogue.py
 
+  releases:
+    runs-on: ubuntu-latest
+    env:
+      GIT_TERMINAL_PROMPT: "0"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: every catalogued repository at its pushed main, tags fetched (private ones skipped)
+        run: |
+          mkdir -p "$RUNNER_TEMP/siblings"
+          for r in $(python3 -c 'import json; print(" ".join(r["repo"] for r in json.load(open("CATALOGUE.json"))["repos"]))'); do
+            if git clone -q --depth 1 --branch main "https://github.com/flxk1/$r" "$RUNNER_TEMP/siblings/$r" 2>/dev/null; then
+              git -C "$RUNNER_TEMP/siblings/$r" fetch -q --depth 1 origin '+refs/tags/*:refs/tags/*'
+            else
+              echo "note: $r skipped (private or unreachable)"
+            fi
+          done
+      - name: RELEASES.json is the family's release/pin register and every pin is a release in range
+        continue-on-error: false
+        run: python3 tools/check_releases.py --siblings "$RUNNER_TEMP/siblings"
+
   neutrality:
     runs-on: ubuntu-latest
     steps:
