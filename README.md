@@ -55,7 +55,7 @@ Verdicts: `auto < human < refused < reserved < prohibited`. Full card: `docs/lan
 
 ## Family
 
-Front door and normative base; tree: `CATALOGUE.md`, data: `CATALOGUE.json`. Each repository stands alone; install only the line you need. Three doors:
+Front door and normative base; tree: `CATALOGUE.md`, data: `CATALOGUE.json`, releases: `RELEASES.json`. Each repository stands alone; install only the line you need. Three doors:
 
 - Ground documents: `loomground-versum`.
 - Write a policy: `spec/SPEC.md`, validated by `loomground-governance`.
@@ -67,7 +67,7 @@ Rationale: `docs/design.md`.
 
 ## Status
 
-Specification v0.11.0 (stable), tagged. 65 conformance vectors, each reproduced by two independent implementations (`conformance/README.md`). Packaged by `loomground-governance`, pinned to this tag. CI: 7 jobs. Tooling: Python 3 standard library.
+Specification v0.11.0 (stable), tagged. 65 conformance vectors, each reproduced by two independent implementations (`conformance/README.md`). Packaged by `loomground-governance`, pinned to this tag. CI: 8 jobs, Python 3 standard library.
 
 ## License
 
