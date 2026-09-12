@@ -54,6 +54,7 @@ Loomground
 │   ├── privacy-shield             — span-by-span PII-cleaned overlay and egress guard; only the overlay leaves the machine
 │   └── a2a-compliance             — agent-to-agent compliance-control protocol and compliance-fleet contract; loomground grounding optional
 ├── Interfaces and authoring
+│   ├── loomground-plugins         — multi-host skill catalogue and package builder
 │   ├── loomground-patchbay        — reusable presentation contract and console shell
 │   └── loomground-mcp             — one MCP server exposing the planes as tools and the skills as prompts
 └── Domain agents                  — private; place reserved
