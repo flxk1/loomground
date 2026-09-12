@@ -419,7 +419,7 @@
       "skills": [
         "policy-compiler"
       ],
-      "install": "pip install \"git+https://github.com/flxk1/policy-compiler.git@v0.1.0\"",
+      "install": "pip install \"git+https://github.com/flxk1/policy-compiler.git@policy-compiler-v0.2.0\"",
       "url": "https://github.com/flxk1/policy-compiler"
     },
     {
