@@ -415,7 +415,10 @@
         "loomground-deontic",
         "loomground-norm"
       ],
-      "tools": [],
+      "tools": [
+        "policy_compile",
+        "policy_check"
+      ],
       "skills": [
         "policy-compiler"
       ],
@@ -657,7 +660,10 @@
       "depends_on": [
         "loomground-governance"
       ],
-      "tools": [],
+      "tools": [
+        "evidence_emit",
+        "evidence_verify"
+      ],
       "skills": [
         "evidence-emitter"
       ],
@@ -742,7 +748,9 @@
       "depends_on": [
         "loomground-governance"
       ],
-      "tools": [],
+      "tools": [
+        "privacy_scan"
+      ],
       "skills": [
         "privacy-shield"
       ],
@@ -764,7 +772,9 @@
         "loomground-proxy",
         "loomground-falsifiability"
       ],
-      "tools": [],
+      "tools": [
+        "a2a_ground"
+      ],
       "skills": [
         "compliance-fleet"
       ],

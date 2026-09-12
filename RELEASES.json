@@ -226,7 +226,10 @@
       "package": "policy-compiler",
       "pypi": false,
       "family": "Applied reasoning",
-      "tools": [],
+      "tools": [
+        "policy_compile",
+        "policy_check"
+      ],
       "skills": [
         "policy-compiler"
       ]
@@ -417,7 +420,10 @@
       "package": "evidence-emitter",
       "pypi": false,
       "family": "Assurance artifacts",
-      "tools": [],
+      "tools": [
+        "evidence_emit",
+        "evidence_verify"
+      ],
       "skills": [
         "evidence-emitter"
       ]
@@ -477,7 +483,9 @@
       "package": "privacy-shield",
       "pypi": false,
       "family": "Runtime controls",
-      "tools": [],
+      "tools": [
+        "privacy_scan"
+      ],
       "skills": [
         "privacy-shield"
       ]
@@ -489,7 +497,9 @@
       "package": "a2a-compliance",
       "pypi": false,
       "family": "Runtime controls",
-      "tools": [],
+      "tools": [
+        "a2a_ground"
+      ],
       "skills": [
         "compliance-fleet"
       ]
