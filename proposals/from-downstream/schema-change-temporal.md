@@ -60,7 +60,7 @@ choose materialisation — at the cost of churning every reservation vector.
 
 - **Schema + projection land together, before any engine emits the fields** — otherwise the
   emitted observation fails the (still strict) schema. Then the vector.
-- **No external dependents exist yet**, so the blast radius is RVND alone, and the change is
+- **No external dependents exist yet**, so the blast radius is one downstream implementation, and the change is
   backward-compatible: existing observations validate unchanged; a consumer that ignores the
   fields is unaffected. This is the cheapest moment the change will ever be — additive now,
   versus coordinating N implementations once an ecosystem exists.
@@ -69,6 +69,6 @@ choose materialisation — at the cost of churning every reservation vector.
 
 `on_elapse: proceed` is fail-open (no sign-off → the action proceeds). The standard should
 consider rejecting `proceed` at apply on a kind whose reservation exists because the law
-requires a human — a reserved-by-law action must never time out *into* action. RVND
-enforces this regardless (see [`../quorum-temporal-concept.md`](../quorum-temporal-concept.md));
+requires a human — a reserved-by-law action must never time out *into* action. Hosts should
+enforce this regardless (see [`../quorum-temporal-concept.md`](../quorum-temporal-concept.md));
 pinning it as a negative vector (`reject-temporal-proceed-on-…`) would make it normative.

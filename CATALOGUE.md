@@ -56,11 +56,7 @@ Loomground
 ├── Interfaces and authoring
 │   ├── loomground-patchbay        — reusable presentation contract and console shell
 │   └── loomground-mcp             — one MCP server exposing the planes as tools and the skills as prompts
-├── Domain agents                  — private; place reserved
-└── RVND
-    ├── RVND                       — local-first governance runtime for AI agents, built on Loomground
-    ├── rvnd-console               — local operator console over an RVND instance
-    └── rvnd-plugins               — RVND plugin marketplace; distribution metadata
+└── Domain agents                  — private; place reserved
 ```
 
 Pipeline: `source → loomground-ingest → loomground-versum → loomground-solver → applied or diagnostic planes`

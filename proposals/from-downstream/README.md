@@ -2,9 +2,8 @@
 <!-- Copyright 2026 flxk1 -->
 # Proposals for the Loomground standard (hand-off)
 
-These are **drafts for `flxk1/loomground`**, not RVND code. Vectors are the standard's;
-this RVND session does not commit to the Loomground repo. They close a coverage gap found
-while making RVND conform: the suite pins 7 of the 9 declared declarations but **not
+These drafts close a coverage gap found while checking a downstream implementation:
+the suite pins 7 of the 9 declared declarations but **not
 `quorum` or `temporal`** — so an implementation can pass every vector while leaving both
 features unwired. See [`../quorum-temporal-concept.md`](../quorum-temporal-concept.md).
 
@@ -19,7 +18,7 @@ Run it against the live tree today and it reports **7 gaps** — `quorum`, `temp
 that quorum has two syntaxes (`and` / `of {`) and temporal two modes (`halt` / `proceed`).
 Landing the two vectors below drops it to a 3-item punch-list (`and`, `name`, `proceed`).
 This one gate would have caught `temporal`, `quorum`, and the grant-clause→cord lag fixed
-earlier — it is the standard-side mirror of RVND's `test_loomground_parity.py`.
+earlier — it is the standard-side parity check for every implementation.
 
 ## The schema change
 
@@ -32,7 +31,7 @@ the identical concept, is projected correctly). Required before `reserve-tempora
 Pins that `reserve K by 2 of { … }` projects its quorum target verbatim on `by` and
 produces `reserved`. **Validated against the current engine** (`project()` already emits
 `by: "2 of {legal, finance}"`). The m-of-n *distinctness* is an implementation duty
-(RVND's approval layer), not a language verdict — the language fixes the target.
+(the host's approval layer), not a language verdict — the language fixes the target.
 
 ## `vectors/reserve-temporal`  — needs one schema change first
 The engine parses `duration <d> : halt|proceed` but `project()` **drops** them, so they are
@@ -46,11 +45,10 @@ and have `project()` carry them through (they are already on the parsed reservat
 `expected.json` here is written to that **target** form, so it will fail until the schema +
 projection land — by design. `on_elapse ∈ { halt, proceed }`; `halt` is the safe default
 (deny on elapse = timeout-is-deny), `proceed` is fail-open and should be rejected at apply
-on a reserved-by-law kind (a guardrail RVND enforces; the standard may choose to pin it too).
+on a reserved-by-law kind; the standard may choose to pin that guardrail too.
 
 ## After landing
-RVND already passes the quorum vector via its normal conformance gate (vectors resolve from
-the live Loomground checkout). The language↔enforcement handoff that a vector *cannot* see —
-that a quorum reservation actually routes to two distinct approvers, and that a duration
-actually denies/proceeds on elapse — is pinned by RVND's own
-`server/tests/test_reservation_approval_bridge.py`.
+Implementations should run the quorum vector through their normal conformance gate. The
+language↔enforcement handoff that a vector *cannot* see — that a quorum reservation routes
+to two distinct approvers, and that a duration denies or proceeds on elapse — belongs in
+the consuming host's integration tests.
