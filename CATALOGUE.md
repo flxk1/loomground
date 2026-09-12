@@ -56,11 +56,7 @@ Loomground
 ├── Interfaces and authoring
 │   ├── loomground-patchbay        — reusable presentation contract and console shell
 │   └── loomground-mcp             — one MCP server exposing the planes as tools and the skills as prompts
-├── Domain agents                  — private; place reserved
-└── the earlier engine
-    ├── the earlier engine                       — local-first governance runtime for AI agents, built on Loomground
-    ├── external-console               — local operator console over an the earlier engine instance
-    └── external-plugins               — the earlier engine plugin marketplace; distribution metadata
+└── Domain agents                  — private; place reserved
 ```
 
 Pipeline: `source → loomground-ingest → loomground-versum → loomground-solver → applied or diagnostic planes`
