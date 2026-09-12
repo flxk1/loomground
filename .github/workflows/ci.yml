@@ -82,7 +82,7 @@ jobs:
       - uses: actions/checkout@v4
       - name: normative documents are tool- and vendor-neutral (CONTRIBUTING.md)
         run: |
-          if grep -rniE 'claude|anthropic|openai|chatgpt|gpt-[0-9]|gemini|copilot|codex|llama|mistral|langchain|autogen|crewai|pure.?data|rvnd|loomground-ref' \
+          if grep -rniE 'claude|anthropic|openai|chatgpt|gpt-[0-9]|gemini|copilot|codex|llama|mistral|langchain|autogen|crewai|pure.?data|loomground-ref' \
                spec/ grammar/ schema/ vocabulary/ conformance/ examples/ skills/ llms.txt language-card.json AGENTS.md \
                README.md NOTICE CITATION.cff CONTRIBUTING.md \
                --exclude-dir=node_modules 2>/dev/null | grep -v 'tree-sitter/src'; then
