@@ -395,7 +395,9 @@
       "package": "loomground-audit-chain",
       "pypi": false,
       "family": "Assurance artifacts",
-      "tools": [],
+      "tools": [
+        "audit_chain_verify"
+      ],
       "skills": []
     },
     "oversight-ladder": {
@@ -427,7 +429,9 @@
       "package": "loomground-lock",
       "pypi": false,
       "family": "Runtime controls",
-      "tools": [],
+      "tools": [
+        "lock_text"
+      ],
       "skills": []
     },
     "loomground-lane": {
@@ -437,7 +441,9 @@
       "package": "loomground-lane",
       "pypi": false,
       "family": "Runtime controls",
-      "tools": [],
+      "tools": [
+        "lane_evaluate"
+      ],
       "skills": []
     },
     "loomground-drift": {
@@ -447,7 +453,9 @@
       "package": "loomground-drift",
       "pypi": false,
       "family": "Runtime controls",
-      "tools": [],
+      "tools": [
+        "drift_breaker"
+      ],
       "skills": []
     },
     "loomground-erasure": {
@@ -457,7 +465,9 @@
       "package": "loomground-erasure",
       "pypi": false,
       "family": "Runtime controls",
-      "tools": [],
+      "tools": [
+        "erasure_sweep"
+      ],
       "skills": []
     },
     "privacy-shield": {
