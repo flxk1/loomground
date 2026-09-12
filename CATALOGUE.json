@@ -626,7 +626,9 @@
       "depends_on": [
         "loomground-workspace"
       ],
-      "tools": [],
+      "tools": [
+        "audit_chain_verify"
+      ],
       "skills": [],
       "install": "pip install git+https://github.com/flxk1/loomground-audit-chain",
       "url": "https://github.com/flxk1/loomground-audit-chain"
@@ -672,7 +674,9 @@
         "loomground-governance",
         "loomground-workspace"
       ],
-      "tools": [],
+      "tools": [
+        "lock_text"
+      ],
       "skills": [],
       "install": "pip install git+https://github.com/flxk1/loomground-lock",
       "url": "https://github.com/flxk1/loomground-lock"
@@ -687,7 +691,9 @@
         "loomground-governance",
         "loomground-audit-chain"
       ],
-      "tools": [],
+      "tools": [
+        "lane_evaluate"
+      ],
       "skills": [],
       "install": "pip install git+https://github.com/flxk1/loomground-lane",
       "url": "https://github.com/flxk1/loomground-lane"
@@ -702,7 +708,9 @@
         "loomground-governance",
         "loomground-audit-chain"
       ],
-      "tools": [],
+      "tools": [
+        "drift_breaker"
+      ],
       "skills": [],
       "install": "pip install git+https://github.com/flxk1/loomground-drift",
       "url": "https://github.com/flxk1/loomground-drift"
@@ -718,7 +726,9 @@
         "loomground-lock",
         "loomground-governance"
       ],
-      "tools": [],
+      "tools": [
+        "erasure_sweep"
+      ],
       "skills": [],
       "install": "pip install git+https://github.com/flxk1/loomground-erasure",
       "url": "https://github.com/flxk1/loomground-erasure"
