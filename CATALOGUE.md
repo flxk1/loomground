@@ -51,8 +51,8 @@ Loomground
 │   ├── loomground-lane            — durable approval envelopes (actions, data, connectors, folder, policy) per graded agent
 │   ├── loomground-drift           — leased autonomy, tripwires, quarantine; drift against a recorded baseline
 │   ├── loomground-erasure         — controller-signed erasure sweeps, pending-erase markers, forgotten-subjects ledger
-│   ├── privacy-shield             — span-by-span PII-cleaned overlay and egress guard; only the overlay leaves the machine
-│   └── a2a-compliance             — agent-to-agent compliance-control protocol and compliance-fleet contract; loomground grounding optional
+│   ├── privacy-shield             — local PII/PHI detection, clean overlays, and egress control
+│   └── a2a-compliance             — A2A maker control with role authority and optional Loomground grounding
 ├── Interfaces and authoring
 │   ├── loomground-plugins         — multi-host skill catalogue and package builder
 │   ├── loomground-patchbay        — reusable presentation contract and console shell
