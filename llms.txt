@@ -68,7 +68,7 @@ cord decide -> master      # egress
 ## Family compliance orchestration
 
 `a2a-compliance` supplies the full-family control plan. Its Loomground profile
-assigns all 41 public repositories to eight compliance roles and consumes their
+assigns the 41 catalogued repositories to eight compliance roles and consumes their
 published tools, skills, contracts and distribution surfaces in this order:
 `evidence → policy/languages → solver → oversight → A2A decision → runtime
 controls → host dispatch → assurance/reconciliation`. Missing required
