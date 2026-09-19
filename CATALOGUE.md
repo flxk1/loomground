@@ -52,7 +52,8 @@ Loomground
 │   ├── loomground-drift           — leased autonomy, tripwires, quarantine; drift against a recorded baseline
 │   ├── loomground-erasure         — controller-signed erasure sweeps, pending-erase markers, forgotten-subjects ledger
 │   ├── privacy-shield             — local PII/PHI detection, clean overlays, and egress control
-│   └── a2a-compliance             — full-family compliance-team planning and A2A maker control
+│   ├── a2a-compliance             — full-family compliance-team planning and A2A maker control
+│   └── governance-layer          — seven governed roles as install-ready skills, each carrying a governance block
 ├── Interfaces and authoring
 │   ├── loomground-plugins         — multi-host skill catalogue and package builder
 │   ├── loomground-patchbay        — reusable presentation contract and console shell
