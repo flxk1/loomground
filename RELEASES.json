@@ -477,9 +477,9 @@
       "skills": []
     },
     "privacy-shield": {
-      "version": "2.0.0",
-      "tag": null,
-      "commit": null,
+      "version": "2.1.1",
+      "tag": "v2.1.1",
+      "commit": "dc71ff0bc1491cc6cfd5f31568c41a3c94d474a0",
       "package": "privacy-shield",
       "pypi": false,
       "family": "Runtime controls",
@@ -1088,9 +1088,9 @@
     {
       "consumer": "loomground-mcp",
       "dependency": "privacy-shield",
-      "range": null,
-      "dev_pin": "957458ec035d382aa6a11c0c6ceaa6cac6437aa5",
-      "dev_pin_release": "v1.0.0",
+      "range": ">=2,<3",
+      "dev_pin": "dc71ff0bc1491cc6cfd5f31568c41a3c94d474a0",
+      "dev_pin_release": "v2.1.1",
       "status": "release"
     },
     {
