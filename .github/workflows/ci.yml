@@ -53,6 +53,17 @@ jobs:
       - name: CATALOGUE.json is the CATALOGUE.md tree as data and cannot drift
         run: python3 tools/check_catalogue.py
 
+  parsing:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - run: python3 -m pip install pytest
+      - name: a direct git reference declares no version range
+        run: python3 -m pytest tests/test_direct_reference_is_not_a_range.py -q
+
   releases:
     runs-on: ubuntu-latest
     env:

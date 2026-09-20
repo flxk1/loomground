@@ -6,7 +6,7 @@
 Repos: every CATALOGUE.json repository with a pyproject — version from `[project].version`
 or the `[tool.setuptools.dynamic]` attribute, the tag naming that version, its commit, the
 package name, whether the package is on PyPI. Edges: every family dependency in a consumer's
-`[project].dependencies` (the range) and every `git+https://github.com/flxk1/<dep>@<ref>` in
+`[project].dependencies` (a version range, or a direct git reference, which declares none) and every `git+https://github.com/flxk1/<dep>@<ref>` in
 its requirements-dev.txt (the pin); status is `release` only when the pin is a tagged release
 inside the range. Private repositories are listed under `skipped` and need no checkout.
 
@@ -179,13 +179,24 @@ def derive(siblings: str, skipped: list[str]) -> tuple[dict, list, list[str]]:
     for consumer, path in checkouts.items():
         pp = pyproject(path) or {}
         ranges: dict[str, str | None] = {}
+        direct: set[str] = set()
         for dep in pp.get("project", {}).get("dependencies", []):
             m = REQ.match(dep)
             if not m:
                 continue
             target = by_package.get(norm(m.group(1)))
-            if target and target != consumer:
-                ranges[target] = m.group(3) or None
+            if not target or target == consumer:
+                continue
+            rest = (m.group(3) or "").strip()
+            # PEP 508: `name @ <url>` is a direct reference and declares no version range. The
+            # family pins siblings that way because no index serves them, so the ref carries the
+            # constraint the range used to. Reading the URL as a range made every such edge
+            # out-of-range once the declarations moved from specifiers to git refs.
+            if rest.startswith("@"):
+                direct.add(target)
+                ranges[target] = None
+            else:
+                ranges[target] = rest or None
         pins: dict[str, str] = {}
         req = os.path.join(path, "requirements-dev.txt")
         if os.path.exists(req):
@@ -203,7 +214,9 @@ def derive(siblings: str, skipped: list[str]) -> tuple[dict, list, list[str]]:
             rng, pin = ranges.get(dep), pins.get(dep)
             dtags = tags_of(os.path.join(siblings, dep))
             rel = tag_at(dtags, pin) if pin else repos[dep]["tag"]
-            if rng is None:
+            if dep in direct:
+                status = "release" if rel else "unreleased-commit"
+            elif rng is None:
                 status = "missing-range"
             elif rel is None:
                 status = "unreleased-commit"
