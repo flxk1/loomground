@@ -2,7 +2,7 @@
 <!-- Copyright 2026 flxk1 -->
 # Loomground `.lg` — language card
 
-Values from `vocabulary/*.json`, `schema/token.schema.json` and `spec/SYNTAX.md` (v0.11.0). Every statement below was parsed, applied and evaluated by a conforming implementation before this card was written.
+Values from `vocabulary/*.json`, `schema/token.schema.json` and `spec/SYNTAX.md` (v0.11.1). Every statement below was parsed, applied and evaluated by a conforming implementation before this card was written.
 
 ## Nodes
 
