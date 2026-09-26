@@ -83,7 +83,7 @@ Rejected at apply: `cord alice -> intake` (human endpoint) · `cord bot7 -> mast
 
 ## Grammar
 
-`spec/SYNTAX.md` §3 (ISO/IEC 14977), `grammar/loomground.ebnf`; a `rack` is a textual macro expanded before parsing (§7). `parse` = any implementation reproducing the 65 vectors in `conformance/`.
+`spec/SYNTAX.md` §3 (ISO/IEC 14977), `grammar/loomground.ebnf`; a `rack` is a textual macro expanded before parsing (§7). `parse` = any implementation reproducing the 69 vectors in `conformance/`.
 
 ## Outside the language
 
