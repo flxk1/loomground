@@ -50,7 +50,7 @@ Verdicts: `auto < human < refused < reserved < prohibited`. Full card: `docs/lan
 |---|---|
 | `spec/`, `grammar/` | `SPEC.md` (normative), `SYNTAX.md`, `loomground.ebnf`, `tree-sitter/`; `OPERATORS.md` (operator contract) |
 | `schema/`, `vocabulary/` | token, patch, observation, transport; nodes, cords, verdicts, declarations, guards, grades, grounding |
-| `conformance/` | 65 vectors, `manifest.json`; conformance = all reproduced (§9) |
+| `conformance/` | 69 vectors, `manifest.json`; conformance = all reproduced (§9) |
 | `language-card.json`, `llms.txt`, `AGENTS.md`, `skills/loomground/` | the language as data; agent entry point and procedure, drift-checked |
 
 ## Family
@@ -67,7 +67,7 @@ Rationale: `docs/design.md`.
 
 ## Status
 
-Specification v0.11.0 (stable), tagged. 65 conformance vectors, each reproduced by two independent implementations (`conformance/README.md`). Packaged by `loomground-governance`, pinned to this tag. CI: 8 jobs, Python 3 standard library.
+Specification v0.11.0 (stable), tagged. 69 conformance vectors, each reproduced by two independent implementations (`conformance/README.md`). Packaged by `loomground-governance`, pinned to this tag. CI: 8 jobs, Python 3 standard library.
 
 ## License
 
