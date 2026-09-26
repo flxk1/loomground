@@ -1,6 +1,27 @@
 ---
 name: loomground
 description: Express an AI-governance requirement as a validated Loomground policy-graph patch. Use when the user wants to encode a governance rule (human oversight, reservation, prohibition, separation of duty / quorum, redress or contestation, delegation and the principal chain, autonomy grades, disclosure obligation) as a .lg patch; validate or fix an existing patch; or judge whether a requirement is expressible in Loomground versus belonging to policy or a host. Triggers on "express this as Loomground", "write a .lg patch", "is this governable in Loomground", "validate this patch", "governance as a policy graph".
+governance:
+  grade: L1
+  actions:
+    - { kind: classify_atom, risk: low }
+    - { kind: draft_patch, risk: low }
+    - { kind: self_check_patch, risk: low }
+  reserved: []
+  prohibited:
+    - compute
+    - aggregate
+    - schedule
+    - persist
+    - communicate
+    - draft_from_unsplit_paragraph
+    - declare_master_node
+    - guard_on_computed_value_or_grade
+  obligations:
+    - step6_report_governs_policy_hostoffs_and_disclaimer
+  redress: []
+  budget: { usd: 1, iters: 20 }
+  on-boundary: express-and-hand-off
 ---
 
 # Loomground skill — draft, classify, validate
