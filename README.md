@@ -67,7 +67,11 @@ Rationale: `docs/design.md`.
 
 ## Status
 
-Specification v0.11.1 (stable), tagged. 69 conformance vectors, each reproduced by two independent implementations (`conformance/README.md`). Packaged by `loomground-governance`, pinned to this tag. CI: 8 jobs, Python 3 standard library.
+Specification v0.11.1 (stable), tagged. 69 conformance vectors (`conformance/README.md`). Packaged by `loomground-governance`, pinned to this tag. CI: 9 jobs, Python 3 standard library.
+
+## How this is made
+
+The code and documentation are written with Loomground agents. The maintainer reads and corrects all of it.
 
 ## License
 
