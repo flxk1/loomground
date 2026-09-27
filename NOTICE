@@ -7,15 +7,10 @@ The specification, the grammars, the vocabulary, the schemas, the conformance
 vectors, the examples, and the repository tooling are licensed under the
 Apache License, Version 2.0 (see LICENSES/Apache-2.0.txt).
 
-Authorship and AI assistance: all code, the specification, and documentation are
-authored by the project's human author(s), who hold the copyright. Generative AI
-tools were used to assist with development. An AI
-system is a tool, not an author or a contributor: it holds no copyright and makes
-no copyright claim, and AI systems cannot hold copyright. This assistance is
-acknowledged here, not recorded as authorship. An assisted commit ends with a
-plain line naming the tool used — "Assisted by <tool> (<vendor>); not an author
-or copyright holder." — never an authorship or co-authorship trailer (enforced
-in CI; see CONTRIBUTING.md), so the commit history records which tool assisted
-each change without this project endorsing or depending on any. Commits made
-before this convention carried a Co-Authored-By trailer from tooling defaults;
-that trailer recorded no authorship claim and is superseded by this convention.
+How this is made: The code and documentation are written with Loomground agents. The maintainer reads and corrects all of it. The
+copyright is held by the project's human author(s); an AI system is not an
+author and holds no copyright. An assisted commit ends with a plain line naming
+the tool used — "Assisted by <tool> (<vendor>)." — never an authorship or
+co-authorship trailer (enforced in CI; see CONTRIBUTING.md). Commits made before
+this convention carried a Co-Authored-By trailer from tooling defaults; that
+trailer recorded no authorship claim and is superseded by this convention.
