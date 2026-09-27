@@ -69,6 +69,10 @@ Rationale: `docs/design.md`.
 
 Specification v0.11.1 (stable), tagged. 69 conformance vectors (`conformance/README.md`). Packaged by `loomground-governance`, pinned to this tag. CI: 9 jobs, Python 3 standard library.
 
+## How this is made
+
+The code and documentation are written with Loomground agents running on Claude (Anthropic). The maintainer reads and corrects all of it.
+
 ## License
 
 Apache-2.0 (`LICENSES/Apache-2.0.txt`); SPDX headers per file, `REUSE.toml` for the rest. Provenance: `docs/provenance.md`.
