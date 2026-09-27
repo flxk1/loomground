@@ -32,9 +32,9 @@ named, as dated working notes.
 ## Gates (run before every commit)
 
 ```
-python3 check_llms_txt.py     # llms.txt / language-card drift
-python3 lockstep_meta_test.py # every feature reaches grammar, schema, a vector
-reuse lint                    # SPDX / REUSE compliance
+python3 tools/check_llms_txt.py       # llms.txt / language-card drift
+python3 tests/lockstep_meta_test.py   # every feature reaches grammar, schema, a vector
+reuse lint                            # SPDX / REUSE compliance
 ```
 
 All new files carry an Apache-2.0 SPDX header (the whole tree is
