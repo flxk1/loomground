@@ -67,8 +67,8 @@ nothing and names no implementation.
 - **Pipeline it feeds** — Language →
   [ingest](https://github.com/flxk1/loomground-ingest) →
   [versum](https://github.com/flxk1/loomground-versum) →
-  [solver](https://github.com/flxk1/loomground-solver) →
-  [patchbay](https://github.com/flxk1/loomground-patchbay).
+  [solver](https://github.com/flxk1/loomground-solver) → the applied and
+  diagnostic planes.
 - **Consumed from outside, never depended on backward** — downstream governance
   and orchestration layers consume the grounding this language provides; nothing
   here points back at them, and this prose names none of them by product. (See
