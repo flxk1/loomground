@@ -56,7 +56,6 @@ Loomground
 │   └── governance-layer          — seven governed roles as install-ready skills, each carrying a governance block
 ├── Interfaces and authoring
 │   ├── loomground-plugins         — multi-host skill catalogue and package builder
-│   ├── loomground-patchbay        — reusable presentation contract and console shell
 │   └── loomground-mcp             — one MCP server exposing the planes as tools and the skills as prompts
 └── Domain agents                  — private; place reserved
 ```
