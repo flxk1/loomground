@@ -55,7 +55,8 @@ nothing and names no implementation.
 
 - **Conforms to it** — software relates to this repo by *conforming*, never by
   being named in it: an implementation reproduces the vectors in `conformance/`,
-  and §9 requires two independent implementations to reproduce every vector. The
+  and the §9 interoperability criterion — two implementations, neither derived
+  from the other, each reproducing every vector — is still open. The
   specification privileges none of them — naming a reference implementation here
   would break the neutrality the standard is built on.
 - **Builds on it** — the knowledge-plane substrate realizes the language's
@@ -87,8 +88,10 @@ The tree is REUSE-compliant (checked in CI).
 
 ## Status (v0.11 cycle)
 
-Pre-1.0, specification v0.11.2 (stable); latest release v0.11.2. This repository carries only the language:
+Pre-1.0, specification v0.11.2 (stable); this version is not yet released or tagged
+(`RELEASES.json` records no release for this repository). This repository carries only the language:
 specification, grammar, schemas, vocabulary, and conformance vectors. Reference
 implementations are out of scope. An implementation conforms by reproducing the
-vectors in `conformance/`; §9 requires two independent implementations to
-reproduce every vector (see `conformance/README.md`, Status).
+vectors in `conformance/`. The §9 interoperability criterion — a second
+implementation, written clean-room from the specification alone, also
+reproducing every vector — is still open (see `conformance/README.md`, Status).
