@@ -19,7 +19,7 @@ Loomground
 │   │   ├── loomground-vertical    — domain-registration contract: vocabulary, jurisdiction pack, requirements house
 │   │   └── skill-governance-block — vendor-neutral skill-manifest binding; external contract
 │   └── reference implementation
-│       └── loomground-ref         — independent reference implementation
+│       └── loomground-ref         — reference implementation (independence from this project's implementations is open; see conformance/README.md)
 ├── Evidence pipeline
 │   ├── loomground-ingest          — deterministic normalization and evidence packaging
 │   ├── loomground-versum          — span-grounded knowledge and evidence plane; the single persistent knowledge layer

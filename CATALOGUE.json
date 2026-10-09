@@ -275,7 +275,7 @@
     {
       "repo": "loomground-ref",
       "family": "Standard/reference implementation",
-      "role": "independent reference implementation",
+      "role": "reference implementation (independence from this project's implementations is open; see conformance/README.md)",
       "description": "Stdlib-only reference implementation of the Loomground language; spec 0.10.0, 69/69 conformance vectors against standard 0.11.0.",
       "pipeline_position": null,
       "depends_on": [],
