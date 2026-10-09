@@ -1,0 +1,17 @@
+{
+  "comment": "Two source gates, two egress paths, as draft-decide-run. `repeat`: a runner MUST evaluate these activations against input.lg this many times and check that every run's per-gate verdicts, master decisions and log trace are identical to `expected`/`log` below, then evaluate the same activations once against each file named in `permutations` (relative to this vector's directory) and check the same thing again. A determinism vector has no expected.json; `expected` and `log` here are the dynamic result both input.lg and every permutation MUST reproduce, every time.",
+  "repeat": 3,
+  "permutations": ["permutations/reordered.lg"],
+  "activations": [
+    {"actor": "bot7", "source": "draft",  "token": {"id": "t1", "kind": "routine", "risk": "low", "party": "deployer", "provenance": []}},
+    {"actor": "bot7", "source": "decide", "token": {"id": "t2", "kind": "automated_decision", "risk": "high", "party": "controller", "provenance": []}}
+  ],
+  "expected": {
+    "draft":  {"verdict": "auto",     "master": "act"},
+    "decide": {"verdict": "reserved", "master": "withhold"}
+  },
+  "log": [
+    {"gate": "draft",  "verdict": "auto"},
+    {"gate": "decide", "verdict": "reserved"}
+  ]
+}
