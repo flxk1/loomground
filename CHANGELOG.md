@@ -2,6 +2,47 @@
 <!-- Copyright 2026 flxk1 -->
 # Changelog
 
+## 0.11.2 (2026-10-09)
+
+- Spec consistency: the guard domain in `spec/SPEC.md` §6 stated four fields
+  in three places (`{kind, risk, party, tags}`) where the grammar, `spec/SYNTAX.md`,
+  `vocabulary/guard-domain.json`, and five conformance vectors already use six
+  (`{kind, risk, reversibility, uncertainty, party, tags}`); SPEC.md now states
+  six everywhere. `spec/SPEC.md` and `spec/SYNTAX.md` version headers, which
+  read "Version 0.8 (draft)", now match the manifest release. `conformance/README.md`'s
+  Status section described an implementation "bundled elsewhere in this
+  repository" (a `standard/` directory, a companion-skill "checker") that this
+  repository does not contain; rewritten to state what the repository
+  actually carries. Every claim that the two existing evaluators are
+  "independent" (`CATALOGUE.md`, `CATALOGUE.json`, `proposals/v0.8-punch-list.md`)
+  is corrected to state the §9 independence criterion as open, matching
+  `conformance/README.md`, which already stated it correctly.
+- Normative log order: SPEC §7.4 now fixes the tie-break where pipes admit
+  more than one topological order — declaration order — as the rule both
+  existing evaluators already implement; §7.5 extends determinism to
+  evaluation order (byte-identical log traces across conforming
+  implementations; identical observations on repeated or declaration-reordered
+  runs of the same policy).
+- Vector-format contract, documented in `conformance/README.md` and
+  `schema/transport.schema.json`: every negative vector's `reject.json` now
+  carries a `reason` from the closed set in the new `vocabulary/reject-reasons.json`,
+  alongside `stage`; a parse-time rejection is a correct outcome only for a
+  vector declaring `stage: parse`; comparison is of the whole observation
+  object, not named keys; a new `determinism` vector kind (`repeat`,
+  `permutations` in `transport.json`) has a runner execute repeats and
+  declaration-order permutations itself and check identical results; a log
+  entry MAY carry `token` and `observed`, pinning SPEC §7.4's declared-vs-observed
+  record requirement where a vector exercises it.
+- Conformance: five vectors for situations the suite did not compose —
+  `topo-fanout-fanin-declared-order` / `-variant` (a second fan-out/fan-in
+  topology that genuinely admits two topological orders, with the expected
+  log fixed by declaration order and differing between the pair);
+  `determinism-repeat-permute` (the new determinism kind);
+  `prohibit-grade-reservation-precedence` (a prohibition, a high grade, and a
+  same-kind reservation on one gate, prohibition wins); `record-declared-and-observed`
+  (a declared-vs-observed risk divergence, pinning both in the log entry);
+  69 → 74 vectors. All 31 existing negative vectors gained a `reason`.
+
 ## 0.11.1 (2026-09-26)
 
 - Conformance: four vectors for situations the suite did not compose — an invalid token inside a transport (`transport-invalid-token`, `transport-invalid-token-only`), authority at a downstream gate (`pipe-authority-downstream`), a gate with two pipe successors (`pipe-fanout`); 65 → 69 vectors. The transport schema admits `invalid: true` on an activation whose token deliberately fails token validation (it denotes ⊥); every other token keeps the strict token schema. No language change.
