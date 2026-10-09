@@ -46,5 +46,7 @@ files and chokes on it.
 
 A feature change is complete only when the spec, the grammar, the schemas, the
 vocabulary, `llms.txt`, and a conformance vector agree — the lockstep gate
-fails otherwise. A conformance claim is real only when both independent
-implementations reproduce every vector (specification, Conformance §9).
+fails otherwise. An implementation conforms by reproducing every vector. The
+interoperability criterion of the specification (Conformance §9) is still
+open: it needs a second implementation, written clean-room from the
+specification alone, that also reproduces every vector. It is not yet met.
