@@ -4,7 +4,7 @@
 
 ## A companion to the Loomground specification: the textual surface
 
-**Companion — Version 0.8 (draft).**
+**Companion — Version 0.11.2 (stable).**
 
 ## Abstract
 
@@ -203,7 +203,7 @@ Notes on the grammar, each tied to the abstract language:
   the set of declared purposes the actor is authorised to pursue. A single purpose
   MAY be written without braces. The set is declared, never computed; `mandate` is
   configuration on an actor, is not a token field, and is never guardable — guards
-  range only over {`kind`, `risk`, `party`, `tags`}. An actor declares at most one
+  range only over {`kind`, `risk`, `reversibility`, `uncertainty`, `party`, `tags`}. An actor declares at most one
   `mandate`; a second on the same actor is ill-formed. A delegation binding between
   two actors MUST satisfy the mandate-attenuation invariant (the specification,
   Governance declarations): the delegate's mandate MUST be a subset of its
