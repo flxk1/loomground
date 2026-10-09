@@ -1,5 +1,5 @@
 {
-  "generated": "2026-09-29",
+  "generated": "2026-10-09",
   "repos": {
     "loomground": {
       "version": null,
@@ -198,9 +198,9 @@
       ]
     },
     "loomground-norm": {
-      "version": "0.1.2",
-      "tag": "norm-v0.1.2",
-      "commit": "a37b0f1f3609ea84a999d8e0a5b3dd88d1e81086",
+      "version": "0.2.0",
+      "tag": "norm-v0.2.0",
+      "commit": "6ed7e8491758d7118aa95446efe0f302bb9759e8",
       "package": "loomground-norm",
       "pypi": false,
       "family": "Applied reasoning",
