@@ -1,0 +1,16 @@
+# The same policy as ../input.lg with its declarations reordered: the human
+# before the actor, the reservation before the gates it keys on, the gates
+# swapped, and both groups of cords reversed. Declarations are
+# order-independent in meaning (SYNTAX §3), so this denotes the same policy;
+# determinism-repeat-permute requires the same activations run against this
+# file to yield the same per-gate verdicts, master decisions and log trace
+# as against ../input.lg.
+human  alice  role legal
+reserve automated_decision by legal when risk >= high
+actor  bot7
+gate   decide  risk high   grant bot7
+gate   draft   risk low    grant bot7
+cord decide -> master
+cord draft  -> master
+cord bot7   -> decide
+cord bot7   -> draft
