@@ -85,9 +85,9 @@ Apache License, Version 2.0. See `LICENSES/Apache-2.0.txt`.
 Per-file SPDX headers throughout; `REUSE.toml` covers files that cannot carry one.
 The tree is REUSE-compliant (checked in CI).
 
-## Status (v0.8 cycle)
+## Status (v0.11 cycle)
 
-Pre-1.0, specification v0.8 (draft); latest release v0.11.1. This repository carries only the language:
+Pre-1.0, specification v0.11.2 (stable); latest release v0.11.2. This repository carries only the language:
 specification, grammar, schemas, vocabulary, and conformance vectors. Reference
 implementations are out of scope. An implementation conforms by reproducing the
 vectors in `conformance/`; §9 requires two independent implementations to
