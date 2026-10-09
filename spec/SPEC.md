@@ -215,7 +215,7 @@ The verdict alphabet is a finite chain, a join-semilattice under the restrictive
 
 `auto ⊑ human ⊑ refused ⊑ reserved ⊑ prohibited`
 
-with the join ⊔ equal to the maximum. The effective verdict satisfies *eff(g) = own(g) ⊔ ⊔{ eff(h) : h pipe→ g }*. Acyclicity (§5.1) and idempotent ⊔ make `eff` well-defined and order-independent, so traversal order is an implementation detail. `inactive` contributes no term to the join (an inactive predecessor is not in the index set), and ⊥ never enters a join (§4).
+with the join ⊔ equal to the maximum. The effective verdict satisfies *eff(g) = own(g) ⊔ ⊔{ eff(h) : h pipe→ g }*. Acyclicity (§5.1) and idempotent ⊔ make `eff` well-defined and order-independent, so traversal order does not affect any effective verdict; the order in which gates are logged is fixed separately (§7.4). `inactive` contributes no term to the join (an inactive predecessor is not in the index set), and ⊥ never enters a join (§4).
 
 ### 7.3 Release
 
@@ -233,7 +233,15 @@ Every evaluation step MUST be recorded: one log entry per activated gate, carryi
 
 ### 7.5 Determinism
 
-The verdict assignment — dispositions, effective verdicts, and log entries — MUST be a deterministic function of the recorded inputs (the activation token and the resolved policy), and is therefore reproducible across conforming implementations. The content produced by an actor is not so constrained. Reproducibility is what makes the log usable to demonstrate accountability ([GDPR] Art. 5(2); [ISO42001]). Determinism extends to evaluation order: because §7.4's tie-break fixes a single canonical traversal, two conforming implementations given the same token and the same policy graph MUST produce byte-identical log traces — the same gates, the same verdicts, the same order — not merely logs that happen to agree after reordering. Re-running the same activation, or running an activation against a graph whose declarations are reordered without changing their meaning (§6, declarations are order-independent in meaning), MUST yield an identical observation (§9): the same per-gate verdicts, the same master decision, and the same log trace.
+The verdict assignment — dispositions, effective verdicts, and log entries — MUST be a deterministic function of the recorded inputs (the activation token and the resolved policy, declaration order included), and is therefore reproducible across conforming implementations. The content produced by an actor is not so constrained. Reproducibility is what makes the log usable to demonstrate accountability ([GDPR] Art. 5(2); [ISO42001]). Determinism extends to evaluation order: because §7.4's tie-break fixes a single canonical traversal, two conforming implementations given the same token and the same policy graph MUST produce byte-identical log traces — the same gates, the same verdicts, the same order — not merely logs that happen to agree after reordering.
+
+Determinism under repetition and under reordering is fixed by three rules:
+
+1. **Repeat-run identity.** Repeated runs of the same activation against the same policy MUST yield an identical observation (§9): the same per-gate verdicts, the same master decision, and the same log trace.
+2. **Reorder invariance of verdicts and decision.** Running the same activation against a semantics-preserving reordering of the policy's declarations MUST yield the same per-gate verdicts and the same master decision.
+3. **Log under reordering.** Such a reordering MUST yield the same log trace wherever the pipe relation over the activated gates admits a single topological order. Where it admits several, the log is not invariant under reordering: it is the log §7.4 fixes for the new declaration order.
+
+Rule 2 follows from §7.1–§7.3: a gate's own verdict depends on the token, the gate's configuration, and the sets of grants, prohibitions and reservations, none of which carries a position; the effective verdict is a join over a finite chain, which is associative, commutative and idempotent (§7.2); and the release rule reads only effective verdicts and attachment (§7.3). Rule 3 follows from §7.4: declaration order is consulted only to choose among gates that are simultaneously eligible, so where the topological order is unique it has nothing to choose, and where it is not, a different declaration order may choose differently.
 
 ## 8. Invariants
 
