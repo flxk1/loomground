@@ -8,6 +8,16 @@
   "additionalProperties": false,
   "properties": {
     "comment": {"type": "string"},
+    "repeat": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "determinism vectors only (conformance/README.md, Determinism vectors): the number of times a runner MUST evaluate `activations` against this vector's input.lg and check that every run's verdict/master/log result is identical."
+    },
+    "permutations": {
+      "type": "array",
+      "items": {"type": "string"},
+      "description": "determinism vectors only: paths, relative to the vector's directory, to one or more additional `.lg` files denoting the same policy with its declarations reordered (SYNTAX §3). A runner MUST evaluate `activations` against each and check the same verdict/master/log result as against input.lg."
+    },
     "activations": {
       "type": "array",
       "items": {
@@ -60,7 +70,20 @@
         "additionalProperties": false,
         "properties": {
           "gate": {"type": "string"},
-          "verdict": {"enum": ["auto", "human", "refused", "reserved", "prohibited"]}
+          "verdict": {"enum": ["auto", "human", "refused", "reserved", "prohibited"]},
+          "token": {
+            "type": "object",
+            "description": "optional: the declared token as presented, pinned per SPEC §7.4 where a vector tests that the record carries it alongside the host-observed facts."
+          },
+          "observed": {
+            "type": "object",
+            "additionalProperties": false,
+            "description": "optional: the host-observed facts that produced this entry's effective kind/risk (SPEC §4, §7.4) — present only where a vector pins that the record carries both the declared token and the observation, not a reconciled value.",
+            "properties": {
+              "kind": {"type": "string"},
+              "risk": {"enum": ["low", "medium", "high", "critical"]}
+            }
+          }
         }
       }
     }
