@@ -1,10 +1,9 @@
 # The same policy as ../input.lg with its declarations reordered: the human
 # before the actor, the reservation before the gates it keys on, the gates
-# swapped, and both groups of cords reversed. Declarations are
-# order-independent in meaning (SYNTAX §3), so this denotes the same policy;
-# determinism-repeat-permute requires the same activations run against this
-# file to yield the same per-gate verdicts, master decisions and log trace
-# as against ../input.lg.
+# swapped, and both groups of cords reversed. A reordering yields the same
+# per-gate verdicts and master decisions (SPEC §7.5, rule 2); each activation
+# reaches one gate, so there is no topological tie and the log trace is also
+# the same as against ../input.lg (rule 3).
 human  alice  role legal
 reserve automated_decision by legal when risk >= high
 actor  bot7

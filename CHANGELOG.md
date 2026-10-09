@@ -21,27 +21,37 @@
   more than one topological order — declaration order — as the rule both
   existing evaluators already implement; §7.5 extends determinism to
   evaluation order (byte-identical log traces across conforming
-  implementations; identical observations on repeated or declaration-reordered
-  runs of the same policy).
+  implementations) and states three rules: repeated runs yield identical
+  observations; a semantics-preserving reordering of declarations yields the
+  same per-gate verdicts and master decision; the log is the same under
+  reordering only where the pipes admit a single topological order, and
+  otherwise follows the §7.4 tie-break for the new declaration order.
+  `spec/SYNTAX.md` §2 now says the same: verdicts and decisions are
+  order-independent, log order among topological ties is not.
 - Vector-format contract, documented in `conformance/README.md` and
   `schema/transport.schema.json`: every negative vector's `reject.json` now
   carries a `reason` from the closed set in the new `vocabulary/reject-reasons.json`,
   alongside `stage`; a parse-time rejection is a correct outcome only for a
   vector declaring `stage: parse`; comparison is of the whole observation
   object, not named keys; a new `determinism` vector kind (`repeat`,
-  `permutations` in `transport.json`) has a runner execute repeats and
-  declaration-order permutations itself and check identical results; a log
+  `permutations` in `transport.json`, each permutation a `{file, log}` entry)
+  has a runner execute repeats and declaration-order permutations itself,
+  checking verdicts and decisions against one `expected` and each
+  permutation's log against its own `log`; a log
   entry MAY carry `token` and `observed`, pinning SPEC §7.4's declared-vs-observed
   record requirement where a vector exercises it.
-- Conformance: five vectors for situations the suite did not compose —
+- Conformance: six vectors for situations the suite did not compose —
   `topo-fanout-fanin-declared-order` / `-variant` (a second fan-out/fan-in
   topology that genuinely admits two topological orders, with the expected
   log fixed by declaration order and differing between the pair);
-  `determinism-repeat-permute` (the new determinism kind);
+  `determinism-repeat-permute` (the new determinism kind, no topological tie);
+  `determinism-topo-tie` (a determinism vector over a graph with a three-way
+  topological tie: verdicts and decision invariant under three permutations,
+  each permutation's log fixed by the §7.4 tie-break for its declaration order);
   `prohibit-grade-reservation-precedence` (a prohibition, a high grade, and a
   same-kind reservation on one gate, prohibition wins); `record-declared-and-observed`
   (a declared-vs-observed risk divergence, pinning both in the log entry);
-  69 → 74 vectors. All 31 existing negative vectors gained a `reason`.
+  69 → 75 vectors. All 31 existing negative vectors gained a `reason`.
 
 ## 0.11.1 (2026-09-26)
 

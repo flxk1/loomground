@@ -42,7 +42,12 @@ fixed by the specification, not by this notation.
   lines and comment-only lines carry no statement.
 - Tokens are separated by runs of spaces or tabs, treated as a single separator.
 - Identifiers are case-sensitive.
-- Declarations are order-independent in meaning. A cord statement SHOULD name only
+- Per-gate verdicts and master decisions are order-independent: a reordering of
+  declarations yields the same verdicts and decisions. Declaration order is still
+  significant in two places: where the pipes admit more than one topological order,
+  log order among the tied gates follows declaration order (the specification,
+  Record §7.4 and Determinism §7.5); and the observation lists nodes and cords in
+  declaration order (the specification, Conformance). A cord statement SHOULD name only
   nodes declared on earlier lines; a writer of the textual surface SHOULD emit node
   declarations before cord statements. A cord that names an undeclared node denotes
   an ill-formed policy graph (the specification, Connections and activation) and has

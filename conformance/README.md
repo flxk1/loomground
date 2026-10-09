@@ -73,19 +73,26 @@ claims to, not only what a lenient runner happens to check:
    and the full ordered `log` array.
 4. **Determinism vectors.** A vector of kind `determinism` (`input.lg` +
    `transport.json`) carries two additional `transport.json` fields: `repeat`
-   (a positive integer) and `permutations` (a list of `.lg` file paths,
-   relative to the vector's directory, each denoting the same policy as
-   `input.lg` with its declarations textually reordered — declarations are
-   order-independent in meaning, SYNTAX §3). A runner MUST evaluate
-   `activations` against `input.lg` `repeat` times and against each file in
-   `permutations` once, and fail the vector if any run's per-gate verdicts,
-   master decision, or log trace differs from any other (specification
-   §7.5). A determinism vector carries no `expected.json`: because the
-   canonical observation's `nodes`/`cords`/`reservations` order is
+   (a positive integer) and `permutations`, a list of `{file, log}` entries.
+   Each `file` (a path relative to the vector's directory) denotes the same
+   policy as `input.lg` with its declarations textually reordered; its `log`
+   is the ordered log trace that declaration order fixes. A runner MUST
+   evaluate `activations` against `input.lg` `repeat` times and fail the
+   vector unless every run's per-gate verdicts and master decisions equal
+   `expected` and its log equals `log` (specification §7.5, rule 1). It MUST
+   then evaluate `activations` once against each permutation `file` and fail
+   the vector unless the per-gate verdicts and master decisions equal the
+   same `expected` (rule 2) and the log equals that entry's `log` (rule 3).
+   An entry's `log` equals the top-level `log` wherever the pipes over the
+   activated gates admit a single topological order; where they admit
+   several, it is the log the declaration-order tie-break (specification
+   §7.4) fixes for that file's declaration order, and may differ from the
+   top-level `log`. A determinism vector carries no `expected.json`: because
+   the canonical observation's `nodes`/`cords`/`reservations` order is
    declaration order (specification §9, Order), reordering declarations
    changes that order by construction, so only the dynamic result —
-   `expected` and `log` in `transport.json` — is the thing determinism
-   requires to stay fixed, and that is what a determinism vector pins.
+   `expected` and the logs in `transport.json` — is what a determinism
+   vector pins.
 
 The record (§7.4) requirement that a log entry carry both the declared
 token and the host-observed facts is pinned, where a vector exercises it, by
@@ -96,7 +103,7 @@ both because the declared and observed values coincide and the distinction
 is moot; `record-declared-and-observed` is the vector that exercises the case
 where they diverge (schema/transport.schema.json).
 
-## The three vector kinds
+## The four vector kinds: patch, determinism, token, negative
 
 **Patch vectors** — input `.lg` + `expected.json` (+ optional `transport.json`):
 - `draft-decide` — static projection: a routine gate and a decide gate that
@@ -168,11 +175,20 @@ where they diverge (schema/transport.schema.json).
 
 **Determinism vectors** — `input.lg` + `transport.json` with `repeat` and
 `permutations` (no `expected.json`; see The vector-format contract, above):
-- `determinism-repeat-permute` — the `draft-decide-run` graph, with no
-  topological ambiguity between its two source gates. Repeating the same
-  activations three times, and running them once against a declaration-order
-  permutation of the same policy, MUST reproduce the same per-gate verdicts,
-  master decisions, and log trace every time (specification §7.5).
+- `determinism-repeat-permute` — the `draft-decide-run` graph; each
+  activation reaches one gate, so there is no topological tie. Repeating the
+  same activations three times, and running them once against a
+  declaration-order permutation of the same policy, MUST reproduce the same
+  per-gate verdicts, master decisions, and log trace every time
+  (specification §7.5, rules 1–3).
+- `determinism-topo-tie` — a fan-out/fan-in graph with a three-way
+  topological tie (A fans out to B, C, E; all three fan in to D). Repeats
+  MUST reproduce the same result (rule 1); three declaration-order
+  permutations MUST reproduce the same per-gate verdicts and master decision
+  (rule 2); the log is the one the declaration-order tie-break fixes for each
+  file — unchanged where only the actor and cords move, `A, E, C, B, D` and
+  `A, C, E, B, D` where the gates are reversed or rotated (rule 3). Pins that
+  log order under reordering follows §7.4, not the original file.
 
 **Token vectors** — `tokens.json`, a list of `{valid, token}` an implementation
 MUST classify identically (see the specification, The token):

@@ -240,7 +240,7 @@ This repository carries no implementation, so validate against its data:
 3. **Compare against the vectors** — the ground truth for edge cases:
 
 <!-- generated:conformance:begin -->
-The suite has **74 vectors** (1 determinism, 31 negative, 40 patch, 2 token), indexed in `conformance/manifest.json`. When unsure how a construct projects or which stage rejects it, read the matching vector: `expected.json` is the canonical observation; `reject.json` pins the stage.
+The suite has **75 vectors** (2 determinism, 31 negative, 40 patch, 2 token), indexed in `conformance/manifest.json`. When unsure how a construct projects or which stage rejects it, read the matching vector: `expected.json` is the canonical observation; `reject.json` pins the stage.
 <!-- generated:conformance:end -->
 
 ### Step 6 — report
