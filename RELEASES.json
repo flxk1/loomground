@@ -18,9 +18,9 @@
       ]
     },
     "loomground-governance": {
-      "version": "0.12.0",
-      "tag": "loomground-governance-v0.12.0",
-      "commit": "648cb89ea2bc318b3b666525f807c508c4e03a82",
+      "version": "0.12.1",
+      "tag": "loomground-governance-v0.12.1",
+      "commit": "425a2418665425ab2337fcfe664394c9547c2544",
       "package": "loomground-governance",
       "pypi": false,
       "family": "Standard",
@@ -913,7 +913,7 @@
     {
       "consumer": "loomground-mcp",
       "dependency": "loomground-deontic",
-      "range": ">=0.1,<0.3",
+      "range": ">=0.2.2,<0.3",
       "dev_pin": "0f57e8d2c02f288169d76e3ec93714b0d3f00ea2",
       "dev_pin_release": "loomground-deontic-v0.2.2",
       "status": "release"
