@@ -2,6 +2,24 @@
 <!-- Copyright 2026 flxk1 -->
 # Changelog
 
+## 0.11.3 (2026-10-11)
+
+- Citations of external works in `spec/SPEC.md` corrected against the
+  sources. The W3C Process criterion is independent interoperable
+  implementations (§6.3.2, 18 August 2025 edition) and states no number of
+  implementations. RFC 6962 is marked as obsoleted by RFC 9162. AI Act
+  Art. 3(4) is cited as the definition of deployer. The `prohibited`
+  grounding names the XACML deny-overrides combining algorithm (App. C.2), and
+  the `refused` grounding names `NotApplicable` or `Indeterminate` denied by a
+  deny-biased PEP (§7.2.2); `vocabulary/grounding.json` follows. No language
+  semantics change.
+- Grounder support gold 0.2.1: g01 quotes the Official Journal masthead and
+  AI Act Art. 113 in place of a secondary text; g29 quotes Art. 16(f); g07 and
+  g23 end as Art. 113 does; g14 marks its second elision; g36 quotes GDPR
+  Art. 37(1)(a) in full. Labels and the label distribution are unchanged.
+- The `loomground-plugins` catalogue record and the assistant instructions
+  file describe hosts by function rather than by product name.
+
 ## 0.11.2 (2026-10-09)
 
 - Spec consistency: the guard domain in `spec/SPEC.md` §6 stated four fields
