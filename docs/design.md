@@ -88,7 +88,7 @@ The tree is REUSE-compliant (checked in CI).
 
 ## Status (v0.11 cycle)
 
-Pre-1.0, specification v0.11.2 (stable); this version is not yet released or tagged
+Pre-1.0, specification v0.11.3 (stable); this version is not yet released or tagged
 (`RELEASES.json` records no release for this repository). This repository carries only the language:
 specification, grammar, schemas, vocabulary, and conformance vectors. Reference
 implementations are out of scope. An implementation conforms by reproducing the
