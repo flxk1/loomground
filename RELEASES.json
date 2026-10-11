@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-09",
+  "generated": "2026-10-11",
   "repos": {
     "loomground": {
       "version": null,
@@ -18,9 +18,9 @@
       ]
     },
     "loomground-governance": {
-      "version": "0.11.3",
-      "tag": "loomground-governance-v0.11.3",
-      "commit": "ff2afcde03131859d21fc7195697e799aa65a9be",
+      "version": "0.12.0",
+      "tag": "loomground-governance-v0.12.0",
+      "commit": "648cb89ea2bc318b3b666525f807c508c4e03a82",
       "package": "loomground-governance",
       "pypi": false,
       "family": "Standard",
@@ -1033,7 +1033,7 @@
     {
       "consumer": "loomground-mcp",
       "dependency": "loomground-versum",
-      "range": ">=0.13,<0.15",
+      "range": ">=0.14.1,<0.15",
       "dev_pin": "eaf316d1cf14e5c4af2ba065a27601f1ba7a495d",
       "dev_pin_release": "loomground-versum-v0.14.1",
       "status": "release"
@@ -1138,16 +1138,16 @@
       "consumer": "loomground-solver",
       "dependency": "loomground-deontic",
       "range": null,
-      "dev_pin": "4dec997a583faebe915a392747c031c70c11cf3a",
-      "dev_pin_release": "loomground-deontic-v0.2.0",
+      "dev_pin": "319e218500da42dea693830ff790343aa340bd60",
+      "dev_pin_release": "loomground-deontic-v0.2.1",
       "status": "release"
     },
     {
       "consumer": "loomground-solver",
       "dependency": "loomground-governance",
       "range": null,
-      "dev_pin": "7f04e1c67694ef3eca995d51a61eabecec4cba7c",
-      "dev_pin_release": "loomground-governance-v0.11.2",
+      "dev_pin": "648cb89ea2bc318b3b666525f807c508c4e03a82",
+      "dev_pin_release": "loomground-governance-v0.12.0",
       "status": "release"
     },
     {
