@@ -2,7 +2,7 @@
 <!-- Copyright 2026 flxk1 -->
 # CLAUDE.md — project instructions for AI-assisted development
 
-This file instantiates `CONTRIBUTING.md` for one tool (Claude); the neutral
+This file instantiates `CONTRIBUTING.md` for one AI coding assistant; the neutral
 source of truth is that file. The language is tool- and vendor-neutral: never
 add a model, vendor, or framework reference to a normative document.
 

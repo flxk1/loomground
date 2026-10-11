@@ -811,7 +811,7 @@
       "repo": "loomground-plugins",
       "family": "Interfaces and authoring",
       "role": "multi-host skill catalogue and package builder",
-      "description": "Distribute Loomground skills and one pinned runtime to Claude, Codex/OpenAI, Cursor, n8n and generic MCP/Agent Skills hosts from their canonical repositories.",
+      "description": "Distribute Loomground skills and one pinned runtime to coding-assistant, workflow-automation and generic MCP/Agent Skills hosts from their canonical repositories.",
       "pipeline_position": null,
       "depends_on": [
         "a2a-compliance",
