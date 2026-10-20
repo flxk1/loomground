@@ -2,13 +2,26 @@
 <!-- Copyright 2026 flxk1 -->
 # Changelog
 
-## 0.11.3 (2026-10-11)
+## 0.11.4 (2026-10-20)
 
 - Conformance: `guard-risk-above-threshold` runs a `critical` token against a
   `risk >= high` reservation. Every earlier run against a `>=` risk guard sat at
   the threshold value, where `>=` and `=` coincide, so an evaluator reading the
   guard as an equality passed all 75; found by a semantic-mutant battery in
   loomground-ref. 76 vectors.
+- `spec/SPEC.md` §11 cites ISO/IEC 22989 for levels of automation: its Table 1
+  (clause 5.13) gives seven levels and reserves autonomy for level 6, so the
+  glossary no longer credits it with a level-of-autonomy concept.
+  `vocabulary/grounding.json` follows.
+- The construct is called a grade wherever the prose names it: the spec text and
+  glossary, the schema descriptions, the reject-reason meaning, the grounding map,
+  the guard-domain note, `llms.txt`, the language card and the skill. The keyword
+  `grade` and the identifier `autonomy-grade` are unchanged.
+- `CATALOGUE.json` lists `versum_select`, and `RELEASES.json` registers
+  governance 0.12.1 and the deontic floor of the tool server.
+
+## 0.11.3 (2026-10-11)
+
 - Citations of external works in `spec/SPEC.md` corrected against the
   sources. The W3C Process criterion is independent interoperable
   implementations (§6.3.2, 18 August 2025 edition) and states no number of
