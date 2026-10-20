@@ -4,6 +4,11 @@
 
 ## 0.11.3 (2026-10-11)
 
+- Conformance: `guard-risk-above-threshold` runs a `critical` token against a
+  `risk >= high` reservation. Every earlier run against a `>=` risk guard sat at
+  the threshold value, where `>=` and `=` coincide, so an evaluator reading the
+  guard as an equality passed all 75; found by a semantic-mutant battery in
+  loomground-ref. 76 vectors.
 - Citations of external works in `spec/SPEC.md` corrected against the
   sources. The W3C Process criterion is independent interoperable
   implementations (§6.3.2, 18 August 2025 edition) and states no number of
