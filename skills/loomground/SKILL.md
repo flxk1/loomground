@@ -1,6 +1,6 @@
 ---
 name: loomground
-description: Express an AI-governance requirement as a validated Loomground policy-graph patch. Use when the user wants to encode a governance rule (human oversight, reservation, prohibition, separation of duty / quorum, redress or contestation, delegation and the principal chain, autonomy grades, disclosure obligation) as a .lg patch; validate or fix an existing patch; or judge whether a requirement is expressible in Loomground versus belonging to policy or a host. Triggers on "express this as Loomground", "write a .lg patch", "is this governable in Loomground", "validate this patch", "governance as a policy graph".
+description: Express an AI-governance requirement as a validated Loomground policy-graph patch. Use when the user wants to encode a governance rule (human oversight, reservation, prohibition, separation of duty / quorum, redress or contestation, delegation and the principal chain, grades, disclosure obligation) as a .lg patch; validate or fix an existing patch; or judge whether a requirement is expressible in Loomground versus belonging to policy or a host. Triggers on "express this as Loomground", "write a .lg patch", "is this governable in Loomground", "validate this patch", "governance as a policy graph".
 governance:
   grade: L1
   actions:
@@ -44,7 +44,7 @@ conflict.
 - **Cords (3):** `authority` (actor → gate) · `pipe` (gate → gate) · `egress` (gate → master)
 - **Token:** `{id, kind, risk, party, provenance, reversibility, uncertainty, tags}`; `risk` ∈ low < medium < high < critical; `tags` is an optional set of declared categories.
 - **Verdicts (join strictest-wins along pipes):** `auto` ⊑ `human` ⊑ `refused` ⊑ `reserved` ⊑ `prohibited`. The master releases iff the effective verdict is `auto` and every egress obligation is attached.
-- **Autonomy grades:** active ladder `L0 < L1 < L2 < L3 < L4 < L5 < L6` (policy, remappable); granted on an actor, required on a source gate; an ungated gate dispositions `auto` — declare a required grade to withhold.
+- **Grades:** active ladder `L0 < L1 < L2 < L3 < L4 < L5 < L6` (policy, remappable); granted on an actor, required on a source gate; an ungated gate dispositions `auto` — declare a required grade to withhold.
 - **Guards** range over exactly `{kind, risk, reversibility, uncertainty, party, tags}` — never `id`, `provenance`, `grade`, or any computed value.
 <!-- generated:language:end -->
 
@@ -90,7 +90,7 @@ overseen doing what"). Never draft from an unsplit paragraph.
 ### Step 2 — the litmus, per atom
 
 <!-- generated:litmus:begin -->
-A regulation names it as a declaration -> language. A deployment chooses its values -> policy. A runtime does it -> host. A guard ranges only over declared token properties, never a computed value, and never over grade (a config attribute: granted on actor, required on a source gate). The autonomy ladder and its order are policy (vocabulary/grades.json, default L0..L6, remappable); the language requires an active total order and owns the §7.1 comparison/gating rule evaluated at the source gate, including the auto disposition of a gate that declares no required grade.
+A regulation names it as a declaration -> language. A deployment chooses its values -> policy. A runtime does it -> host. A guard ranges only over declared token properties, never a computed value, and never over grade (a config attribute: granted on actor, required on a source gate). The grade ladder and its order are policy (vocabulary/grades.json, default L0..L6, remappable); the language requires an active total order and owns the §7.1 comparison/gating rule evaluated at the source gate, including the auto disposition of a gate that declares no required grade.
 <!-- generated:litmus:end -->
 
 <!-- generated:outofscope:begin -->
