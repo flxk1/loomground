@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-11",
+  "generated": "2026-10-20",
   "repos": {
     "loomground": {
       "version": null,
@@ -18,9 +18,9 @@
       ]
     },
     "loomground-governance": {
-      "version": "0.12.1",
-      "tag": "loomground-governance-v0.12.1",
-      "commit": "425a2418665425ab2337fcfe664394c9547c2544",
+      "version": "0.12.2",
+      "tag": "loomground-governance-v0.12.2",
+      "commit": "0089b2b987a2f561e2ccb06e8a2fd5fd1a0d9df4",
       "package": "loomground-governance",
       "pypi": false,
       "family": "Standard",
@@ -141,9 +141,9 @@
       ]
     },
     "loomground-versum": {
-      "version": "0.14.2",
-      "tag": "loomground-versum-v0.14.2",
-      "commit": "e416c81da5cfeab13457d7d70119c6631dbdc4d4",
+      "version": "0.16.0",
+      "tag": "loomground-versum-v0.16.0",
+      "commit": "d8e35298bd45734cb085975c89e8e46613cae06a",
       "package": "loomground-versum",
       "pypi": false,
       "family": "Evidence pipeline",
@@ -156,7 +156,8 @@
         "versum_confirm",
         "versum_canon",
         "versum_coords",
-        "versum_cell"
+        "versum_cell",
+        "versum_select"
       ],
       "skills": [
         "loomground-curate",
@@ -539,9 +540,9 @@
       "skills": []
     },
     "loomground-mcp": {
-      "version": "0.1.0",
-      "tag": null,
-      "commit": null,
+      "version": "0.2.2",
+      "tag": "loomground-mcp-v0.2.2",
+      "commit": "bce99d4b8a710cec2745d234714ab3072b2c6086",
       "package": "loomground-mcp",
       "pypi": false,
       "family": "Interfaces and authoring",
@@ -842,16 +843,16 @@
       "consumer": "loomground-mcp",
       "dependency": "5d-nd",
       "range": ">=0.1,<0.3",
-      "dev_pin": "12fbde031e26c7ed7ec2f1a181dbf0410c92f12b",
-      "dev_pin_release": "v0.2.1",
-      "status": "release"
+      "dev_pin": "c3ac5214977e5f1e5344c89cf6253297d1f0bf05",
+      "dev_pin_release": null,
+      "status": "unreleased-commit"
     },
     {
       "consumer": "loomground-mcp",
       "dependency": "a2a-compliance",
-      "range": ">=0.3,<0.4",
-      "dev_pin": "fd2239949175472af457da90fa7d24f636c05d48",
-      "dev_pin_release": "v0.3.0",
+      "range": ">=0.4,<0.5",
+      "dev_pin": "706223c230fcc110c9cb53c3614a3f626c6f2da5",
+      "dev_pin_release": "v0.4.0",
       "status": "release"
     },
     {
@@ -1033,9 +1034,9 @@
     {
       "consumer": "loomground-mcp",
       "dependency": "loomground-versum",
-      "range": ">=0.14.1,<0.15",
-      "dev_pin": "eaf316d1cf14e5c4af2ba065a27601f1ba7a495d",
-      "dev_pin_release": "loomground-versum-v0.14.1",
+      "range": ">=0.16,<0.17",
+      "dev_pin": "d8e35298bd45734cb085975c89e8e46613cae06a",
+      "dev_pin_release": "loomground-versum-v0.16.0",
       "status": "release"
     },
     {
