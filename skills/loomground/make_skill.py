@@ -74,7 +74,7 @@ def build_sections() -> dict[str, str]:
         + "` ⊑ `".join(verdicts["alphabet"])
         + "`. The master releases iff the effective verdict is `auto` and every "
         "egress obligation is attached.",
-        f"- **Autonomy grades:** active ladder `{' < '.join(grades['levels'])}` "
+        f"- **Grades:** active ladder `{' < '.join(grades['levels'])}` "
         "(policy, remappable); granted on an actor, required on a source gate; "
         "an ungated gate dispositions `auto` — declare a required grade to withhold.",
         "- **Guards** range over exactly `{" + ", ".join(guard["ranges_over"])

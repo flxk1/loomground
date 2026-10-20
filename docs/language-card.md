@@ -28,7 +28,7 @@ Values from `vocabulary/*.json`, `schema/token.schema.json` and `spec/SYNTAX.md`
 | `transfer <kind> to <consignee> within <purpose set>` | names where released material goes and the purposes it is limited to; purposes ⊆ every granted actor's mandate |
 | target = `role` · `role and role` · `<m> of { roles }` | quorum: distinct parties (separation of duty) |
 
-Configuration attributes with declaration status: `party` (responsible party on actor or gate), `on-behalf-of` (delegation; a delegate never exceeds its delegator's grants, grade or mandate), `mandate` (purpose set; at most one per actor), `grade` (autonomy grade: granted on an actor, required on a source gate).
+Configuration attributes with declaration status: `party` (responsible party on actor or gate), `on-behalf-of` (delegation; a delegate never exceeds its delegator's grants, grade or mandate), `mandate` (purpose set; at most one per actor), `grade` (granted on an actor, required on a source gate).
 
 ## Guards
 
