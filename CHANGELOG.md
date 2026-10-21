@@ -4,7 +4,7 @@
 
 ## Unreleased
 
-- `docs/pitch/`: the project pitch as a seven-card carousel (`loomground-pitch.pdf`, the seven cards, `pitch.md`, `alt.txt`), CC BY 4.0.
+- `loomground-pitch.pdf`: the project pitch, seven cards, CC BY 4.0.
 
 ## 0.11.4 (2026-10-20)
 
