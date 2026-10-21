@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-20",
+  "generated": "2026-10-21",
   "repos": {
     "loomground": {
       "version": null,
@@ -141,9 +141,9 @@
       ]
     },
     "loomground-versum": {
-      "version": "0.16.0",
-      "tag": "loomground-versum-v0.16.0",
-      "commit": "d8e35298bd45734cb085975c89e8e46613cae06a",
+      "version": "0.18.0",
+      "tag": "loomground-versum-v0.18.0",
+      "commit": "4e037baf812f209673da3733e1218486b212d471",
       "package": "loomground-versum",
       "pypi": false,
       "family": "Evidence pipeline",
@@ -322,9 +322,9 @@
       "skills": []
     },
     "5d-nd": {
-      "version": "0.2.2",
-      "tag": "v0.2.2",
-      "commit": "4b9e78be8cd3059001d1d292de3a920823f788e2",
+      "version": "0.4.0",
+      "tag": "v0.4.0",
+      "commit": "1ce9c94db312a93c7642a32bf0e923b0797dfb2f",
       "package": "5d-nd",
       "pypi": false,
       "family": "Assurance artifacts",
@@ -540,9 +540,9 @@
       "skills": []
     },
     "loomground-mcp": {
-      "version": "0.2.2",
-      "tag": "loomground-mcp-v0.2.2",
-      "commit": "bce99d4b8a710cec2745d234714ab3072b2c6086",
+      "version": "0.2.4",
+      "tag": "loomground-mcp-v0.2.4",
+      "commit": "4c1855476aabb99ac4c82af5b0fbf595184f64b5",
       "package": "loomground-mcp",
       "pypi": false,
       "family": "Interfaces and authoring",
@@ -842,10 +842,10 @@
     {
       "consumer": "loomground-mcp",
       "dependency": "5d-nd",
-      "range": ">=0.1,<0.3",
-      "dev_pin": "c3ac5214977e5f1e5344c89cf6253297d1f0bf05",
-      "dev_pin_release": null,
-      "status": "unreleased-commit"
+      "range": ">=0.4,<0.5",
+      "dev_pin": "1ce9c94db312a93c7642a32bf0e923b0797dfb2f",
+      "dev_pin_release": "v0.4.0",
+      "status": "release"
     },
     {
       "consumer": "loomground-mcp",
@@ -1034,9 +1034,9 @@
     {
       "consumer": "loomground-mcp",
       "dependency": "loomground-versum",
-      "range": ">=0.16,<0.17",
-      "dev_pin": "d8e35298bd45734cb085975c89e8e46613cae06a",
-      "dev_pin_release": "loomground-versum-v0.16.0",
+      "range": ">=0.18,<0.19",
+      "dev_pin": "4e037baf812f209673da3733e1218486b212d471",
+      "dev_pin_release": "loomground-versum-v0.18.0",
       "status": "release"
     },
     {
@@ -1147,8 +1147,8 @@
       "consumer": "loomground-solver",
       "dependency": "loomground-governance",
       "range": null,
-      "dev_pin": "648cb89ea2bc318b3b666525f807c508c4e03a82",
-      "dev_pin_release": "loomground-governance-v0.12.0",
+      "dev_pin": "0089b2b987a2f561e2ccb06e8a2fd5fd1a0d9df4",
+      "dev_pin_release": "loomground-governance-v0.12.2",
       "status": "release"
     },
     {
