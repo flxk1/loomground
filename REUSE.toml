@@ -89,3 +89,9 @@ path = "skills/loomground/SKILL.md"
 precedence = "aggregate"
 SPDX-FileCopyrightText = "2026 flxk1"
 SPDX-License-Identifier = "Apache-2.0"
+
+[[annotations]]
+path = "docs/pitch/**"
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2026 flxk1"
+SPDX-License-Identifier = "CC-BY-4.0"

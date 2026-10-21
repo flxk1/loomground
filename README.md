@@ -63,7 +63,7 @@ Front door and normative base; tree: `CATALOGUE.md`, data: `CATALOGUE.json`, rel
 
 Consumes nothing; software conforms by reproducing `conformance/`. Pipeline: `source → loomground-ingest → loomground-versum → loomground-solver → applied or diagnostic planes`; every stage grounds in this language.
 
-Rationale: `docs/design.md`.
+Rationale: `docs/design.md`. The pitch, as a seven-card carousel: `docs/pitch/`.
 
 ## Status
 
