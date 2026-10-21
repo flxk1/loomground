@@ -2,6 +2,10 @@
 <!-- Copyright 2026 flxk1 -->
 # Changelog
 
+## Unreleased
+
+- `docs/pitch/`: the project pitch as a seven-card carousel (`loomground-pitch.pdf`, the seven cards, `pitch.md`, `alt.txt`), CC BY 4.0.
+
 ## 0.11.4 (2026-10-20)
 
 - Conformance: `guard-risk-above-threshold` runs a `critical` token against a
