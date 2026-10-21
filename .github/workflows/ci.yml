@@ -73,6 +73,17 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.x"
+      # The catalogued repositories are private: git reads them with the
+      # read-only DEPS_READ_TOKEN secret.
+      - name: read access to the private repositories
+        env:
+          DEPS_READ_TOKEN: ${{ secrets.DEPS_READ_TOKEN }}
+        run: |
+          if [ -z "$DEPS_READ_TOKEN" ]; then
+            echo "::error::secret DEPS_READ_TOKEN is not set; the private repositories cannot be read"
+            exit 1
+          fi
+          git config --global url."https://x-access-token:${DEPS_READ_TOKEN}@github.com/flxk1/".insteadOf "https://github.com/flxk1/"
       - name: every catalogued repository at its pushed main, tags fetched (private ones skipped)
         run: |
           mkdir -p "$RUNNER_TEMP/siblings"
