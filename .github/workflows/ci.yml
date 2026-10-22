@@ -1,6 +1,9 @@
 # SPDX-License-Identifier: Apache-2.0
 # Copyright 2026 flxk1
 name: ci
+
+env:
+  NEUTRALITY_PATTERN: ${{ vars.NEUTRALITY_PATTERN }}
 on:
   push:
   pull_request:
@@ -104,6 +107,7 @@ jobs:
       - uses: actions/checkout@v4
       - name: normative documents are tool- and vendor-neutral (CONTRIBUTING.md)
         run: |
+          [ -n "$NEUTRALITY_PATTERN" ] || { echo "NEUTRALITY_PATTERN repository variable is not set"; exit 1; }
           if grep -rniE "$NEUTRALITY_PATTERN" \
                spec/ grammar/ schema/ vocabulary/ conformance/ examples/ skills/ llms.txt language-card.json AGENTS.md \
                README.md NOTICE CITATION.cff CONTRIBUTING.md \
@@ -131,7 +135,8 @@ jobs:
           fi
           bad=0
           git log --no-merges --format='%s' $range | awk 'length($0)>72 {print "subject >72 chars: " $0; bad=1} END {exit bad}' || bad=1
-          if git log --no-merges --format='%(trailers)' $range | grep -iE '^Co-Authored-By:'; then
+          [ -n "$NEUTRALITY_PATTERN" ] || { echo "NEUTRALITY_PATTERN repository variable is not set"; exit 1; }
+          if git log --no-merges --format='%(trailers)' $range | grep -iE "^Co-Authored-By:.*($NEUTRALITY_PATTERN)"; then
             echo "AI co-author trailer found — use the assisted line instead (CONTRIBUTING.md)"; bad=1
           fi
           exit $bad
